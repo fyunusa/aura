@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro'
+---
+
+<Layout title="Getting Started — aura">
+  <div style="max-width: 760px; margin-inline: auto; padding: 4rem 2rem;">
+
+    <div reveal="bottom">
+      <h1 style="font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem;">
+        Getting Started
+      </h1>
+      <p style="color: rgba(226,226,240,0.6); font-size: 1.1rem; margin-bottom: 3rem;">
+        aura installs in under a minute. No config required.
+      </p>
+    </div>
+
+    <section reveal="bottom" style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">1. Install</h2>
+      <div surface="matte" density="default" radius="lg">
+        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);">npm install aura
+# or
+pnpm add aura
+# or
+yarn add aura</pre>
+      </div>
+    </section>
+
+    <section reveal="bottom" style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">2. Import the CSS</h2>
+      <div surface="matte" density="default" radius="lg">
+        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>&lt;!-- In your HTML --&gt;
+&lt;link rel="stylesheet" href="node_modules/aura/dist/forma.css" /&gt;
+
+/* Or in JS/TS */
+import 'aura/css'</code></pre>
+      </div>
+    </section>
+
+    <section reveal="bottom" style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">3. Write attributes</h2>
+      <div surface="matte" density="default" radius="lg">
+        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>&lt;div surface="glass" tone="primary" density="spacious" radius="xl"&gt;
+  Hello, forma.
+&lt;/div&gt;
+
+&lt;div layout="row" gap="md" adaptive&gt;
+  &lt;button surface="solid" tone="primary" density="compact" radius="full" motion="expressive"&gt;
+    Get started
+  &lt;/button&gt;
+  &lt;button surface="ghost" density="compact" radius="full" motion="expressive"&gt;
+    Learn more
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <section reveal="bottom" style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Optional: Token overrides</h2>
+      <p style="color: rgba(226,226,240,0.6); margin-bottom: 1rem; font-size: 0.95rem;">
+        Override any design token at runtime by calling <code>init()</code>:
+      </p>
+      <div surface="matte" density="default" radius="lg">
+        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>import {'{'} init {'}'} from 'aura'
+
+init({'{'}
+  tokens: {'{'}
+    tone: {'{'} primary: '#your-brand-color' {'}'},
+    surface: {'{'} glass: {'{'} blur: '20px' {'}'} {'}'},
+  {'}'}
+{'}'})</code></pre>
+      </div>
+    </section>
+
+    <section reveal="bottom" style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">With Vite (zero runtime)</h2>
+      <div surface="matte" density="default" radius="lg">
+        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>// vite.config.ts
+import forma from 'aura/vite'
+
+export default {'{'}
+  plugins: [forma()]
+{'}'}</code></pre>
+      </div>
+    </section>
+
+    <div reveal="bottom" layout="row" gap="md" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgb(255 255 255 / 0.06);">
+      <a href="/docs/attributes"
+         surface="solid" tone="primary" density="compact" radius="full" motion="expressive"
+         style="text-decoration: none; color: #fff; font-size: 0.9rem;">
+        Attribute reference →
+      </a>
+    </div>
+  </div>
+</Layout>

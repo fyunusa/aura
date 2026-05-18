@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="aura — Style with intent, not with soup.">
+  <main layout="cover" style="background: radial-gradient(ellipse at 50% 0%, #1a1060 0%, transparent 65%); min-height: 100dvh;">
+    <section layout="stack" gap="xl" align="center" style="text-align: center; padding: 6rem 2rem;" max="640px">
+
+      <div reveal="scale">
+        <div surface="glass" tone="primary" density="spacious" radius="xl" style="display: inline-block;">
+          <h1 style="font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; color: #e2e2f0;">
+            aura
+          </h1>
+          <p style="color: rgba(226,226,240,0.6); font-size: 1.1rem; margin-top: 0.5rem;">
+            Style with intent, not with soup.
+          </p>
+        </div>
+      </div>
+
+      <p reveal="bottom" style="color: rgba(226,226,240,0.55); max-width: 480px; line-height: 1.7; font-size: 1rem;">
+        A lightweight (~8kb), zero-config CSS library where semantic HTML attributes
+        compile to atomic styles. Works with or without a build step.
+      </p>
+
+      <div layout="row" gap="sm" reveal="bottom">
+        <a href="/docs/getting-started"
+           surface="solid" tone="primary" density="default" radius="full" motion="expressive"
+           style="text-decoration: none; color: #fff; font-weight: 600; font-size: 0.95rem;">
+          Get started →
+        </a>
+        <a href="/docs/attributes"
+           surface="ghost" density="default" radius="full" motion="expressive"
+           style="text-decoration: none; color: #e2e2f0; font-size: 0.95rem;">
+          Attribute reference
+        </a>
+      </div>
+
+      <div layout="row" gap="md" reveal="bottom" style="margin-top: 1rem;">
+        <div surface="matte" density="compact" radius="full" style="font-family: monospace; font-size: 0.8rem; color: rgba(226,226,240,0.5);">
+          npm install aura
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature cards -->
+    <section layout="grid" gap="lg" style="--forma-grid-min: 260px; max-width: 1000px; margin-inline: auto; padding: 0 2rem 6rem;">
+      <div reveal="bottom" surface="glass" density="spacious" radius="xl">
+        <h3 style="color: #e2e2f0; margin-bottom: 0.5rem;">Zero config</h3>
+        <p style="color: rgba(226,226,240,0.55); font-size: 0.9rem;">
+          Drop in the CSS, add attributes. No config file, no class generation step.
+        </p>
+      </div>
+      <div reveal="bottom" surface="glass" density="spacious" radius="xl">
+        <h3 style="color: #e2e2f0; margin-bottom: 0.5rem;">~8kb gzip</h3>
+        <p style="color: rgba(226,226,240,0.55); font-size: 0.9rem;">
+          The entire system — surfaces, layout, motion, reveal — in under 8kb.
+        </p>
+      </div>
+      <div reveal="bottom" surface="glass" density="spacious" radius="xl">
+        <h3 style="color: #e2e2f0; margin-bottom: 0.5rem;">Token overrides</h3>
+        <p style="color: rgba(226,226,240,0.55); font-size: 0.9rem;">
+          Every value is a CSS custom property. Override anything with a single <code>init()</code> call.
+        </p>
+      </div>
+      <div reveal="bottom" surface="glass" density="spacious" radius="xl">
+        <h3 style="color: #e2e2f0; margin-bottom: 0.5rem;">SSR safe</h3>
+        <p style="color: rgba(226,226,240,0.55); font-size: 0.9rem;">
+          CSS works with zero JS. Runtime gracefully degrades in server environments.
+        </p>
+      </div>
+    </section>
+  </main>
+</Layout>

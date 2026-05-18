@@ -1,0 +1,5 @@
+[layer="base"]     { z-index: var(--aura-layer-base);     position: relative; }
+[layer="raised"]   { z-index: var(--aura-layer-raised);   position: relative; }
+[layer="floating"] { z-index: var(--aura-layer-floating); position: relative; }
+[layer="overlay"]  { z-index: var(--aura-layer-overlay);  position: fixed; }
+[layer="top"]      { z-index: var(--aura-layer-top);      position: fixed; }

@@ -1,0 +1,76 @@
+/* ─── Float keyframes ───────────────────────────────── */
+@keyframes aura-float-y {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(calc(var(--aura-float-amplitude, var(--aura-float-amplitude-md)) * -1)); }
+}
+@keyframes aura-float-x {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(var(--aura-float-amplitude, var(--aura-float-amplitude-md))); }
+}
+@keyframes aura-float-xy {
+  0%, 100% { transform: translate(0, 0); }
+  25%       { transform: translate(calc(var(--aura-float-amplitude, var(--aura-float-amplitude-md)) * 0.5), calc(var(--aura-float-amplitude, var(--aura-float-amplitude-md)) * -1)); }
+  75%       { transform: translate(calc(var(--aura-float-amplitude, var(--aura-float-amplitude-md)) * -0.5), calc(var(--aura-float-amplitude, var(--aura-float-amplitude-md)) * 0.5)); }
+}
+
+/* float= */
+[float="slow"] { animation: aura-float-y var(--aura-float-slow-duration) ease-in-out infinite; }
+[float="med"]  { animation: aura-float-y var(--aura-float-med-duration)  ease-in-out infinite; }
+[float="fast"] { animation: aura-float-y var(--aura-float-fast-duration) ease-in-out infinite; }
+
+/* float axis override */
+[float][axis="x"]  { animation-name: aura-float-x; }
+[float][axis="xy"] { animation-name: aura-float-xy; }
+
+/* ─── Reveal keyframes ───────────────────────────────── */
+@keyframes aura-reveal-bottom {
+  from { opacity: 0; transform: translateY(var(--aura-reveal-distance)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes aura-reveal-top {
+  from { opacity: 0; transform: translateY(calc(var(--aura-reveal-distance) * -1)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes aura-reveal-left {
+  from { opacity: 0; transform: translateX(calc(var(--aura-reveal-distance) * -1)); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes aura-reveal-right {
+  from { opacity: 0; transform: translateX(var(--aura-reveal-distance)); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes aura-reveal-scale {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes aura-reveal-blur {
+  from { opacity: 0; filter: blur(8px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+
+/* reveal= — hidden by default, JS adds .aura-revealed */
+[reveal] {
+  opacity: 0;
+}
+[reveal].aura-revealed {
+  animation-duration: var(--aura-reveal-duration);
+  animation-timing-function: var(--aura-reveal-ease);
+  animation-fill-mode: forwards;
+}
+[reveal="bottom"].aura-revealed { animation-name: aura-reveal-bottom; }
+[reveal="top"].aura-revealed    { animation-name: aura-reveal-top; }
+[reveal="left"].aura-revealed   { animation-name: aura-reveal-left; }
+[reveal="right"].aura-revealed  { animation-name: aura-reveal-right; }
+[reveal="scale"].aura-revealed  { animation-name: aura-reveal-scale; }
+[reveal="blur"].aura-revealed   { animation-name: aura-reveal-blur; }
+
+/* Delay support via reveal-delay attribute */
+[reveal-delay] { animation-delay: attr(reveal-delay ms); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [reveal]              { opacity: 1; }
+  [reveal].aura-revealed { animation: none; }
+  [float]               { animation: none; }
+  [motion]              { transition: none; }
+}

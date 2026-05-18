@@ -1,0 +1,21 @@
+{
+  "name": "aura-monorepo",
+  "private": true,
+  "scripts": {
+    "build":     "turbo run build",
+    "dev":       "turbo run dev --parallel",
+    "test":      "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "lint":      "eslint packages --ext .ts",
+    "release":   "changeset publish"
+  },
+  "devDependencies": {
+    "turbo":              "^1.13.0",
+    "@changesets/cli":    "^2.27.0",
+    "eslint":             "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser":        "^7.0.0",
+    "prettier":           "^3.0.0",
+    "typescript":         "^5.4.0"
+  }
+}

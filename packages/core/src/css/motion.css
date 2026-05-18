@@ -1,0 +1,21 @@
+[motion="none"] {
+  transition: none;
+}
+
+[motion="subtle"] {
+  transition: all
+    var(--aura-motion-subtle-duration)
+    var(--aura-motion-subtle-ease);
+}
+
+[motion="expressive"] {
+  transition: all
+    var(--aura-motion-expressive-duration)
+    var(--aura-motion-expressive-ease);
+}
+
+[motion="dramatic"] {
+  transition: all
+    var(--aura-motion-dramatic-duration)
+    var(--aura-motion-dramatic-ease);
+}

@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+const attributes = [
+  { name: 'surface', values: 'glass | solid | matte | ghost | neon | frosted', description: 'Visual material — controls background, blur, and border treatment.' },
+  { name: 'tone', values: 'primary | danger | success | warning | neutral', description: 'Semantic color. Sets --forma-tone-color, read by surface and text.' },
+  { name: 'density', values: 'compact | default | spacious', description: 'Internal padding scale.' },
+  { name: 'radius', values: 'none | sm | md | lg | xl | full', description: 'Border radius scale.' },
+  { name: 'layer', values: 'base | raised | floating | overlay | top', description: 'Semantic z-index. Sets position: relative or fixed as appropriate.' },
+  { name: 'layout', values: 'stack | row | cluster | grid | center | cover', description: 'Layout primitive. Sets display, flex-direction, and related properties.' },
+  { name: 'gap', values: 'xs | sm | md | lg | xl', description: 'Gap between flex/grid children.' },
+  { name: 'align', values: 'start | center | end | stretch', description: 'align-items shorthand.' },
+  { name: 'justify', values: 'start | center | end | between', description: 'justify-content shorthand.' },
+  { name: 'adaptive', values: '(boolean)', description: 'Auto-switches layout direction at 768px breakpoint.' },
+  { name: 'max', values: '<CSS length>', description: 'Max-width constraint with auto inline margins.' },
+  { name: 'motion', values: 'none | subtle | expressive | dramatic', description: 'Transition preset controlling duration and easing.' },
+  { name: 'float', values: 'slow | med | fast', description: 'Continuous CSS float animation.' },
+  { name: 'axis', values: 'x | xy', description: 'Float animation axis override (default: y).' },
+  { name: 'reveal', values: 'bottom | top | left | right | scale | blur', description: 'Scroll-triggered entrance animation. Activated by IntersectionObserver.' },
+  { name: 'reveal-delay', values: '<ms number>', description: 'Delay for the reveal animation in milliseconds.' },
+]
+---
+
+<Layout title="Attribute Reference — aura">
+  <div style="max-width: 900px; margin-inline: auto; padding: 4rem 2rem;">
+
+    <div reveal="bottom">
+      <h1 style="font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem;">
+        Attribute Reference
+      </h1>
+      <p style="color: rgba(226,226,240,0.6); font-size: 1.05rem; margin-bottom: 3rem;">
+        Every attribute aura recognises. All values are driven by CSS custom properties
+        and can be overridden via <code>init()</code>.
+      </p>
+    </div>
+
+    <div layout="stack" gap="sm">
+      {attributes.map((attr) => (
+        <div reveal="bottom" surface="matte" density="default" radius="lg"
+             style="display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: start;">
+          <div>
+            <code style="font-size: 0.95rem; color: #a89df5; font-weight: 600;">{attr.name}=</code>
+          </div>
+          <div layout="stack" gap="xs">
+            <div style="font-family: monospace; font-size: 0.8rem; color: rgba(226,226,240,0.45);">
+              {attr.values}
+            </div>
+            <p style="font-size: 0.9rem; color: rgba(226,226,240,0.65);">{attr.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div reveal="bottom" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgb(255 255 255 / 0.06);">
+      <h2 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem;">CSS Custom Properties</h2>
+      <p style="color: rgba(226,226,240,0.55); font-size: 0.9rem; margin-bottom: 1rem;">
+        All tokens are exposed as CSS custom properties on <code>:root</code> and can be
+        overridden in your own stylesheet or via the <code>init()</code> config API.
+      </p>
+      <div surface="matte" density="default" radius="lg">
+        <pre style="padding: 1rem; font-family: monospace; font-size: 0.8rem; overflow-x: auto; color: rgba(226,226,240,0.7);">--forma-color-primary    /* #7C6AF7 */
+--forma-color-danger     /* #ef4444 */
+--forma-glass-blur       /* 14px    */
+--forma-glass-opacity    /* 0.10    */
+--forma-radius-md        /* 0.5rem  */
+--forma-gap-md           /* 1rem    */
+--forma-motion-subtle-duration   /* 150ms */
+--forma-reveal-distance  /* 24px   */
+/* ... see tokens.css for the full list */</pre>
+      </div>
+    </div>
+  </div>
+</Layout>

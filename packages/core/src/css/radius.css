@@ -1,0 +1,6 @@
+[radius="none"] { border-radius: var(--aura-radius-none); }
+[radius="sm"]   { border-radius: var(--aura-radius-sm); }
+[radius="md"]   { border-radius: var(--aura-radius-md); }
+[radius="lg"]   { border-radius: var(--aura-radius-lg); }
+[radius="xl"]   { border-radius: var(--aura-radius-xl); }
+[radius="full"] { border-radius: var(--aura-radius-full); }

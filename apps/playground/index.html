@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aura playground</title>
+    <script type="module" src="/main.ts"></script>
+    <style>
+      /* Base reset + dark canvas */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: #0a0a0f;
+        color: #e2e2f0;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+        min-height: 100dvh;
+      }
+
+      h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.5rem; margin-bottom: 1rem; opacity: 0.7; font-weight: 500; }
+      h3 { font-size: 1rem; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; margin-bottom: 0.75rem; }
+
+      p { opacity: 0.65; }
+      code { font-family: 'Fira Code', monospace; font-size: 0.85em; opacity: 0.8; }
+
+      .section { padding: 4rem 2rem; max-width: 1100px; margin-inline: auto; }
+      .section + .section { border-top: 1px solid rgb(255 255 255 / 0.05); }
+
+      .demo-box {
+        padding: 1.5rem;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+
+      .label {
+        font-size: 0.7rem;
+        font-family: monospace;
+        opacity: 0.4;
+        margin-top: 0.5rem;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── Hero ──────────────────────────────────────────────────── -->
+    <section layout="cover" style="min-height: 60dvh; background: radial-gradient(ellipse at 50% 0%, #2a1f6e 0%, transparent 70%);">
+      <div layout="stack" gap="lg" align="center" style="text-align: center; padding: 4rem 2rem;" max="600px">
+        <div float="slow" reveal="scale">
+          <div surface="glass" tone="primary" density="spacious" radius="xl" style="display: inline-block; padding: 1.5rem 3rem;">
+            <h1 style="color: #e2e2f0;">aura</h1>
+            <p style="margin-top: 0.5rem; color: rgba(226,226,240,0.65);">Style with intent, not with soup.</p>
+          </div>
+        </div>
+        <div layout="row" gap="sm" reveal="bottom">
+          <a href="#demos"
+             surface="solid" tone="primary" density="compact" radius="full" motion="expressive"
+             style="text-decoration: none; color: #fff; font-size: 0.9rem;">
+            Get started
+          </a>
+          <a href="/docs/"
+             surface="ghost" density="compact" radius="full" motion="expressive"
+             style="text-decoration: none; color: #e2e2f0; font-size: 0.9rem;">
+            View docs
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Surfaces ──────────────────────────────────────────────── -->
+    <div id="demos" class="section">
+      <h2>surface=</h2>
+      <div layout="cluster" gap="md">
+
+        <div layout="stack" gap="xs">
+          <div class="demo-box" surface="glass" radius="lg">glass</div>
+          <code class="label">surface="glass"</code>
+        </div>
+
+        <div layout="stack" gap="xs">
+          <div class="demo-box" surface="solid" radius="lg">solid</div>
+          <code class="label">surface="solid"</code>
+        </div>
+
+        <div layout="stack" gap="xs">
+          <div class="demo-box" surface="matte" radius="lg">matte</div>
+          <code class="label">surface="matte"</code>
+        </div>
+
+        <div layout="stack" gap="xs">
+          <div class="demo-box" surface="ghost" radius="lg">ghost</div>
+          <code class="label">surface="ghost"</code>
+        </div>
+
+        <div layout="stack" gap="xs">
+          <div class="demo-box" surface="frosted" radius="lg" style="color: #111;">frosted</div>
+          <code class="label">surface="frosted"</code>
+        </div>
+
+        <div layout="stack" gap="xs">
+          <div class="demo-box" surface="neon" tone="primary" radius="lg">neon</div>
+          <code class="label">surface="neon" tone="primary"</code>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Tones ─────────────────────────────────────────────────── -->
+    <div class="section">
+      <h2>tone=</h2>
+      <div layout="cluster" gap="md">
+        <div surface="solid" tone="primary" density="default" radius="md">primary</div>
+        <div surface="solid" tone="danger"  density="default" radius="md">danger</div>
+        <div surface="solid" tone="success" density="default" radius="md">success</div>
+        <div surface="solid" tone="warning" density="default" radius="md">warning</div>
+        <div surface="solid" tone="neutral" density="default" radius="md">neutral</div>
+      </div>
+      <div layout="cluster" gap="md" style="margin-top: 1rem;">
+        <div surface="ghost" tone="primary" density="default" radius="md">ghost + primary</div>
+        <div surface="ghost" tone="danger"  density="default" radius="md">ghost + danger</div>
+        <div surface="neon"  tone="success" density="default" radius="md">neon + success</div>
+      </div>
+    </div>
+
+    <!-- ── Density ───────────────────────────────────────────────── -->
+    <div class="section">
+      <h2>density=</h2>
+      <div layout="cluster" gap="md" align="center">
+        <button surface="solid" tone="primary" density="compact"  radius="full" motion="expressive" style="cursor: pointer; border: none; color: #fff;">compact</button>
+        <button surface="solid" tone="primary" density="default"  radius="full" motion="expressive" style="cursor: pointer; border: none; color: #fff;">default</button>
+        <button surface="solid" tone="primary" density="spacious" radius="full" motion="expressive" style="cursor: pointer; border: none; color: #fff;">spacious</button>
+      </div>
+    </div>
+
+    <!-- ── Radius ────────────────────────────────────────────────── -->
+    <div class="section">
+      <h2>radius=</h2>
+      <div layout="cluster" gap="md">
+        <div surface="solid" density="default" radius="none">none</div>
+        <div surface="solid" density="default" radius="sm">sm</div>
+        <div surface="solid" density="default" radius="md">md</div>
+        <div surface="solid" density="default" radius="lg">lg</div>
+        <div surface="solid" density="default" radius="xl">xl</div>
+        <div surface="solid" density="default" radius="full">full</div>
+      </div>
+    </div>
+
+    <!-- ── Layout ───────────────────────────────────────────────── -->
+    <div class="section">
+      <h2>layout=</h2>
+
+      <h3>stack</h3>
+      <div layout="stack" gap="sm" surface="matte" density="default" radius="lg" style="max-width: 300px;">
+        <div surface="solid" density="compact" radius="md">Item A</div>
+        <div surface="solid" density="compact" radius="md">Item B</div>
+        <div surface="solid" density="compact" radius="md">Item C</div>
+      </div>
+
+      <h3 style="margin-top: 1.5rem;">row</h3>
+      <div layout="row" gap="sm" surface="matte" density="default" radius="lg">
+        <div surface="solid" density="compact" radius="md">Item A</div>
+        <div surface="solid" density="compact" radius="md">Item B</div>
+        <div surface="solid" density="compact" radius="md">Item C</div>
+      </div>
+
+      <h3 style="margin-top: 1.5rem;">grid</h3>
+      <div layout="grid" gap="md" style="--aura-grid-min: 140px;">
+        <div surface="glass" density="default" radius="lg">Grid A</div>
+        <div surface="glass" density="default" radius="lg">Grid B</div>
+        <div surface="glass" density="default" radius="lg">Grid C</div>
+        <div surface="glass" density="default" radius="lg">Grid D</div>
+        <div surface="glass" density="default" radius="lg">Grid E</div>
+      </div>
+    </div>
+
+    <!-- ── Motion ───────────────────────────────────────────────── -->
+    <div class="section">
+      <h2>motion=</h2>
+      <p style="margin-bottom: 1rem;">Hover the buttons to see transitions.</p>
+      <div layout="cluster" gap="md">
+        <button surface="ghost" tone="primary" density="default" radius="full" motion="subtle"
+          style="cursor: pointer; color: inherit;"
+          onmouseover="this.setAttribute('surface','solid')"
+          onmouseout="this.setAttribute('surface','ghost')">subtle</button>
+        <button surface="ghost" tone="primary" density="default" radius="full" motion="expressive"
+          style="cursor: pointer; color: inherit;"
+          onmouseover="this.setAttribute('surface','solid')"
+          onmouseout="this.setAttribute('surface','ghost')">expressive</button>
+        <button surface="ghost" tone="primary" density="default" radius="full" motion="dramatic"
+          style="cursor: pointer; color: inherit;"
+          onmouseover="this.setAttribute('surface','solid')"
+          onmouseout="this.setAttribute('surface','ghost')">dramatic</button>
+      </div>
+    </div>
+
+    <!-- ── Float ────────────────────────────────────────────────── -->
+    <div class="section">
+      <h2>float=</h2>
+      <div layout="cluster" gap="xl" align="center" style="padding: 2rem 0;">
+        <div layout="stack" gap="sm" align="center">
+          <div float="slow" surface="neon" tone="primary" density="default" radius="full" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">S</div>
+          <code class="label" style="text-align:center;">slow</code>
+        </div>
+        <div layout="stack" gap="sm" align="center">
+          <div float="med" surface="neon" tone="success" density="default" radius="full" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">M</div>
+          <code class="label" style="text-align:center;">med</code>
+        </div>
+        <div layout="stack" gap="sm" align="center">
+          <div float="fast" surface="neon" tone="warning" density="default" radius="full" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">F</div>
+          <code class="label" style="text-align:center;">fast</code>
+        </div>
+        <div layout="stack" gap="sm" align="center">
+          <div float="slow" axis="x" surface="neon" tone="danger" density="default" radius="full" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">X</div>
+          <code class="label" style="text-align:center;">slow + axis="x"</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Reveal ───────────────────────────────────────────────── -->
+    <div class="section">
+      <h2>reveal=</h2>
+      <p style="margin-bottom: 2rem;">Scroll down to see elements animate in.</p>
+      <div layout="grid" gap="md" style="--aura-grid-min: 200px; padding: 2rem 0;">
+        <div reveal="bottom" surface="glass" density="spacious" radius="xl">
+          <h3 style="margin-bottom: 0.5rem; opacity: 1; font-size: 0.9rem;">bottom</h3>
+          <p>Slides up from below</p>
+        </div>
+        <div reveal="top" surface="glass" density="spacious" radius="xl">
+          <h3 style="margin-bottom: 0.5rem; opacity: 1; font-size: 0.9rem;">top</h3>
+          <p>Slides down from above</p>
+        </div>
+        <div reveal="left" surface="glass" density="spacious" radius="xl">
+          <h3 style="margin-bottom: 0.5rem; opacity: 1; font-size: 0.9rem;">left</h3>
+          <p>Slides in from the left</p>
+        </div>
+        <div reveal="right" surface="glass" density="spacious" radius="xl">
+          <h3 style="margin-bottom: 0.5rem; opacity: 1; font-size: 0.9rem;">right</h3>
+          <p>Slides in from the right</p>
+        </div>
+        <div reveal="scale" surface="glass" density="spacious" radius="xl">
+          <h3 style="margin-bottom: 0.5rem; opacity: 1; font-size: 0.9rem;">scale</h3>
+          <p>Scales up from 92%</p>
+        </div>
+        <div reveal="blur" surface="glass" density="spacious" radius="xl">
+          <h3 style="margin-bottom: 0.5rem; opacity: 1; font-size: 0.9rem;">blur</h3>
+          <p>Unblurs into focus</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Footer ───────────────────────────────────────────────── -->
+    <footer layout="center" density="spacious" style="opacity: 0.3; font-size: 0.85rem;">
+      <p>aura playground — <code>v0.1.0</code></p>
+    </footer>
+  </body>
+</html>

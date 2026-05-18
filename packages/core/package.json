@@ -1,0 +1,35 @@
+{
+  "name": "aura",
+  "version": "0.1.0",
+  "description": "Style with intent, not with soup.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./css": "./dist/forma.css",
+    "./runtime": {
+      "types": "./dist/runtime.d.ts",
+      "import": "./dist/runtime.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup && node scripts/build-css.js",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "lightningcss": "^1.24.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "jsdom": "^24.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "sideEffects": ["./dist/forma.css"]
+}

@@ -1,0 +1,3 @@
+[density="compact"]  { padding: var(--aura-density-compact); }
+[density="default"]  { padding: var(--aura-density-default); }
+[density="spacious"] { padding: var(--aura-density-spacious); }

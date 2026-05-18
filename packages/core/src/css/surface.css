@@ -1,0 +1,43 @@
+/* surface="glass" */
+[surface="glass"] {
+  backdrop-filter: blur(var(--aura-glass-blur));
+  -webkit-backdrop-filter: blur(var(--aura-glass-blur));
+  background-color: rgb(255 255 255 / var(--aura-glass-opacity));
+  border: 1px solid var(--aura-glass-border);
+}
+
+/* surface="solid" */
+[surface="solid"] {
+  background-color: var(--aura-tone-color, rgb(255 255 255 / 0.05));
+  border: 1px solid rgb(255 255 255 / 0.06);
+}
+
+/* surface="matte" */
+[surface="matte"] {
+  background-color: var(--aura-tone-color, rgb(255 255 255 / 0.04));
+  border: none;
+}
+
+/* surface="ghost" */
+[surface="ghost"] {
+  background-color: transparent;
+  border: 1px solid var(--aura-tone-color, rgb(255 255 255 / 0.12));
+}
+
+/* surface="frosted" */
+[surface="frosted"] {
+  backdrop-filter: blur(var(--aura-frosted-blur));
+  -webkit-backdrop-filter: blur(var(--aura-frosted-blur));
+  background-color: rgb(255 255 255 / var(--aura-frosted-opacity));
+  border: 1px solid rgb(255 255 255 / 0.3);
+}
+
+/* surface="neon" */
+[surface="neon"] {
+  background-color: transparent;
+  border: 1px solid var(--aura-tone-color, var(--aura-color-primary));
+  box-shadow:
+    0 0 8px  var(--aura-tone-color, var(--aura-color-primary)),
+    0 0 24px rgb(from var(--aura-tone-color, var(--aura-color-primary)) r g b / 0.3),
+    inset 0 0 12px rgb(from var(--aura-tone-color, var(--aura-color-primary)) r g b / 0.05);
+}

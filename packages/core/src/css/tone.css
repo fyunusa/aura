@@ -1,0 +1,22 @@
+/*
+  tone= sets --aura-tone-color.
+  All surfaces and text read from this custom property.
+  This means tone + surface compose cleanly without specificity fights.
+*/
+
+[tone="primary"] { --aura-tone-color: var(--aura-color-primary); color: var(--aura-tone-color); }
+[tone="danger"]  { --aura-tone-color: var(--aura-color-danger);  color: var(--aura-tone-color); }
+[tone="success"] { --aura-tone-color: var(--aura-color-success); color: var(--aura-tone-color); }
+[tone="warning"] { --aura-tone-color: var(--aura-color-warning); color: var(--aura-tone-color); }
+[tone="neutral"] { --aura-tone-color: var(--aura-color-neutral); color: var(--aura-tone-color); }
+
+/* When tone + surface="solid", tint the bg */
+[tone][surface="solid"] {
+  background-color: rgb(from var(--aura-tone-color) r g b / 0.12);
+  border-color: rgb(from var(--aura-tone-color) r g b / 0.2);
+}
+
+/* When tone + surface="ghost", tint the border */
+[tone][surface="ghost"] {
+  border-color: rgb(from var(--aura-tone-color) r g b / 0.3);
+}
