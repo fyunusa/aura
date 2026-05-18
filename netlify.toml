@@ -1,7 +1,7 @@
-# Docs site — connect this repo to a Netlify site with no base directory
+# Playground (root) + Docs (/docs) combined
 [build]
-  command = "corepack enable && pnpm install && pnpm build"
-  publish = "apps/docs/dist"
+  command = "corepack enable && pnpm install && pnpm build && mkdir -p apps/playground/dist/docs && cp -r apps/docs/dist/. apps/playground/dist/docs/"
+  publish = "apps/playground/dist"
 
 [build.environment]
   NODE_VERSION = "22"
