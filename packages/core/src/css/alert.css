@@ -1,0 +1,95 @@
+/* ─── Alert / Banner ──────────────────────────────────────────────────────────
+   Usage: <div alert="info">…</div>
+   ─────────────────────────────────────────────────────────────────────────── */
+
+[alert] {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: var(--aura-alert-padding, 0.875rem 1.125rem);
+  border-radius: var(--aura-radius-lg);
+  border: 1px solid var(--aura-alert-border, rgb(255 255 255 / 0.1));
+  background: var(--aura-alert-bg, rgb(255 255 255 / 0.05));
+  color: var(--aura-alert-text, inherit);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* ── Tones ───────────────────────────────────────────────────────────────── */
+[alert="info"],
+[alert="primary"] {
+  --aura-alert-bg:     color-mix(in oklch, var(--aura-color-info) 12%, transparent);
+  --aura-alert-border: color-mix(in oklch, var(--aura-color-info) 35%, transparent);
+  --aura-alert-text:   var(--aura-color-info);
+}
+[alert="success"] {
+  --aura-alert-bg:     color-mix(in oklch, var(--aura-color-success) 12%, transparent);
+  --aura-alert-border: color-mix(in oklch, var(--aura-color-success) 35%, transparent);
+  --aura-alert-text:   var(--aura-color-success);
+}
+[alert="warning"] {
+  --aura-alert-bg:     color-mix(in oklch, var(--aura-color-warning) 12%, transparent);
+  --aura-alert-border: color-mix(in oklch, var(--aura-color-warning) 35%, transparent);
+  --aura-alert-text:   var(--aura-color-warning);
+}
+[alert="danger"] {
+  --aura-alert-bg:     color-mix(in oklch, var(--aura-color-danger) 12%, transparent);
+  --aura-alert-border: color-mix(in oklch, var(--aura-color-danger) 35%, transparent);
+  --aura-alert-text:   var(--aura-color-danger);
+}
+[alert="neutral"] {
+  --aura-alert-bg:     color-mix(in oklch, var(--aura-color-neutral) 12%, transparent);
+  --aura-alert-border: color-mix(in oklch, var(--aura-color-neutral) 35%, transparent);
+  --aura-alert-text:   var(--aura-color-neutral);
+}
+
+/* ── Solid variants ──────────────────────────────────────────────────────── */
+[alert="info-solid"]     { background: var(--aura-color-info);    color: white; border-color: transparent; }
+[alert="success-solid"]  { background: var(--aura-color-success); color: white; border-color: transparent; }
+[alert="warning-solid"]  { background: var(--aura-color-warning); color: white; border-color: transparent; }
+[alert="danger-solid"]   { background: var(--aura-color-danger);  color: white; border-color: transparent; }
+[alert="primary-solid"]  { background: var(--aura-color-primary); color: white; border-color: transparent; }
+
+/* ── Inner slots ─────────────────────────────────────────────────────────── */
+[alert] [alert-icon] {
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.9;
+}
+
+[alert] [alert-title] {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.2em;
+}
+
+[alert] [alert-body] {
+  opacity: 0.85;
+}
+
+/* Dismiss button */
+[alert] [alert-dismiss] {
+  margin-left: auto;
+  align-self: flex-start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.45;
+  line-height: 1;
+  padding: 0 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: inherit;
+  flex-shrink: 0;
+  transition: opacity 150ms;
+}
+[alert] [alert-dismiss]:hover { opacity: 1; }
+
+/* ── Sizes ───────────────────────────────────────────────────────────────── */
+[alert][alert-size="sm"] {
+  --aura-alert-padding: 0.5rem 0.875rem;
+  font-size: 0.82rem;
+}
+[alert][alert-size="lg"] {
+  --aura-alert-padding: 1.25rem 1.5rem;
+  font-size: 0.95rem;
+}

@@ -1,0 +1,64 @@
+/* ─── Keyboard key ────────────────────────────────────────────────────────────
+   Works on semantic <kbd> elements or any element with [kbd] attribute.
+   Usage: <kbd>Ctrl</kbd>  or  <span kbd>K</span>
+   ─────────────────────────────────────────────────────────────────────────── */
+
+kbd,
+[kbd] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--aura-kbd-padding-y, 0.15em) var(--aura-kbd-padding-x, 0.45em);
+  font-family: var(--aura-font-mono);
+  font-size: var(--aura-kbd-size, 0.8em);
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  border-radius: var(--aura-radius-sm);
+  background: var(--aura-kbd-bg, rgb(255 255 255 / 0.08));
+  border: 1px solid var(--aura-kbd-border, rgb(255 255 255 / 0.18));
+  border-bottom-width: 3px;
+  color: var(--aura-kbd-text, inherit);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.25);
+  vertical-align: middle;
+  cursor: default;
+  user-select: none;
+}
+
+/* ── Shortcut group: <kbd><kbd>Ctrl</kbd><kbd>K</kbd></kbd> ───────────────── */
+kbd kbd,
+[kbd] [kbd],
+[kbd] kbd {
+  border: none;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  border-bottom-width: 0;
+  padding: 0;
+  font-size: inherit;
+}
+kbd:has(kbd),
+[kbd]:has([kbd]),
+[kbd]:has(kbd) {
+  gap: 0.25em;
+}
+
+/* ── Sizes ───────────────────────────────────────────────────────────────── */
+[kbd][kbd-size="sm"] {
+  --aura-kbd-size:      0.7em;
+  --aura-kbd-padding-y: 0.1em;
+  --aura-kbd-padding-x: 0.35em;
+}
+[kbd][kbd-size="lg"] {
+  --aura-kbd-size:      0.9em;
+  --aura-kbd-padding-y: 0.25em;
+  --aura-kbd-padding-x: 0.6em;
+}
+
+/* ── Ghost / outline variant ──────────────────────────────────────────────── */
+[kbd][kbd-style="ghost"] {
+  background: transparent;
+  border-color: rgb(255 255 255 / 0.25);
+  box-shadow: none;
+  border-bottom-width: 1px;
+}

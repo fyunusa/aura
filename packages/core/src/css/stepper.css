@@ -1,0 +1,147 @@
+/* ─── Stepper ─────────────────────────────────────────────────────────────────
+   Multi-step progress indicator.
+   Usage: <ol stepper> <li step step-state="done"> <li step active> <li step> </ol>
+   ─────────────────────────────────────────────────────────────────────────── */
+
+[stepper] {
+  display: flex;
+  align-items: flex-start;
+  counter-reset: aura-step;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+[stepper][stepper-dir="vertical"] {
+  flex-direction: column;
+}
+
+/* ── Each step ───────────────────────────────────────────────────────────── */
+[stepper] > [step] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  counter-increment: aura-step;
+  gap: 0.5rem;
+}
+
+[stepper][stepper-dir="vertical"] > [step] {
+  flex-direction: row;
+  flex: unset;
+  align-items: flex-start;
+  padding-bottom: 2.25rem;
+  gap: 1rem;
+}
+
+/* ── Connector line between steps ────────────────────────────────────────── */
+[stepper] > [step]:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: calc(50% + 20px);
+  right: calc(-50% + 20px);
+  height: 2px;
+  background: var(--aura-stepper-line, rgb(255 255 255 / 0.12));
+  transition: background 300ms ease;
+}
+
+[stepper][stepper-dir="vertical"] > [step]:not(:last-child)::after {
+  top: 44px;
+  left: 17px;
+  right: unset;
+  width: 2px;
+  height: calc(100% - 44px);
+}
+
+/* Done steps colour the connector */
+[stepper] > [step][step-state="done"]:not(:last-child)::after,
+[stepper] > [step][done]:not(:last-child)::after {
+  background: var(--aura-color-success);
+}
+
+/* ── Step indicator circle ───────────────────────────────────────────────── */
+[stepper] > [step]::before {
+  content: counter(aura-step);
+  width: 36px;
+  height: 36px;
+  line-height: 32px; /* accounts for 2px border */
+  text-align: center;
+  border-radius: 50%;
+  background: var(--aura-stepper-inactive-bg, rgb(255 255 255 / 0.07));
+  border: 2px solid var(--aura-stepper-inactive-border, rgb(255 255 255 / 0.15));
+  color: var(--aura-stepper-inactive-text, rgb(255 255 255 / 0.45));
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+/* Active */
+[stepper] > [step][step-state="active"]::before,
+[stepper] > [step][active]::before {
+  background: var(--aura-color-primary);
+  border-color: var(--aura-color-primary);
+  color: white;
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--aura-color-primary) 25%, transparent);
+}
+
+/* Done */
+[stepper] > [step][step-state="done"]::before,
+[stepper] > [step][done]::before {
+  content: '✓';
+  background: var(--aura-color-success);
+  border-color: var(--aura-color-success);
+  color: white;
+}
+
+/* Error */
+[stepper] > [step][step-state="error"]::before {
+  content: '✕';
+  background: var(--aura-color-danger);
+  border-color: var(--aura-color-danger);
+  color: white;
+}
+
+/* ── Step label ──────────────────────────────────────────────────────────── */
+[stepper] > [step] > [step-label] {
+  font-size: 0.78rem;
+  text-align: center;
+  opacity: 0.55;
+  max-width: 80px;
+  line-height: 1.3;
+}
+
+[stepper] > [step][step-state="active"] > [step-label],
+[stepper] > [step][active] > [step-label] {
+  opacity: 1;
+  font-weight: 600;
+  color: var(--aura-color-primary);
+}
+
+[stepper] > [step][step-state="done"] > [step-label],
+[stepper] > [step][done] > [step-label] {
+  opacity: 0.7;
+}
+
+[stepper][stepper-dir="vertical"] > [step] > [step-label] {
+  text-align: left;
+  max-width: unset;
+  padding-top: 7px;
+}
+
+/* ── Compact size ────────────────────────────────────────────────────────── */
+[stepper][stepper-size="sm"] > [step]::before {
+  width: 26px;
+  height: 26px;
+  line-height: 22px;
+  font-size: 0.72rem;
+}
+[stepper][stepper-size="sm"] > [step]:not(:last-child)::after {
+  top: 13px;
+  left: calc(50% + 15px);
+  right: calc(-50% + 15px);
+}

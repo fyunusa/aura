@@ -1,0 +1,99 @@
+/* ─── Theming ──────────────────────────────────────────────────────────────────
+   Local theme overrides, selection colour, caret, placeholder.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Force light theme on a subtree ──────────────────────────────────────── */
+[theme="light"] {
+  color-scheme: light;
+  --aura-bg:               #f4f4f8;
+  --aura-text:             #111118;
+  --aura-glass-border:     rgba(0, 0, 0, 0.08);
+  --aura-glass-opacity:    0.85;
+  --aura-glass-blur:       10px;
+  --aura-input-bg:         rgb(0 0 0 / 0.04);
+  --aura-input-border:     rgb(0 0 0 / 0.12);
+  --aura-input-focus-ring: rgba(124, 106, 247, 0.15);
+  --aura-shadow-low:       0 1px 3px rgb(0 0 0 / 0.08), 0 1px 2px rgb(0 0 0 / 0.05);
+  --aura-shadow-mid:       0 4px 12px rgb(0 0 0 / 0.1), 0 2px 4px rgb(0 0 0 / 0.06);
+  --aura-shadow-high:      0 10px 30px rgb(0 0 0 / 0.12), 0 4px 8px rgb(0 0 0 / 0.08);
+  --aura-tabs-border:      rgb(0 0 0 / 0.1);
+  --aura-accordion-border: rgb(0 0 0 / 0.08);
+  --aura-stepper-line:     rgb(0 0 0 / 0.1);
+  --aura-stepper-inactive-bg:     rgb(0 0 0 / 0.04);
+  --aura-stepper-inactive-border: rgb(0 0 0 / 0.15);
+  --aura-stepper-inactive-text:   rgb(0 0 0 / 0.4);
+  --aura-kbd-bg:           rgb(0 0 0 / 0.06);
+  --aura-kbd-border:       rgb(0 0 0 / 0.2);
+  --aura-progress-track:   rgb(0 0 0 / 0.08);
+  --aura-switch-off:       rgb(0 0 0 / 0.15);
+
+  background: var(--aura-bg);
+  color: var(--aura-text);
+}
+
+/* ── Force dark theme on a subtree ───────────────────────────────────────── */
+[theme="dark"] {
+  color-scheme: dark;
+  --aura-bg:            #0f0f13;
+  --aura-text:          #e2e2f0;
+  --aura-glass-border:  rgba(255, 255, 255, 0.08);
+  --aura-glass-opacity: 0.1;
+  --aura-input-bg:      rgb(255 255 255 / 0.05);
+  --aura-input-border:  rgb(255 255 255 / 0.12);
+
+  background: var(--aura-bg);
+  color: var(--aura-text);
+}
+
+/* ── Custom text selection colour ────────────────────────────────────────── */
+[selection="primary"]::selection,
+[selection="primary"] *::selection {
+  background: color-mix(in oklch, var(--aura-color-primary) 40%, transparent);
+  color: white;
+}
+[selection="accent"]::selection,
+[selection="accent"] *::selection {
+  background: color-mix(in oklch, var(--aura-color-accent) 40%, transparent);
+  color: white;
+}
+[selection="danger"]::selection,
+[selection="danger"] *::selection {
+  background: color-mix(in oklch, var(--aura-color-danger) 40%, transparent);
+  color: white;
+}
+[selection="success"]::selection,
+[selection="success"] *::selection {
+  background: color-mix(in oklch, var(--aura-color-success) 40%, transparent);
+  color: white;
+}
+[selection="none"]::selection,
+[selection="none"] *::selection {
+  background: transparent;
+}
+
+/* ── Caret colour ─────────────────────────────────────────────────────────── */
+[caret="primary"] { caret-color: var(--aura-color-primary); }
+[caret="accent"]  { caret-color: var(--aura-color-accent); }
+[caret="danger"]  { caret-color: var(--aura-color-danger); }
+[caret="success"] { caret-color: var(--aura-color-success); }
+[caret="warning"] { caret-color: var(--aura-color-warning); }
+[caret="auto"]    { caret-color: auto; }
+
+/* ── Placeholder styling ──────────────────────────────────────────────────── */
+[placeholder="muted"]::placeholder,
+[placeholder="muted"] ::placeholder   { opacity: 0.35; }
+
+[placeholder="italic"]::placeholder,
+[placeholder="italic"] ::placeholder  { font-style: italic; }
+
+[placeholder="primary"]::placeholder,
+[placeholder="primary"] ::placeholder {
+  color: var(--aura-color-primary);
+  opacity: 0.55;
+}
+
+[placeholder="accent"]::placeholder,
+[placeholder="accent"] ::placeholder {
+  color: var(--aura-color-accent);
+  opacity: 0.55;
+}

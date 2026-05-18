@@ -36,3 +36,13 @@
 @import './text-effects.css';
 @import './tilt.css';
 @import './shimmer.css';
+/* v0.5.0 — components, layout & theming */
+@import './progress.css';
+@import './switch.css';
+@import './accordion.css';
+@import './alert.css';
+@import './tabs.css';
+@import './stepper.css';
+@import './rating.css';
+@import './kbd.css';
+@import './theming.css';

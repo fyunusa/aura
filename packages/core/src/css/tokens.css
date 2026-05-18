@@ -184,4 +184,46 @@
   --aura-filter-saturate:    2;
   --aura-backdrop-brightness: 0.6;
   --aura-backdrop-contrast:   1.4;
+
+  /* v0.5.0 — progress tokens */
+  --aura-progress-height:  8px;
+
+  /* v0.5.0 — switch tokens */
+  --aura-switch-width:         44px;
+  --aura-switch-height:        24px;
+  --aura-switch-thumb:         18px;
+  --aura-switch-thumb-offset:  3px;
+  --aura-switch-travel:        20px;
+
+  /* v0.5.0 — accordion tokens */
+  --aura-accordion-border:  rgb(255 255 255 / 0.08);
+  --aura-accordion-padding: 1rem 1.25rem;
+
+  /* v0.5.0 — alert tokens */
+  --aura-alert-padding: 0.875rem 1.125rem;
+
+  /* v0.5.0 — tabs tokens */
+  --aura-tabs-border:        rgb(255 255 255 / 0.1);
+  --aura-tabs-tab-gap:       0.125rem;
+  --aura-tabs-tab-padding:   0.6rem 1rem;
+  --aura-tabs-panel-padding: 1.25rem;
+
+  /* v0.5.0 — stepper tokens */
+  --aura-stepper-line:              rgb(255 255 255 / 0.12);
+  --aura-stepper-inactive-bg:       rgb(255 255 255 / 0.07);
+  --aura-stepper-inactive-border:   rgb(255 255 255 / 0.15);
+  --aura-stepper-inactive-text:     rgb(255 255 255 / 0.45);
+
+  /* v0.5.0 — rating tokens */
+  --aura-rating-gap:     1px;
+  --aura-rating-size:    1.25rem;
+  --aura-rating-filled:  #f59e0b;
+  --aura-rating-empty:   rgb(255 255 255 / 0.2);
+
+  /* v0.5.0 — kbd tokens */
+  --aura-kbd-size:       0.8em;
+  --aura-kbd-padding-y:  0.15em;
+  --aura-kbd-padding-x:  0.45em;
+  --aura-kbd-bg:         rgb(255 255 255 / 0.08);
+  --aura-kbd-border:     rgb(255 255 255 / 0.18);
 }

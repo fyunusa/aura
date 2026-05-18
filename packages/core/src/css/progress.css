@@ -1,0 +1,104 @@
+/* ─── Progress bar ────────────────────────────────────────────────────────────
+   Semantic <progress> element or any element with progress= attribute.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+progress[aura],
+[progress] {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: var(--aura-progress-height, 8px);
+  border: none;
+  border-radius: var(--aura-radius-full);
+  background: var(--aura-progress-track, rgb(255 255 255 / 0.1));
+  overflow: hidden;
+}
+
+/* WebKit track */
+progress[aura]::-webkit-progress-bar,
+[progress]::-webkit-progress-bar {
+  background: transparent;
+  border-radius: var(--aura-radius-full);
+}
+
+/* WebKit fill */
+progress[aura]::-webkit-progress-value,
+[progress]::-webkit-progress-value {
+  background: var(--aura-progress-fill, var(--aura-color-primary));
+  border-radius: var(--aura-radius-full);
+  transition: width 300ms ease;
+}
+
+/* Firefox fill */
+progress[aura]::-moz-progress-bar,
+[progress]::-moz-progress-bar {
+  background: var(--aura-progress-fill, var(--aura-color-primary));
+  border-radius: var(--aura-radius-full);
+}
+
+/* ── Tones ───────────────────────────────────────────────────────────────── */
+[tone="primary"] progress[aura],
+progress[aura][tone="primary"],
+[progress][tone="primary"] { --aura-progress-fill: var(--aura-color-primary); }
+
+[tone="success"] progress[aura],
+progress[aura][tone="success"],
+[progress][tone="success"] { --aura-progress-fill: var(--aura-color-success); }
+
+[tone="warning"] progress[aura],
+progress[aura][tone="warning"],
+[progress][tone="warning"] { --aura-progress-fill: var(--aura-color-warning); }
+
+[tone="danger"] progress[aura],
+progress[aura][tone="danger"],
+[progress][tone="danger"] { --aura-progress-fill: var(--aura-color-danger); }
+
+[tone="info"] progress[aura],
+progress[aura][tone="info"],
+[progress][tone="info"] { --aura-progress-fill: var(--aura-color-info); }
+
+/* ── Sizes ───────────────────────────────────────────────────────────────── */
+[progress-size="xs"] { --aura-progress-height: 3px; }
+[progress-size="sm"] { --aura-progress-height: 5px; }
+[progress-size="lg"] { --aura-progress-height: 12px; }
+[progress-size="xl"] { --aura-progress-height: 16px; }
+
+/* ── Striped ─────────────────────────────────────────────────────────────── */
+[progress][striped]::-webkit-progress-value {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    rgb(255 255 255 / 0.15) 8px,
+    rgb(255 255 255 / 0.15) 16px
+  );
+}
+
+/* ── Indeterminate (no value attr) ───────────────────────────────────────── */
+[progress][indeterminate] {
+  position: relative;
+  overflow: hidden;
+}
+[progress][indeterminate]::before,
+[progress][indeterminate]::-webkit-progress-value { display: none; }
+[progress][indeterminate]::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  left: -50%;
+  width: 40%;
+  background: var(--aura-progress-fill, var(--aura-color-primary));
+  border-radius: var(--aura-radius-full);
+  animation: aura-progress-indeterminate 1.4s ease-in-out infinite;
+}
+
+@keyframes aura-progress-indeterminate {
+  0%   { left: -40%; width: 20%; }
+  50%  { left: 40%;  width: 50%; }
+  100% { left: 110%; width: 20%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [progress][indeterminate]::after { animation: none; left: 0; width: 60%; }
+}

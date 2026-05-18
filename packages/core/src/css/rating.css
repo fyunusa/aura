@@ -1,0 +1,60 @@
+/* ─── Rating ──────────────────────────────────────────────────────────────────
+   Display-only star rating. Use [star filled] / [star half] on each star char.
+   Usage: <div rating="4"> <span star filled>★</span>… </div>
+   ─────────────────────────────────────────────────────────────────────────── */
+
+[rating] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--aura-rating-gap, 1px);
+  font-size: var(--aura-rating-size, 1.25rem);
+  line-height: 1;
+  color: var(--aura-rating-empty, rgb(255 255 255 / 0.2));
+}
+
+/* Filled star */
+[rating] [star][filled] {
+  color: var(--aura-rating-filled, #f59e0b);
+}
+
+/* Half star using gradient clip */
+[rating] [star][half] {
+  background: linear-gradient(
+    90deg,
+    var(--aura-rating-filled, #f59e0b) 50%,
+    var(--aura-rating-empty, rgb(255 255 255 / 0.2)) 50%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Interactive ─────────────────────────────────────────────────────────── */
+[rating][interactive] {
+  cursor: pointer;
+}
+[rating][interactive] [star] {
+  cursor: pointer;
+  transition: color 100ms ease, transform 100ms ease;
+}
+[rating][interactive] [star]:hover {
+  color: var(--aura-rating-hover, #fbbf24);
+  transform: scale(1.15);
+}
+[rating][interactive] [star]:hover ~ [star] {
+  color: var(--aura-rating-empty, rgb(255 255 255 / 0.2));
+  transform: scale(1);
+}
+
+/* ── Sizes ───────────────────────────────────────────────────────────────── */
+[rating][rating-size="xs"] { --aura-rating-size: 0.875rem; }
+[rating][rating-size="sm"] { --aura-rating-size: 1rem; }
+[rating][rating-size="lg"] { --aura-rating-size: 1.625rem; }
+[rating][rating-size="xl"] { --aura-rating-size: 2rem; }
+[rating][rating-size="2xl"] { --aura-rating-size: 2.5rem; }
+
+/* ── Tones ───────────────────────────────────────────────────────────────── */
+[rating][tone="primary"] { --aura-rating-filled: var(--aura-color-primary); }
+[rating][tone="accent"]  { --aura-rating-filled: var(--aura-color-accent); }
+[rating][tone="danger"]  { --aura-rating-filled: var(--aura-color-danger); }
+[rating][tone="success"] { --aura-rating-filled: var(--aura-color-success); }

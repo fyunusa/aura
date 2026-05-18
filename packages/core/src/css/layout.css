@@ -19,6 +19,19 @@
 [gap="lg"] { gap: var(--aura-gap-lg); }
 [gap="xl"] { gap: var(--aura-gap-xl); }
 
+/* gap-x= / gap-y= — independent axis gap */
+[gap-x="xs"] { column-gap: var(--aura-gap-xs); }
+[gap-x="sm"] { column-gap: var(--aura-gap-sm); }
+[gap-x="md"] { column-gap: var(--aura-gap-md); }
+[gap-x="lg"] { column-gap: var(--aura-gap-lg); }
+[gap-x="xl"] { column-gap: var(--aura-gap-xl); }
+
+[gap-y="xs"] { row-gap: var(--aura-gap-xs); }
+[gap-y="sm"] { row-gap: var(--aura-gap-sm); }
+[gap-y="md"] { row-gap: var(--aura-gap-md); }
+[gap-y="lg"] { row-gap: var(--aura-gap-lg); }
+[gap-y="xl"] { row-gap: var(--aura-gap-xl); }
+
 /* align= (works with layout="stack" or layout="row") */
 [align="start"]   { align-items: flex-start; }
 [align="center"]  { align-items: center; }

@@ -1,0 +1,93 @@
+/* ─── Switch / Toggle ─────────────────────────────────────────────────────────
+   Apply switch to <input type="checkbox"> directly.
+   Usage: <input type="checkbox" switch />
+   ─────────────────────────────────────────────────────────────────────────── */
+
+[switch] {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-block;
+  width: var(--aura-switch-width, 44px);
+  height: var(--aura-switch-height, 24px);
+  background: var(--aura-switch-off, rgb(255 255 255 / 0.15));
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--aura-motion-subtle-duration, 150ms) ease;
+  vertical-align: middle;
+}
+
+/* Thumb */
+[switch]::after {
+  content: '';
+  position: absolute;
+  top: var(--aura-switch-thumb-offset, 3px);
+  left: var(--aura-switch-thumb-offset, 3px);
+  width: var(--aura-switch-thumb, 18px);
+  height: var(--aura-switch-thumb, 18px);
+  border-radius: 50%;
+  background: var(--aura-switch-thumb-color, white);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
+  transition: transform var(--aura-motion-subtle-duration, 150ms) ease,
+              width 100ms ease;
+}
+
+/* Checked state */
+[switch]:checked {
+  background: var(--aura-switch-on, var(--aura-color-primary));
+}
+[switch]:checked::after {
+  transform: translateX(var(--aura-switch-travel, 20px));
+}
+
+/* Focus */
+[switch]:focus-visible {
+  outline: 2px solid var(--aura-color-primary);
+  outline-offset: 2px;
+}
+
+/* Disabled */
+[switch]:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Tones ───────────────────────────────────────────────────────────────── */
+[switch][tone="success"]:checked  { --aura-switch-on: var(--aura-color-success); }
+[switch][tone="danger"]:checked   { --aura-switch-on: var(--aura-color-danger); }
+[switch][tone="warning"]:checked  { --aura-switch-on: var(--aura-color-warning); }
+[switch][tone="accent"]:checked   { --aura-switch-on: var(--aura-color-accent); }
+
+/* ── Sizes ───────────────────────────────────────────────────────────────── */
+[switch][switch-size="sm"] {
+  --aura-switch-width:        32px;
+  --aura-switch-height:       18px;
+  --aura-switch-thumb:        12px;
+  --aura-switch-thumb-offset: 3px;
+  --aura-switch-travel:       14px;
+}
+
+[switch][switch-size="lg"] {
+  --aura-switch-width:        56px;
+  --aura-switch-height:       30px;
+  --aura-switch-thumb:        22px;
+  --aura-switch-thumb-offset: 4px;
+  --aura-switch-travel:       26px;
+}
+
+[switch][switch-size="xl"] {
+  --aura-switch-width:        68px;
+  --aura-switch-height:       36px;
+  --aura-switch-thumb:        26px;
+  --aura-switch-thumb-offset: 5px;
+  --aura-switch-travel:       32px;
+}
+
+/* ── Soft press effect ───────────────────────────────────────────────────── */
+[switch]:active::after {
+  width: calc(var(--aura-switch-thumb, 18px) + 4px);
+}
+[switch]:checked:active::after {
+  transform: translateX(calc(var(--aura-switch-travel, 20px) - 4px));
+}

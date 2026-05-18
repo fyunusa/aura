@@ -1,0 +1,143 @@
+/* ─── Tabs ────────────────────────────────────────────────────────────────────
+   Pure CSS tabs driven by aria-selected / active attributes.
+   JS toggling is minimal: add/remove [active] or set aria-selected="true".
+
+   Usage:
+     <div tabs>
+       <div tab-list>
+         <button tab active>One</button>
+         <button tab>Two</button>
+       </div>
+       <div tab-panel active>…</div>
+       <div tab-panel>…</div>
+     </div>
+   ─────────────────────────────────────────────────────────────────────────── */
+
+[tabs] {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Tab list ────────────────────────────────────────────────────────────── */
+[tab-list] {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--aura-tabs-tab-gap, 0.125rem);
+  border-bottom: 1px solid var(--aura-tabs-border, rgb(255 255 255 / 0.1));
+}
+
+/* ── Individual tab ──────────────────────────────────────────────────────── */
+[tab] {
+  padding: var(--aura-tabs-tab-padding, 0.6rem 1rem);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  opacity: 0.55;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: opacity 150ms ease, border-color 150ms ease, color 150ms ease;
+  white-space: nowrap;
+  line-height: 1.4;
+  border-radius: var(--aura-radius-sm) var(--aura-radius-sm) 0 0;
+  text-decoration: none;
+}
+
+[tab]:hover:not([active]):not([aria-selected="true"]) {
+  opacity: 0.8;
+}
+
+[tab][active],
+[tab][aria-selected="true"] {
+  opacity: 1;
+  border-bottom-color: var(--aura-tabs-active-color, var(--aura-color-primary));
+  color: var(--aura-tabs-active-color, var(--aura-color-primary));
+}
+
+/* ── Tab panel ───────────────────────────────────────────────────────────── */
+[tab-panel] {
+  display: none;
+  padding-top: var(--aura-tabs-panel-padding, 1.25rem);
+}
+[tab-panel][active] {
+  display: block;
+}
+
+/* ── Tone variants ───────────────────────────────────────────────────────── */
+[tabs][tone="success"]  { --aura-tabs-active-color: var(--aura-color-success); }
+[tabs][tone="danger"]   { --aura-tabs-active-color: var(--aura-color-danger); }
+[tabs][tone="warning"]  { --aura-tabs-active-color: var(--aura-color-warning); }
+[tabs][tone="accent"]   { --aura-tabs-active-color: var(--aura-color-accent); }
+
+/* ── Pills style ─────────────────────────────────────────────────────────── */
+[tabs][tabs-style="pills"] [tab-list] {
+  border-bottom: none;
+  background: var(--aura-tabs-pills-track, rgb(255 255 255 / 0.05));
+  border-radius: var(--aura-radius-full);
+  padding: 3px;
+  gap: 0;
+}
+[tabs][tabs-style="pills"] [tab] {
+  border-bottom: none;
+  border-radius: var(--aura-radius-full);
+  margin-bottom: 0;
+  padding: 0.45rem 1.1rem;
+}
+[tabs][tabs-style="pills"] [tab][active],
+[tabs][tabs-style="pills"] [tab][aria-selected="true"] {
+  background: color-mix(in oklch, var(--aura-tabs-active-color, var(--aura-color-primary)) 20%, transparent);
+  border-color: transparent;
+}
+
+/* ── Boxed style ─────────────────────────────────────────────────────────── */
+[tabs][tabs-style="boxed"] [tab] {
+  border: 1px solid transparent;
+  border-radius: var(--aura-radius-md) var(--aura-radius-md) 0 0;
+}
+[tabs][tabs-style="boxed"] [tab][active],
+[tabs][tabs-style="boxed"] [tab][aria-selected="true"] {
+  border-color: var(--aura-tabs-border, rgb(255 255 255 / 0.1));
+  border-bottom-color: transparent;
+  background: rgb(255 255 255 / 0.03);
+  color: inherit;
+}
+
+/* ── Underline (default but explicit) ────────────────────────────────────── */
+[tabs][tabs-style="underline"] [tab-list] {
+  border-bottom: 1px solid var(--aura-tabs-border, rgb(255 255 255 / 0.1));
+}
+
+/* ── Vertical tabs ───────────────────────────────────────────────────────── */
+[tabs][tabs-dir="vertical"] {
+  flex-direction: row;
+  gap: 1.5rem;
+}
+[tabs][tabs-dir="vertical"] [tab-list] {
+  flex-direction: column;
+  border-bottom: none;
+  border-right: 1px solid var(--aura-tabs-border, rgb(255 255 255 / 0.1));
+  align-items: flex-start;
+  flex-shrink: 0;
+  padding-right: 0;
+  gap: 0.125rem;
+}
+[tabs][tabs-dir="vertical"] [tab] {
+  border-bottom: none;
+  border-right: 2px solid transparent;
+  border-radius: var(--aura-radius-sm) 0 0 var(--aura-radius-sm);
+  margin-bottom: 0;
+  margin-right: -1px;
+  width: 100%;
+  text-align: left;
+}
+[tabs][tabs-dir="vertical"] [tab][active],
+[tabs][tabs-dir="vertical"] [tab][aria-selected="true"] {
+  border-right-color: var(--aura-tabs-active-color, var(--aura-color-primary));
+}
+[tabs][tabs-dir="vertical"] [tab-panel] {
+  flex: 1;
+  padding-top: 0;
+}

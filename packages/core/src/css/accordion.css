@@ -1,0 +1,94 @@
+/* ─── Accordion ───────────────────────────────────────────────────────────────
+   Two usage patterns:
+   1. <details accordion> — standalone single disclosure
+   2. <div accordion> wrapping multiple <details> — grouped accordion
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Grouped accordion container ────────────────────────────────────────── */
+[accordion]:not(details) {
+  border: 1px solid var(--aura-accordion-border, rgb(255 255 255 / 0.08));
+  border-radius: var(--aura-radius-lg);
+  overflow: hidden;
+}
+
+[accordion]:not(details) > details {
+  border-bottom: 1px solid var(--aura-accordion-border, rgb(255 255 255 / 0.08));
+}
+
+[accordion]:not(details) > details:last-child {
+  border-bottom: none;
+}
+
+/* ── Summary (trigger) ───────────────────────────────────────────────────── */
+details[accordion] > summary,
+[accordion]:not(details) > details > summary {
+  padding: var(--aura-accordion-padding, 1rem 1.25rem);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-weight: 500;
+  user-select: none;
+  transition: background var(--aura-motion-subtle-duration, 150ms) ease;
+}
+
+/* Remove default marker */
+details[accordion] > summary::-webkit-details-marker,
+[accordion]:not(details) > details > summary::-webkit-details-marker { display: none; }
+details[accordion] > summary::marker,
+[accordion]:not(details) > details > summary::marker { content: ''; }
+
+/* Chevron icon via ::after */
+details[accordion] > summary::after,
+[accordion]:not(details) > details > summary::after {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform var(--aura-motion-subtle-duration, 150ms) ease;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+details[accordion][open] > summary::after,
+[accordion]:not(details) > details[open] > summary::after {
+  transform: rotate(-135deg) translateY(-2px);
+}
+
+/* Hover */
+details[accordion] > summary:hover,
+[accordion]:not(details) > details > summary:hover {
+  background: rgb(255 255 255 / 0.04);
+}
+
+/* ── Body content ─────────────────────────────────────────────────────────── */
+details[accordion] > *:not(summary),
+[accordion]:not(details) > details > *:not(summary) {
+  padding: 0 1.25rem 1.25rem;
+}
+
+/* ── Flush (no border/radius) variant ────────────────────────────────────── */
+[accordion][accordion-style="flush"]:not(details) {
+  border: none;
+  border-radius: 0;
+}
+[accordion][accordion-style="flush"]:not(details) > details {
+  border-bottom: 1px solid var(--aura-accordion-border, rgb(255 255 255 / 0.08));
+}
+
+/* ── Separated variant ────────────────────────────────────────────────────── */
+[accordion][accordion-style="separated"]:not(details) {
+  border: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+[accordion][accordion-style="separated"]:not(details) > details {
+  border: 1px solid var(--aura-accordion-border, rgb(255 255 255 / 0.08));
+  border-radius: var(--aura-radius-md);
+}
