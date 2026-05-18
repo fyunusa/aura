@@ -78,6 +78,36 @@
   --aura-motion-subtle-ease:         ease;
   --aura-motion-expressive-duration: 280ms;
   --aura-motion-expressive-ease:     cubic-bezier(0.34, 1.56, 0.64, 1);
+  --aura-motion-dramatic-duration:   450ms;
+  --aura-motion-dramatic-ease:       cubic-bezier(0.22, 1.0, 0.36, 1);
+
+  /* Spring duration overrides */
+  --aura-spring-duration:         580ms;
+  --aura-spring-bouncy-duration:  700ms;
+  --aura-spring-gentle-duration:  500ms;
+
+  /* Tooltip tokens */
+  --aura-tooltip-bg:         #1a1a2e;
+  --aura-tooltip-color:      #e2e2f0;
+  --aura-tooltip-radius:     6px;
+  --aura-tooltip-size:       0.78rem;
+  --aura-tooltip-gap:        8px;
+  --aura-tooltip-offset:     6px;
+  --aura-tooltip-max-width:  220px;
+
+  /* Aurora surface tokens */
+  --aura-aurora-bg:       #07070f;
+  --aura-aurora-speed:    9s;
+  --aura-mesh-base:       #0d0d1a;
+  --aura-mesh-speed:      14s;
+  --aura-noise-opacity:   0.055;
+
+  /* Scroll animation tokens */
+  --aura-parallax-amount: 50px;
+  --aura-sticky-top:      80px;
+
+  /* Grid min for container queries */
+  --aura-grid-min: 240px;
   --aura-motion-dramatic-duration:   500ms;
   --aura-motion-dramatic-ease:       cubic-bezier(0.22, 1, 0.36, 1);
 

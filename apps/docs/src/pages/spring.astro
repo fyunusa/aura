@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Spring Motion">
+  <h1 class="page-title">Spring Motion</h1>
+  <p class="page-desc">
+    Physics-based spring animations using CSS <code>linear()</code> easing — the same natural
+    feel as Framer Motion or iOS UIKit springs, but entirely in CSS. Zero JS.
+    Requires Chrome 113+, Firefox 112+, Safari 17+.
+  </p>
+
+  <DemoBlock title="motion=&quot;spring&quot; — snappy"
+    description="Stiff spring with ~5% overshoot. Fast settle — great for buttons and interactive elements."
+    code={`<button surface="solid" tone="primary" density="default" radius="md" motion="spring">
+  Hover me
+</button>`}>
+    <div layout="row" gap="md" align="center" style="padding:1rem;">
+      <button surface="solid" tone="primary" density="default" radius="md" motion="spring">
+        Spring
+      </button>
+      <button surface="glass" density="default" radius="xl" motion="spring">
+        Spring card
+      </button>
+      <div surface="matte" density="spacious" radius="xl" motion="spring" style="cursor:pointer;">
+        <p weight="semibold">Hover this card</p>
+        <p text="caption" style="color:rgba(226,226,240,0.5);">~5% overshoot</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="motion=&quot;spring-bouncy&quot;"
+    description="Lower damping — visible oscillation. Great for cards, FABs, or fun UI moments."
+    code={`<button surface="solid" tone="accent" density="default" radius="full" motion="spring-bouncy">
+  Bounce!
+</button>`}>
+    <div layout="row" gap="md" align="center" style="padding:1rem;">
+      <button surface="solid" tone="accent" density="default" radius="full" motion="spring-bouncy">
+        Bouncy!
+      </button>
+      <div surface="glass" density="spacious" radius="xl" motion="spring-bouncy" style="cursor:pointer;min-width:140px;">
+        <p weight="semibold">Hover me</p>
+        <p text="caption" style="color:rgba(226,226,240,0.5);">~18% overshoot</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="motion=&quot;spring-gentle&quot;"
+    description="Highly damped — barely perceptible overshoot. Refined feel for sidebars, modals, or editorial cards."
+    code={`<div surface="glass" density="spacious" radius="xl" motion="spring-gentle">
+  Gentle spring hover
+</div>`}>
+    <div layout="row" gap="md" align="center" style="padding:1rem;">
+      <button surface="ghost" density="default" radius="md" motion="spring-gentle">
+        Gentle
+      </button>
+      <div surface="matte" density="spacious" radius="xl" motion="spring-gentle" style="cursor:pointer;min-width:160px;">
+        <p weight="semibold">Soft hover</p>
+        <p text="caption" style="color:rgba(226,226,240,0.5);">&lt;2% overshoot</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Side-by-side comparison"
+    description="Hover each card and notice the difference in character."
+    code={`<div motion="spring">        Snappy</div>
+<div motion="spring-bouncy"> Bouncy</div>
+<div motion="spring-gentle"> Gentle</div>`}>
+    <div layout="grid" gap="md" style="--aura-grid-min:140px;">
+      <div surface="glass" density="spacious" radius="xl" motion="spring" style="cursor:pointer;text-align:center;">
+        <p text="label" weight="semibold">Snappy</p>
+        <p text="caption" style="color:rgba(226,226,240,0.4);margin-top:0.25rem;">580ms</p>
+      </div>
+      <div surface="glass" density="spacious" radius="xl" motion="spring-bouncy" style="cursor:pointer;text-align:center;">
+        <p text="label" weight="semibold">Bouncy</p>
+        <p text="caption" style="color:rgba(226,226,240,0.4);margin-top:0.25rem;">700ms</p>
+      </div>
+      <div surface="glass" density="spacious" radius="xl" motion="spring-gentle" style="cursor:pointer;text-align:center;">
+        <p text="label" weight="semibold">Gentle</p>
+        <p text="caption" style="color:rgba(226,226,240,0.4);margin-top:0.25rem;">500ms</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+  <h2 class="section-title">Custom tokens</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`/* Override spring durations */
+--aura-spring-duration:        580ms;
+--aura-spring-bouncy-duration: 700ms;
+--aura-spring-gentle-duration: 500ms;
+
+/* Override the easing curves entirely */
+--aura-ease-spring:         linear(0, ...);
+--aura-ease-spring-bouncy:  linear(0, ...);
+--aura-ease-spring-gentle:  linear(0, ...);`}</pre>
+</Layout>

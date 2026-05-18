@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Fluid Scaling">
+  <h1 class="page-title">Fluid Scaling</h1>
+  <p class="page-desc">
+    Add <code>fluid</code> to any element with <code>text=</code>, <code>density=</code>, or <code>gap=</code>
+    and the value scales <em>continuously</em> across all viewport widths using <code>clamp()</code>.
+    No breakpoints. No jumps. Zero JS.
+  </p>
+
+  <DemoBlock title="Fluid typography"
+    description="Resize the browser window — the text scales smoothly between min and max sizes."
+    code={`<h1 text="display" fluid>Fluid display text</h1>
+<h2 text="heading" fluid>Fluid heading</h2>
+<p  text="body"    fluid>Fluid body text</p>`}>
+    <div layout="stack" gap="md">
+      <p text="display" fluid style="line-height:1.1;">Fluid display</p>
+      <p text="heading"  fluid>Fluid heading</p>
+      <p text="subheading" fluid>Fluid subheading</p>
+      <p text="body" fluid>Fluid body — scales from 0.875rem → 1rem across viewports.</p>
+      <p text="caption" fluid>Fluid caption text</p>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Fluid density"
+    description="Padding scales proportionally with the viewport — no awkward breakpoint jumps."
+    code={`<div surface="glass" density="spacious" radius="xl" fluid>
+  Spacious padding that scales with the viewport
+</div>
+<div surface="matte" density="default" radius="lg" fluid>
+  Default density, fluid
+</div>`}>
+    <div layout="stack" gap="md">
+      <div surface="glass" density="spacious" radius="xl" fluid>
+        <p weight="semibold">Spacious — fluid padding</p>
+        <p text="caption" style="margin-top:0.25rem;color:rgba(226,226,240,0.5);">Scales from compact → spacious continuously</p>
+      </div>
+      <div surface="matte" density="default" radius="lg" fluid>
+        <p weight="semibold">Default density — fluid</p>
+      </div>
+      <div surface="ghost" density="compact" radius="md" fluid>
+        <p weight="semibold">Compact — fluid</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Fluid gap"
+    code={`<div layout="grid" gap="lg" fluid style="--aura-grid-min:160px;">
+  <div surface="matte" density="default" radius="lg">Card</div>
+  <div surface="matte" density="default" radius="lg">Card</div>
+  <div surface="matte" density="default" radius="lg">Card</div>
+</div>`}>
+    <div layout="grid" gap="lg" fluid style="--aura-grid-min:160px;">
+      <div surface="matte" density="default" radius="lg">Card A</div>
+      <div surface="matte" density="default" radius="lg">Card B</div>
+      <div surface="matte" density="default" radius="lg">Card C</div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+  <h2 class="section-title">How it works</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`/* Without fluid — jumps at breakpoints */
+[text="heading"] { font-size: 2rem; }
+@media (max-width: 768px) { [text="heading"] { font-size: 1.5rem; } }
+
+/* With fluid — continuous clamp() scaling */
+[text="heading"][fluid] {
+  font-size: clamp(1.35rem, 2.5vw + 0.6rem, 2rem);
+  /* min ──────┘   fluid─────┘              └── max */
+}`}</pre>
+</Layout>

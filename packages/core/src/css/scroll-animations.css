@@ -1,0 +1,101 @@
+/* ─── Scroll-driven animations (CSS-native, zero JS) ────────────────────────
+   Uses the CSS Scroll Timeline API (Chrome 115+, Firefox 110+, Safari 18+).
+   Falls back gracefully — elements just display statically in older browsers.
+
+   New reveal= values:
+     reveal="parallax"     — element shifts at 0.4× scroll speed (depth effect)
+     reveal="progress"     — fades + scales in as element enters the viewport
+     reveal="sticky-fade"  — sticks then fades out as it scrolls past
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@supports (animation-timeline: view()) {
+
+  /* ── Parallax ─────────────────────────────────────────────────────────── */
+  [reveal="parallax"] {
+    --aura-parallax-start: var(--aura-parallax-amount, 50px);
+    --aura-parallax-end:   calc(-1 * var(--aura-parallax-amount, 50px));
+    animation: aura-scroll-parallax linear both;
+    animation-timeline: view();
+    animation-range: contain 0% contain 100%;
+  }
+
+  @keyframes aura-scroll-parallax {
+    from { transform: translateY(var(--aura-parallax-start)); }
+    to   { transform: translateY(var(--aura-parallax-end)); }
+  }
+
+  /* ── Progress reveal ──────────────────────────────────────────────────── */
+  [reveal="progress"] {
+    animation: aura-scroll-progress linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 45%;
+  }
+
+  @keyframes aura-scroll-progress {
+    from {
+      opacity: 0;
+      transform: scale(0.88) translateY(24px);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  /* ── Sticky fade ──────────────────────────────────────────────────────── */
+  [reveal="sticky-fade"] {
+    position: sticky;
+    top: var(--aura-sticky-top, 80px);
+    animation: aura-scroll-sticky-fade linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 55%;
+  }
+
+  @keyframes aura-scroll-sticky-fade {
+    from {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      filter: blur(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.92) translateY(-24px);
+      filter: blur(6px);
+    }
+  }
+
+  /* ── Slide in from sides ──────────────────────────────────────────────── */
+  [reveal="slide-left"] {
+    animation: aura-scroll-slide-left linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+  @keyframes aura-scroll-slide-left {
+    from { opacity: 0; transform: translateX(60px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  [reveal="slide-right"] {
+    animation: aura-scroll-slide-right linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+  @keyframes aura-scroll-slide-right {
+    from { opacity: 0; transform: translateX(-60px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── Respect reduced motion ───────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    [reveal="parallax"],
+    [reveal="progress"],
+    [reveal="sticky-fade"],
+    [reveal="slide-left"],
+    [reveal="slide-right"] {
+      animation: none;
+    }
+  }
+
+}

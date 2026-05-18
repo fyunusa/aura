@@ -47,6 +47,11 @@ export const AURA_ATTRS = [
   'show',
   // Scheme
   'scheme',
+  // v0.3.0 — advanced features
+  'fluid',
+  'tooltip',
+  'tooltip-pos',
+  'cq',
 ] as const
 
 export type AuraAttr = typeof AURA_ATTRS[number]

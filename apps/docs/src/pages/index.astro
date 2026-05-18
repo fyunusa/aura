@@ -13,7 +13,7 @@ import Layout from '../layouts/Layout.astro'
   <!-- Quick install -->
   <h2 class="section-title" style="margin-bottom:0.75rem;">Quick start</h2>
   <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);margin-bottom:2.5rem;">{`<!-- CDN (no install) -->
-<link rel="stylesheet" href="https://unpkg.com/useaura@0.2.0/dist/forma.css" />
+<link rel="stylesheet" href="https://unpkg.com/useaura@0.3.0/dist/forma.css" />
 
 <!-- npm -->
 npm install useaura
@@ -67,6 +67,38 @@ import 'useaura/css'`}</pre>
     <a href="/docs/scheme/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
       <p class="card-title">Scheme</p>
       <p class="card-desc">scheme="dark" · scheme="light"</p>
+    </a>
+  </div>
+
+  <h2 class="section-title" style="margin-bottom:0.75rem;">v0.3.0 — Advanced features</h2>
+  <div layout="grid" gap="md" style="--aura-grid-min:200px;margin-bottom:3rem;">
+    <a href="/docs/fluid/" class="feature-card" surface="aurora" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Fluid Scaling</p>
+      <p class="card-desc">fluid — clamp() scaling, no breakpoints</p>
+    </a>
+    <a href="/docs/animated-surfaces/" class="feature-card" surface="mesh" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Animated Surfaces</p>
+      <p class="card-desc">aurora · mesh · noise</p>
+    </a>
+    <a href="/docs/scroll-animations/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Scroll Animations</p>
+      <p class="card-desc">parallax · progress · sticky-fade — zero JS</p>
+    </a>
+    <a href="/docs/spring/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring-bouncy">
+      <p class="card-title">Spring Motion</p>
+      <p class="card-desc">spring · spring-bouncy · spring-gentle</p>
+    </a>
+    <a href="/docs/container-queries/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Container Queries</p>
+      <p class="card-desc">cq — layouts that respond to their container</p>
+    </a>
+    <a href="/docs/seed/" class="feature-card" surface="noise" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Seed Color</p>
+      <p class="card-desc">--aura-seed — one variable, full palette</p>
+    </a>
+    <a href="/docs/tooltip/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Tooltips</p>
+      <p class="card-desc">tooltip= · tooltip-pos= — zero JS</p>
     </a>
   </div>
 

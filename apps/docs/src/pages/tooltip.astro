@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Tooltips">
+  <h1 class="page-title">Tooltips</h1>
+  <p class="page-desc">
+    Pure CSS tooltips — no JavaScript, no extra HTML. Just add <code>tooltip="Your text"</code>
+    to any element. Position with <code>tooltip-pos="bottom|left|right"</code>.
+  </p>
+
+  <DemoBlock title="Default (top)"
+    code={`<button surface="solid" tone="primary" density="default" radius="md"
+        tooltip="Saves your changes">
+  Save
+</button>
+<span tooltip="Your unique account name">Username</span>`}>
+    <div layout="row" gap="lg" align="center" style="padding:2rem 1rem;">
+      <button surface="solid" tone="primary" density="default" radius="md" motion="expressive"
+              tooltip="Saves your changes to the server">
+        Save
+      </button>
+      <button surface="ghost" density="default" radius="md" motion="expressive"
+              tooltip="Discard unsaved changes">
+        Cancel
+      </button>
+      <span surface="matte" density="compact" radius="md"
+            tooltip="Your unique account name" style="cursor:default;">
+        Username ⓘ
+      </span>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="tooltip-pos=&quot;bottom&quot;"
+    code={`<button tooltip="Opens in a new tab" tooltip-pos="bottom">
+  Open
+</button>`}>
+    <div layout="row" gap="lg" align="center" style="padding:1rem 1rem 2.5rem;">
+      <button surface="glass" density="default" radius="lg" motion="expressive"
+              tooltip="Opens in a new tab" tooltip-pos="bottom">
+        Open ↗
+      </button>
+      <button surface="ghost" density="default" radius="lg" motion="expressive"
+              tooltip="Copy to clipboard" tooltip-pos="bottom">
+        Copy
+      </button>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="tooltip-pos=&quot;left&quot; and &quot;right&quot;"
+    code={`<button tooltip="Previous page" tooltip-pos="left">←</button>
+<button tooltip="Next page"     tooltip-pos="right">→</button>`}>
+    <div layout="row" gap="xl" justify="center" style="padding:1rem 3rem;">
+      <button surface="matte" density="default" radius="full" motion="expressive"
+              tooltip="Previous page" tooltip-pos="left" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+        ←
+      </button>
+      <button surface="matte" density="default" radius="full" motion="expressive"
+              tooltip="Next page" tooltip-pos="right" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+        →
+      </button>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+  <h2 class="section-title">Custom tokens</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`/* Override tooltip appearance */
+:root {
+  --aura-tooltip-bg:         #1a1a2e;    /* bubble background */
+  --aura-tooltip-color:      #e2e2f0;    /* text color        */
+  --aura-tooltip-radius:     6px;        /* corner radius     */
+  --aura-tooltip-size:       0.78rem;    /* font size         */
+  --aura-tooltip-gap:        8px;        /* distance from element */
+  --aura-tooltip-max-width:  220px;      /* wraps long text   */
+}`}</pre>
+</Layout>

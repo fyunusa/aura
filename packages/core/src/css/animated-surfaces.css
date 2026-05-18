@@ -1,0 +1,98 @@
+/* ─── Animated surfaces ─────────────────────────────────────────────────────
+   Three premium surfaces impossible to achieve in Tailwind without custom CSS:
+
+   surface="aurora"  — shifting aurora borealis light animation
+   surface="mesh"    — animated CSS mesh gradient
+   surface="noise"   — glass + grain noise texture overlay
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Aurora ───────────────────────────────────────────────────────────────── */
+[surface="aurora"] {
+  position: relative;
+  overflow: hidden;
+  background: var(--aura-aurora-bg, #07070f);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  isolation: isolate;
+}
+
+[surface="aurora"]::before {
+  content: '';
+  position: absolute;
+  inset: -60%;
+  width: 220%;
+  height: 220%;
+  background:
+    radial-gradient(ellipse at 20% 30%,  var(--aura-aurora-1, rgba(124,106,247,0.40)) 0%, transparent 55%),
+    radial-gradient(ellipse at 78% 18%,  var(--aura-aurora-2, rgba(168, 85,247,0.30)) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 78%,  var(--aura-aurora-3, rgba( 59,130,246,0.25)) 0%, transparent 55%),
+    radial-gradient(ellipse at 30% 72%,  var(--aura-aurora-4, rgba(  6,182,212,0.20)) 0%, transparent 50%);
+  animation: aura-aurora var(--aura-aurora-speed, 9s) ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+[surface="aurora"] > * { position: relative; z-index: 1; }
+
+@keyframes aura-aurora {
+  0%   { transform: translate(-8%, -8%)  rotate(0deg)   scale(1); }
+  33%  { transform: translate( 6%,  4%)  rotate(3deg)   scale(1.06); }
+  66%  { transform: translate(-4%, 10%)  rotate(-2deg)  scale(0.97); }
+  100% { transform: translate( 9%, -5%)  rotate(1deg)   scale(1.04); }
+}
+
+/* ── Mesh gradient ────────────────────────────────────────────────────────── */
+[surface="mesh"] {
+  background:
+    radial-gradient(at 20% 30%, var(--aura-mesh-1, rgba(124,106,247,0.75)) 0px, transparent 52%),
+    radial-gradient(at 82% 10%, var(--aura-mesh-2, rgba(168, 85,247,0.60)) 0px, transparent 52%),
+    radial-gradient(at  8% 80%, var(--aura-mesh-3, rgba( 59,130,246,0.60)) 0px, transparent 52%),
+    radial-gradient(at 88% 78%, var(--aura-mesh-4, rgba(  6,182,212,0.50)) 0px, transparent 52%),
+    radial-gradient(at 50% 50%, var(--aura-mesh-5, rgba(124,106,247,0.25)) 0px, transparent 70%),
+    var(--aura-mesh-base, #0d0d1a);
+  background-size: 280% 280%;
+  animation: aura-mesh var(--aura-mesh-speed, 14s) ease infinite;
+  border: 1px solid rgb(255 255 255 / 0.06);
+}
+
+@keyframes aura-mesh {
+  0%   { background-position:   0%   0%; }
+  25%  { background-position: 100%   0%; }
+  50%  { background-position: 100% 100%; }
+  75%  { background-position:   0% 100%; }
+  100% { background-position:   0%   0%; }
+}
+
+/* ── Noise / grain ────────────────────────────────────────────────────────── */
+[surface="noise"] {
+  backdrop-filter: blur(var(--aura-glass-blur, 14px));
+  -webkit-backdrop-filter: blur(var(--aura-glass-blur, 14px));
+  background-color: rgb(255 255 255 / var(--aura-glass-opacity, 0.10));
+  border: 1px solid var(--aura-glass-border, rgba(255,255,255,0.08));
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* SVG noise pattern via data URI — renders as a grain texture */
+[surface="noise"]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: var(--aura-noise-opacity, 0.055);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[surface="noise"] > * { position: relative; z-index: 1; }
+
+/* ── Respects prefers-reduced-motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  [surface="aurora"]::before,
+  [surface="mesh"] {
+    animation: none;
+  }
+}

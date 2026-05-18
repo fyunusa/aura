@@ -1,0 +1,63 @@
+/* ─── Seed color system ──────────────────────────────────────────────────────
+   Set ONE variable. Get a complete, harmonious design system.
+
+   How it works:
+     :root { --aura-seed: #your-brand-color; }
+
+   Aura auto-generates:
+     • 10-stop tint/shade scale   (--aura-seed-50 … --aura-seed-900)
+     • Complementary color        (--aura-seed-complement)
+     • Triadic accent             (--aura-seed-triadic)
+     • Analogous tones            (--aura-seed-warm, --aura-seed-cool)
+     • Accessible foreground pair (--aura-seed-fg-dark, --aura-seed-fg-light)
+
+   All generated with CSS color-mix() in oklch — perceptually uniform,
+   no grey muddiness, browser-native. Chrome 111+, Firefox 113+, Safari 16.4+.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Seed (override to rebrand the whole system) ── */
+  --aura-seed: var(--aura-color-primary, #7c6af7);
+
+  /* ── 10-stop tint/shade palette ─────────────────────────────────────── */
+  --aura-seed-50:  color-mix(in oklch, var(--aura-seed)  8%, white);
+  --aura-seed-100: color-mix(in oklch, var(--aura-seed) 16%, white);
+  --aura-seed-200: color-mix(in oklch, var(--aura-seed) 30%, white);
+  --aura-seed-300: color-mix(in oklch, var(--aura-seed) 50%, white);
+  --aura-seed-400: color-mix(in oklch, var(--aura-seed) 72%, white);
+  --aura-seed-500: var(--aura-seed);
+  --aura-seed-600: color-mix(in oklch, var(--aura-seed) 88%, black);
+  --aura-seed-700: color-mix(in oklch, var(--aura-seed) 74%, black);
+  --aura-seed-800: color-mix(in oklch, var(--aura-seed) 56%, black);
+  --aura-seed-900: color-mix(in oklch, var(--aura-seed) 36%, black);
+  --aura-seed-950: color-mix(in oklch, var(--aura-seed) 18%, black);
+
+  /* ── Harmonious companion colors (relative color syntax) ─────────────── */
+  /* Complementary: rotate hue 180° */
+  --aura-seed-complement: oklch(from var(--aura-seed) l c calc(h + 180));
+
+  /* Triadic: rotate hue 120° */
+  --aura-seed-triadic: oklch(from var(--aura-seed) l c calc(h + 120));
+
+  /* Analogous warm/cool: rotate ±30° */
+  --aura-seed-warm: oklch(from var(--aura-seed) l c calc(h - 30));
+  --aura-seed-cool: oklch(from var(--aura-seed) l c calc(h + 30));
+
+  /* ── Foreground text on seed-colored backgrounds ──────────────────────── */
+  /* Light text for dark seed, dark text for light seed */
+  --aura-seed-fg-dark:  color-mix(in oklch, var(--aura-seed) 10%, black);
+  --aura-seed-fg-light: color-mix(in oklch, var(--aura-seed) 10%, white);
+
+  /* ── Muted/alpha variants ─────────────────────────────────────────────── */
+  --aura-seed-subtle:  color-mix(in oklch, var(--aura-seed) 12%, transparent);
+  --aura-seed-muted:   color-mix(in oklch, var(--aura-seed) 25%, transparent);
+  --aura-seed-vivid:   oklch(from var(--aura-seed) calc(l * 1.1) calc(c * 1.2) h);
+  --aura-seed-mellow:  oklch(from var(--aura-seed) calc(l * 0.85) calc(c * 0.7) h);
+}
+
+/* ── Tone aliases — when seed is set, primary follows ──────────────────────── */
+[tone="seed"]   { --aura-tone-color: var(--aura-seed); }
+[tone="seed-complement"] { --aura-tone-color: var(--aura-seed-complement); }
+[tone="seed-warm"]  { --aura-tone-color: var(--aura-seed-warm); }
+[tone="seed-cool"]  { --aura-tone-color: var(--aura-seed-cool); }
+[tone="seed-vivid"] { --aura-tone-color: var(--aura-seed-vivid); }

@@ -1,0 +1,137 @@
+/* ─── tooltip= ──────────────────────────────────────────────────────────────
+   Zero JS, zero extra HTML. Just add tooltip="Your text here" to any element.
+
+   Positioning:
+     tooltip="Save your work"          → appears above (default)
+     tooltip="Save your work"
+     tooltip-pos="bottom"              → appears below
+     tooltip-pos="left"                → appears left
+     tooltip-pos="right"               → appears right
+   ─────────────────────────────────────────────────────────────────────────── */
+
+[tooltip] {
+  position: relative;
+}
+
+/* ── Tooltip bubble ───────────────────────────────────────────────────────── */
+[tooltip]::before {
+  content: attr(tooltip);
+  position: absolute;
+  bottom: calc(100% + var(--aura-tooltip-gap, 8px));
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--aura-tooltip-offset, 6px));
+
+  /* Visual */
+  background: var(--aura-tooltip-bg, #1a1a2e);
+  color: var(--aura-tooltip-color, #e2e2f0);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: var(--aura-tooltip-radius, 6px);
+  padding: 0.3em 0.65em;
+  font-size: var(--aura-tooltip-size, 0.78rem);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  max-width: var(--aura-tooltip-max-width, 220px);
+  white-space: normal;
+  text-align: center;
+  z-index: var(--aura-layer-overlay, 200);
+  pointer-events: none;
+
+  /* Animation */
+  opacity: 0;
+  transition: opacity 140ms ease, transform 140ms ease;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.4);
+}
+
+/* ── Arrow ────────────────────────────────────────────────────────────────── */
+[tooltip]::after {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + var(--aura-tooltip-gap, 8px) - 5px);
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--aura-tooltip-offset, 6px));
+  border: 5px solid transparent;
+  border-top-color: var(--aura-tooltip-bg, #1a1a2e);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 140ms ease, transform 140ms ease;
+  z-index: var(--aura-layer-overlay, 200);
+}
+
+/* ── Show on hover / focus ────────────────────────────────────────────────── */
+[tooltip]:hover::before,
+[tooltip]:focus-visible::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+[tooltip]:hover::after,
+[tooltip]:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── tooltip-pos="bottom" ─────────────────────────────────────────────────── */
+[tooltip][tooltip-pos="bottom"]::before {
+  bottom: auto;
+  top: calc(100% + var(--aura-tooltip-gap, 8px));
+  transform: translateX(-50%) translateY(calc(-1 * var(--aura-tooltip-offset, 6px)));
+}
+[tooltip][tooltip-pos="bottom"]::after {
+  bottom: auto;
+  top: calc(100% + var(--aura-tooltip-gap, 8px) - 5px);
+  border-top-color: transparent;
+  border-bottom-color: var(--aura-tooltip-bg, #1a1a2e);
+  transform: translateX(-50%) translateY(calc(-1 * var(--aura-tooltip-offset, 6px)));
+}
+[tooltip][tooltip-pos="bottom"]:hover::before,
+[tooltip][tooltip-pos="bottom"]:focus-visible::before,
+[tooltip][tooltip-pos="bottom"]:hover::after,
+[tooltip][tooltip-pos="bottom"]:focus-visible::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── tooltip-pos="left" ───────────────────────────────────────────────────── */
+[tooltip][tooltip-pos="left"]::before {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: calc(100% + var(--aura-tooltip-gap, 8px));
+  transform: translateY(-50%) translateX(var(--aura-tooltip-offset, 6px));
+}
+[tooltip][tooltip-pos="left"]::after {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: calc(100% + var(--aura-tooltip-gap, 8px) - 5px);
+  border-top-color: transparent;
+  border-left-color: var(--aura-tooltip-bg, #1a1a2e);
+  transform: translateY(-50%) translateX(var(--aura-tooltip-offset, 6px));
+}
+[tooltip][tooltip-pos="left"]:hover::before,
+[tooltip][tooltip-pos="left"]:focus-visible::before,
+[tooltip][tooltip-pos="left"]:hover::after,
+[tooltip][tooltip-pos="left"]:focus-visible::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ── tooltip-pos="right" ──────────────────────────────────────────────────── */
+[tooltip][tooltip-pos="right"]::before {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + var(--aura-tooltip-gap, 8px));
+  transform: translateY(-50%) translateX(calc(-1 * var(--aura-tooltip-offset, 6px)));
+}
+[tooltip][tooltip-pos="right"]::after {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + var(--aura-tooltip-gap, 8px) - 5px);
+  border-top-color: transparent;
+  border-right-color: var(--aura-tooltip-bg, #1a1a2e);
+  transform: translateY(-50%) translateX(calc(-1 * var(--aura-tooltip-offset, 6px)));
+}
+[tooltip][tooltip-pos="right"]:hover::before,
+[tooltip][tooltip-pos="right"]:focus-visible::before,
+[tooltip][tooltip-pos="right"]:hover::after,
+[tooltip][tooltip-pos="right"]:focus-visible::after {
+  transform: translateY(-50%) translateX(0);
+}

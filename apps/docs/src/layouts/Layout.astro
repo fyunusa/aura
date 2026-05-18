@@ -43,8 +43,20 @@ const nav = [
   {
     group: 'Utilities',
     links: [
-      { label: 'Motion & Reveal', href: '/docs/motion/' },
-      { label: 'Scheme',          href: '/docs/scheme/' },
+      { label: 'Motion & Reveal',      href: '/docs/motion/' },
+      { label: 'Spring Motion',         href: '/docs/spring/' },
+      { label: 'Scroll Animations',     href: '/docs/scroll-animations/' },
+      { label: 'Scheme',               href: '/docs/scheme/' },
+    ],
+  },
+  {
+    group: 'Advanced',
+    links: [
+      { label: 'Fluid Scaling',         href: '/docs/fluid/' },
+      { label: 'Animated Surfaces',     href: '/docs/animated-surfaces/' },
+      { label: 'Container Queries',     href: '/docs/container-queries/' },
+      { label: 'Seed Color',            href: '/docs/seed/' },
+      { label: 'Tooltips',              href: '/docs/tooltip/' },
     ],
   },
   {
@@ -271,7 +283,7 @@ function isActive(href: string) {
     <header class="topbar">
       <a href="/docs/" class="topbar-logo">aura<span>.</span></a>
       <div class="topbar-links">
-        <span class="badge">v0.2.0</span>
+        <span class="badge">v0.3.0</span>
         <a href="/docs/getting-started/" class="hide-mobile">Docs</a>
         <a href="/docs/attributes/" class="hide-mobile">Reference</a>
         <a href="https://github.com/fyunusa/aura" target="_blank" rel="noopener">GitHub ↗</a>

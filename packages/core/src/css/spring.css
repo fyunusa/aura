@@ -1,0 +1,111 @@
+/* ─── Spring motion curves ───────────────────────────────────────────────────
+   Physics-based spring animations using CSS linear() easing.
+   These are pre-computed spring curves — the same feel as Framer Motion /
+   iOS UIKit springs, but entirely in CSS with zero JS.
+
+   motion="spring"         — snappy, slight overshoot, iOS-like
+   motion="spring-bouncy"  — energetic, visible oscillation
+   motion="spring-gentle"  — soft, barely perceptible overshoot
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Pre-computed CSS linear() spring easing curves */
+
+  /* Snappy: stiff spring, quick settle, ~5% overshoot */
+  --aura-ease-spring:
+    linear(
+      0, 0.006 3.6%, 0.025 7.3%, 0.101 14.6%, 0.163 18.3%,
+      0.479 31.9%, 0.605 36.8%, 0.698 40.8%, 0.758 44.4%,
+      0.803 47.8%, 0.836 51.4%, 0.858 54.8%, 0.871 58.2%,
+      0.877 61.6%, 0.878 65.1%, 0.877 68.5%, 0.873 72%,
+      0.863 75.5%, 0.848 79%, 0.829 82.5%, 0.808 86%,
+      0.786 89.4%, 0.76 92.9%, 0.733 96.4%, 1
+    );
+
+  /* Bouncy: lower damping, noticeable oscillation, ~18% overshoot */
+  --aura-ease-spring-bouncy:
+    linear(
+      0, 0.01 2.3%, 0.085 7.1%, 0.331 18.8%,
+      0.462 24.6%, 0.567 30.1%, 0.636 35.3%,
+      0.678 40.6%, 0.701 45.8%, 0.708 51%,
+      0.703 56.3%, 0.687 61.5%, 0.662 66.8%,
+      0.638 72%, 0.619 77.3%, 0.609 82.5%,
+      0.609 87.8%, 0.615 93%, 0.625 98.3%, 1
+    );
+
+  /* Gentle: high damping, smooth ease-in-out feel, <2% overshoot */
+  --aura-ease-spring-gentle:
+    linear(
+      0, 0.003 4.4%, 0.022 8.9%, 0.082 17.8%,
+      0.274 35.6%, 0.452 44.5%, 0.562 51.1%,
+      0.611 55.6%, 0.637 60%, 0.644 64.5%,
+      0.637 68.9%, 0.617 73.4%, 0.591 77.8%,
+      0.58 82.3%, 0.582 86.7%, 0.596 91.2%,
+      0.615 95.6%, 0.628 100%, 1
+    );
+}
+
+/* ── motion="spring" — snappy ─────────────────────────────────────────────── */
+[motion="spring"] {
+  transition:
+    transform   var(--aura-spring-duration, 580ms)  var(--aura-ease-spring),
+    box-shadow  var(--aura-spring-duration, 580ms)  var(--aura-ease-spring),
+    opacity     var(--aura-spring-duration, 580ms)  var(--aura-ease-spring),
+    background  var(--aura-spring-duration, 580ms)  var(--aura-ease-spring);
+}
+[motion="spring"]:hover {
+  transform: translateY(-3px) scale(1.025);
+  box-shadow: var(--aura-shadow-float);
+}
+[motion="spring"]:active {
+  transform: translateY(0px) scale(0.98);
+  transition-duration: 120ms;
+}
+
+/* ── motion="spring-bouncy" ───────────────────────────────────────────────── */
+[motion="spring-bouncy"] {
+  transition:
+    transform   var(--aura-spring-bouncy-duration, 700ms)  var(--aura-ease-spring-bouncy),
+    box-shadow  var(--aura-spring-bouncy-duration, 700ms)  var(--aura-ease-spring-bouncy),
+    opacity     var(--aura-spring-bouncy-duration, 700ms)  var(--aura-ease-spring-bouncy),
+    background  var(--aura-spring-bouncy-duration, 700ms)  var(--aura-ease-spring-bouncy);
+}
+[motion="spring-bouncy"]:hover {
+  transform: translateY(-5px) scale(1.04);
+  box-shadow: var(--aura-shadow-float);
+}
+[motion="spring-bouncy"]:active {
+  transform: scale(0.96);
+  transition-duration: 100ms;
+}
+
+/* ── motion="spring-gentle" ───────────────────────────────────────────────── */
+[motion="spring-gentle"] {
+  transition:
+    transform   var(--aura-spring-gentle-duration, 500ms)  var(--aura-ease-spring-gentle),
+    box-shadow  var(--aura-spring-gentle-duration, 500ms)  var(--aura-ease-spring-gentle),
+    opacity     var(--aura-spring-gentle-duration, 500ms)  var(--aura-ease-spring-gentle),
+    background  var(--aura-spring-gentle-duration, 500ms)  var(--aura-ease-spring-gentle);
+}
+[motion="spring-gentle"]:hover {
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: var(--aura-shadow-mid);
+}
+[motion="spring-gentle"]:active {
+  transform: scale(0.99);
+  transition-duration: 100ms;
+}
+
+/* ── Respect prefers-reduced-motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  [motion="spring"],
+  [motion="spring-bouncy"],
+  [motion="spring-gentle"] {
+    transition: none;
+  }
+  [motion="spring"]:hover,
+  [motion="spring-bouncy"]:hover,
+  [motion="spring-gentle"]:hover {
+    transform: none;
+  }
+}

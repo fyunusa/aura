@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Seed Color">
+  <h1 class="page-title">Seed Color</h1>
+  <p class="page-desc">
+    Set <code>--aura-seed</code> to your brand color and aura auto-generates a full
+    design system: a 10-stop palette, complementary color, triadic accent, analogous
+    tones, and muted variants — all in pure CSS using <code>color-mix()</code> and
+    <code>oklch()</code>. No build step. No config file.
+  </p>
+
+  <DemoBlock title="10-stop palette from one color"
+    description="Override --aura-seed on any element and all seed-* variables update automatically."
+    code={`<div style="--aura-seed: #7c6af7;">
+  <!-- All seed-* variables generated from this one value -->
+  <div style="background: var(--aura-seed-100);">seed-100</div>
+  <div style="background: var(--aura-seed-300);">seed-300</div>
+  <div style="background: var(--aura-seed-500);">seed-500</div>
+  <div style="background: var(--aura-seed-700);">seed-700</div>
+  <div style="background: var(--aura-seed-900);">seed-900</div>
+</div>`}>
+    {[
+      { seed: '#7c6af7', label: 'Purple (default)' },
+      { seed: '#ef4444', label: 'Red brand' },
+      { seed: '#10b981', label: 'Green brand' },
+      { seed: '#f59e0b', label: 'Amber brand' },
+    ].map(({ seed, label }) => (
+      <div style={`--aura-seed: ${seed}; margin-bottom: 1.25rem;`}>
+        <p text="caption" style="color:rgba(226,226,240,0.45);margin-bottom:0.5rem;">{label} — <code style="font-family:monospace;">{seed}</code></p>
+        <div layout="row" gap="xs" style="flex-wrap:wrap;">
+          {['50','100','200','300','400','500','600','700','800','900','950'].map(stop => (
+            <div style={`background:var(--aura-seed-${stop});width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;`}
+                 tooltip={stop} tooltip-pos="bottom">
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </DemoBlock>
+
+  <DemoBlock title="Harmonious companion colors"
+    description="Complementary, triadic, warm, and cool variants — auto-generated from --aura-seed using oklch() hue rotation."
+    code={`<div style="--aura-seed: #7c6af7;">
+  <div tone="seed"            surface="solid" density="compact" radius="md">Seed</div>
+  <div tone="seed-complement" surface="solid" density="compact" radius="md">Complement (+180°)</div>
+  <div tone="seed-triadic"    surface="solid" density="compact" radius="md">Triadic (+120°)</div>
+  <div tone="seed-warm"       surface="solid" density="compact" radius="md">Warm (−30°)</div>
+  <div tone="seed-cool"       surface="solid" density="compact" radius="md">Cool (+30°)</div>
+</div>`}>
+    <div layout="row" gap="sm" style="flex-wrap:wrap;">
+      <div tone="seed"            surface="solid" density="compact" radius="md">
+        <p text="caption">Seed</p>
+      </div>
+      <div tone="seed-complement" surface="solid" density="compact" radius="md">
+        <p text="caption">Complement</p>
+      </div>
+      <div tone="seed-triadic"    surface="solid" density="compact" radius="md">
+        <p text="caption">Triadic</p>
+      </div>
+      <div tone="seed-warm"       surface="solid" density="compact" radius="md">
+        <p text="caption">Warm</p>
+      </div>
+      <div tone="seed-cool"       surface="solid" density="compact" radius="md">
+        <p text="caption">Cool</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Instant rebrand"
+    description="Change --aura-seed on :root and the entire design system follows."
+    code={`/* One-line rebrand */
+:root { --aura-seed: #ef4444; }
+
+/* All these update automatically: */
+--aura-color-primary  → red
+--aura-seed-50 … 950  → red scale
+--aura-seed-complement → teal/cyan
+--aura-seed-warm       → orange
+--aura-seed-cool       → rose`}>
+    <div layout="stack" gap="sm" style="--aura-seed:#ef4444;">
+      <p text="caption" style="color:rgba(226,226,240,0.4);">With --aura-seed: #ef4444</p>
+      <div layout="row" gap="sm" style="flex-wrap:wrap;">
+        <button surface="solid" tone="seed" density="default" radius="md" motion="spring">Primary action</button>
+        <div surface="glass" tone="seed" density="compact" radius="lg">Glass + seed tone</div>
+        <div surface="neon"  tone="seed-complement" density="compact" radius="lg">Complement neon</div>
+      </div>
+      <div layout="row" gap="xs">
+        {['50','100','200','300','500','700','900'].map(s => (
+          <div style={`background:var(--aura-seed-${s});height:28px;flex:1;border-radius:4px;`} tooltip={`seed-${s}`} tooltip-pos="bottom"></div>
+        ))}
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+  <h2 class="section-title">All generated variables</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`/* Set once — generates everything below */
+:root { --aura-seed: #7c6af7; }
+
+/* Palette */
+--aura-seed-50 … --aura-seed-950  (10 stops: tints → shades)
+
+/* Harmonious companions */
+--aura-seed-complement  (hue + 180°)
+--aura-seed-triadic     (hue + 120°)
+--aura-seed-warm        (hue −  30°)
+--aura-seed-cool        (hue +  30°)
+
+/* Utility variants */
+--aura-seed-subtle   (12% alpha)
+--aura-seed-muted    (25% alpha)
+--aura-seed-vivid    (boosted lightness + chroma)
+--aura-seed-mellow   (reduced lightness + chroma)
+
+/* Foreground text pairs */
+--aura-seed-fg-dark   (dark text for light seed backgrounds)
+--aura-seed-fg-light  (light text for dark seed backgrounds)
+
+/* Tone aliases */
+tone="seed"            → uses --aura-seed
+tone="seed-complement" → uses --aura-seed-complement
+tone="seed-warm"       → uses --aura-seed-warm
+tone="seed-cool"       → uses --aura-seed-cool
+tone="seed-vivid"      → uses --aura-seed-vivid`}</pre>
+</Layout>

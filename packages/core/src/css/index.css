@@ -13,3 +13,11 @@
 @import './elevation.css';
 @import './responsive.css';
 @import './scheme.css';
+/* v0.3.0 — advanced features */
+@import './fluid.css';
+@import './tooltip.css';
+@import './animated-surfaces.css';
+@import './scroll-animations.css';
+@import './spring.css';
+@import './container.css';
+@import './seed.css';

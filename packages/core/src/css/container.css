@@ -1,0 +1,62 @@
+/* ─── Container queries (cq=) ────────────────────────────────────────────────
+   Makes layout respond to its PARENT container's size instead of the viewport.
+   Critical for reusable card/panel components that live in different contexts.
+
+   Usage:
+     <section cq>                      — marks this as a container
+       <div layout="grid" cols="1">    — grid inside responds to section width
+       </div>
+     </section>
+
+   Combine with responsive attrs for container-aware breakpoints:
+     <div cq>
+       <div layout="row" adaptive>    — stacks when container is narrow
+       </div>
+     </div>
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Declare container ────────────────────────────────────────────────────── */
+[cq] {
+  container-type: inline-size;
+}
+
+/* ── Grid inside a container ─────────────────────────────────────────────── */
+@container (max-width: 479px) {
+  [cq] > [layout="grid"],
+  [cq] > * > [layout="grid"] {
+    grid-template-columns: 1fr;
+  }
+}
+
+@container (min-width: 480px) and (max-width: 719px) {
+  [cq] > [layout="grid"],
+  [cq] > * > [layout="grid"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@container (min-width: 720px) {
+  [cq] > [layout="grid"],
+  [cq] > * > [layout="grid"] {
+    grid-template-columns: repeat(auto-fit, minmax(var(--aura-grid-min, 240px), 1fr));
+  }
+}
+
+/* ── Row inside a container — stacks when narrow ─────────────────────────── */
+@container (max-width: 420px) {
+  [cq] > [layout="row"],
+  [cq] > * > [layout="row"] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ── Card typography scales with container ────────────────────────────────── */
+@container (max-width: 320px) {
+  [cq] [text="heading"]    { font-size: 1.1rem; }
+  [cq] [text="subheading"] { font-size: 0.9rem; }
+}
+@container (min-width: 600px) {
+  [cq] [text="heading"]    { font-size: 1.6rem; }
+  [cq] [text="subheading"] { font-size: 1.15rem; }
+}

@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Scroll Animations">
+  <h1 class="page-title">Scroll Animations</h1>
+  <p class="page-desc">
+    CSS-native scroll-driven animations using the <code>animation-timeline: view()</code> API —
+    zero JavaScript, zero IntersectionObserver, zero dependencies.
+    Supported in Chrome 115+, Firefox 110+, Safari 18+. Graceful static fallback in older browsers.
+  </p>
+
+  <DemoBlock title="reveal=&quot;parallax&quot;"
+    description="Element shifts at 0.4× scroll speed as you scroll through — creates natural depth. Scroll this page to see it."
+    code={`<div reveal="parallax" surface="aurora" density="spacious" radius="xl">
+  I shift slower than the page scroll
+</div>
+
+<!-- Custom parallax distance -->
+<div reveal="parallax" style="--aura-parallax-amount: 80px;">
+  More dramatic parallax
+</div>`}>
+    <div reveal="parallax" surface="aurora" density="spacious" radius="xl">
+      <p weight="semibold" style="margin-bottom:0.3rem;">Parallax card</p>
+      <p text="caption" style="color:rgba(226,226,240,0.5);">Shifts ±50px relative to scroll — adjust with --aura-parallax-amount</p>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="reveal=&quot;progress&quot;"
+    description="Fades + scales in as the element enters the viewport. Purely CSS — the animation is tied to scroll position, not time."
+    code={`<div reveal="progress" surface="glass" density="spacious" radius="xl">
+  Fades in as I enter the viewport
+</div>`}>
+    <div layout="grid" gap="md" style="--aura-grid-min:180px;">
+      <div reveal="progress" surface="glass" density="spacious" radius="xl">
+        <p weight="semibold">Card A</p>
+        <p text="caption" style="color:rgba(226,226,240,0.5);">Fades in on scroll</p>
+      </div>
+      <div reveal="progress" surface="glass" density="spacious" radius="xl">
+        <p weight="semibold">Card B</p>
+        <p text="caption" style="color:rgba(226,226,240,0.5);">Fades in on scroll</p>
+      </div>
+      <div reveal="progress" surface="glass" density="spacious" radius="xl">
+        <p weight="semibold">Card C</p>
+        <p text="caption" style="color:rgba(226,226,240,0.5);">Fades in on scroll</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="reveal=&quot;sticky-fade&quot;"
+    description="Element sticks to the viewport then fades out as content scrolls past it — great for hero sections."
+    code={`<div reveal="sticky-fade" surface="mesh" density="spacious" radius="xl"
+     style="--aura-sticky-top: 100px;">
+  I stick, then fade as you scroll past
+</div>`}>
+    <div style="height:300px;overflow-y:auto;border:1px solid rgb(255 255 255/0.07);border-radius:10px;padding:1rem;">
+      <p text="caption" style="color:rgba(226,226,240,0.4);margin-bottom:1rem;">↓ Scroll inside this box</p>
+      <div reveal="sticky-fade" surface="mesh" density="spacious" radius="xl" style="--aura-sticky-top:20px;margin-bottom:1rem;">
+        <p weight="semibold">Sticky-fade hero</p>
+        <p text="caption" style="color:rgba(226,226,240,0.5);">Sticks then fades out</p>
+      </div>
+      <div style="height:400px;display:flex;align-items:center;justify-content:center;opacity:0.3;">
+        <p>Content below...</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="reveal=&quot;slide-left&quot; / &quot;slide-right&quot;"
+    code={`<div reveal="slide-right" surface="glass" density="default" radius="lg">
+  Slides in from the left
+</div>
+<div reveal="slide-left" surface="glass" density="default" radius="lg">
+  Slides in from the right
+</div>`}>
+    <div layout="stack" gap="md">
+      <div reveal="slide-right" surface="glass" density="default" radius="lg">
+        <p>← Slides in from left</p>
+      </div>
+      <div reveal="slide-left" surface="glass" density="default" radius="lg">
+        <p>Slides in from right →</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+  <h2 class="section-title">Tokens</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`--aura-parallax-amount: 50px;   /* parallax shift distance          */
+--aura-sticky-top:      80px;   /* sticky-fade top offset           */`}</pre>
+</Layout>

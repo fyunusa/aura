@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Animated Surfaces">
+  <h1 class="page-title">Animated Surfaces</h1>
+  <p class="page-desc">
+    Three premium animated surfaces — impossible to achieve in Tailwind without custom CSS.
+    All GPU-accelerated, <code>prefers-reduced-motion</code> safe, and fully token-customisable.
+  </p>
+
+  <DemoBlock title="surface=&quot;aurora&quot;"
+    description="Shifting aurora borealis light — radial gradients animated via transform. Fully GPU-accelerated."
+    code={`<div surface="aurora" density="spacious" radius="xl">
+  <h2 text="heading">Aurora surface</h2>
+  <p>Animated radial light fields. Change colours with --aura-aurora-1 … 4.</p>
+</div>`}>
+    <div surface="aurora" density="spacious" radius="xl">
+      <p text="subheading" weight="bold" style="margin-bottom:0.5rem;">Aurora surface</p>
+      <p text="body" style="color:rgba(226,226,240,0.65);">
+        Shifting coloured light fields. Purely GPU-accelerated CSS animation.
+      </p>
+      <div layout="row" gap="sm" style="margin-top:1rem;">
+        <button surface="glass" density="compact" radius="full" motion="spring">Get started</button>
+        <button surface="ghost" density="compact" radius="full" motion="spring">Learn more</button>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="surface=&quot;mesh&quot;"
+    description="Animated CSS mesh gradient — radial colour blobs drift continuously."
+    code={`<div surface="mesh" density="spacious" radius="xl">
+  Mesh gradient surface
+</div>
+
+<!-- Custom mesh colours -->
+<div surface="mesh" density="spacious" radius="xl"
+     style="--aura-mesh-1: rgba(239,68,68,0.75);
+            --aura-mesh-2: rgba(245,158,11,0.60);
+            --aura-mesh-3: rgba(34,197,94,0.60);">
+  Custom mesh palette
+</div>`}>
+    <div layout="stack" gap="md">
+      <div surface="mesh" density="spacious" radius="xl">
+        <p weight="semibold" style="margin-bottom:0.3rem;">Default mesh</p>
+        <p text="caption" style="color:rgba(226,226,240,0.55);">Purple/blue/cyan blend — drifts over 14s</p>
+      </div>
+      <div surface="mesh" density="spacious" radius="xl"
+           style="--aura-mesh-1:rgba(239,68,68,0.75);--aura-mesh-2:rgba(245,158,11,0.60);--aura-mesh-3:rgba(34,197,94,0.60);--aura-mesh-4:rgba(6,182,212,0.50);--aura-mesh-5:rgba(239,68,68,0.3);--aura-mesh-base:#0f0f0a;">
+        <p weight="semibold" style="margin-bottom:0.3rem;">Custom palette</p>
+        <p text="caption" style="color:rgba(226,226,240,0.55);">Override --aura-mesh-1 … 5 for any colour scheme</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="surface=&quot;noise&quot;"
+    description="Glass surface with an SVG grain/noise texture overlaid. Adds tactile depth to any card."
+    code={`<div surface="noise" density="spacious" radius="xl">
+  Glass + grain texture overlay
+</div>
+
+<!-- Adjust grain intensity -->
+<div surface="noise" density="spacious" radius="xl"
+     style="--aura-noise-opacity: 0.12;">
+  Higher grain intensity
+</div>`}>
+    <div layout="row" gap="md">
+      <div surface="noise" density="spacious" radius="xl" style="flex:1;">
+        <p weight="semibold" style="margin-bottom:0.3rem;">Subtle grain</p>
+        <p text="caption" style="color:rgba(226,226,240,0.5);">Default noise-opacity: 0.055</p>
+      </div>
+      <div surface="noise" density="spacious" radius="xl" style="flex:1;--aura-noise-opacity:0.13;">
+        <p weight="semibold" style="margin-bottom:0.3rem;">Heavy grain</p>
+        <p text="caption" style="color:rgba(226,226,240,0.5);">--aura-noise-opacity: 0.13</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+  <h2 class="section-title">Custom tokens</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`/* Aurora */
+--aura-aurora-bg:    #07070f;           /* base background     */
+--aura-aurora-speed: 9s;               /* animation duration  */
+--aura-aurora-1: rgba(124,106,247,0.4); /* top-left blob       */
+--aura-aurora-2: rgba(168, 85,247,0.3); /* top-right blob      */
+--aura-aurora-3: rgba( 59,130,246,0.25);/* bottom-right blob   */
+--aura-aurora-4: rgba(  6,182,212,0.2); /* bottom-left blob    */
+
+/* Mesh */
+--aura-mesh-base:  #0d0d1a;
+--aura-mesh-speed: 14s;
+--aura-mesh-1: rgba(124,106,247,0.75); /* ... up to mesh-5 */
+
+/* Noise */
+--aura-noise-opacity: 0.055;           /* grain intensity 0–0.2 */`}</pre>
+</Layout>

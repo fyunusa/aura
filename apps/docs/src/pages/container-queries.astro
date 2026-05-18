@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Container Queries">
+  <h1 class="page-title">Container Queries</h1>
+  <p class="page-desc">
+    Add <code>cq</code> to any parent element and children respond to <em>that element's size</em>
+    instead of the viewport. Critical for truly reusable card components that live in sidebars,
+    modals, or narrow columns.
+  </p>
+
+  <DemoBlock title="Grid inside cq container"
+    description="The grid below responds to its parent container width — try resizing the container, not the viewport."
+    code={`<!-- Mark the parent as a container -->
+<section cq>
+  <div layout="grid" cols="1">
+    <!-- Grid reflows at 480px and 720px container width, not viewport -->
+    <div surface="glass" density="spacious" radius="xl">Card 1</div>
+    <div surface="glass" density="spacious" radius="xl">Card 2</div>
+    <div surface="glass" density="spacious" radius="xl">Card 3</div>
+  </div>
+</section>`}>
+    <div cq style="border:1px dashed rgb(255 255 255/0.1);border-radius:12px;padding:1rem;resize:horizontal;overflow:hidden;min-width:200px;max-width:100%;">
+      <p text="caption" style="color:rgba(226,226,240,0.35);margin-bottom:0.75rem;">↔ Drag to resize this container</p>
+      <div layout="grid" gap="md">
+        <div surface="glass" density="spacious" radius="xl">
+          <p weight="semibold">Card 1</p>
+          <p text="caption" style="color:rgba(226,226,240,0.4);">Responds to container</p>
+        </div>
+        <div surface="glass" density="spacious" radius="xl">
+          <p weight="semibold">Card 2</p>
+          <p text="caption" style="color:rgba(226,226,240,0.4);">Not the viewport</p>
+        </div>
+        <div surface="glass" density="spacious" radius="xl">
+          <p weight="semibold">Card 3</p>
+          <p text="caption" style="color:rgba(226,226,240,0.4);">True reusability</p>
+        </div>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Row that stacks in narrow containers"
+    code={`<div cq>
+  <div layout="row" adaptive gap="md">
+    <div surface="matte" density="default" radius="lg" grow>Main content</div>
+    <div surface="matte" density="default" radius="lg" style="width:140px;">Sidebar</div>
+  </div>
+</div>`}>
+    <div cq style="border:1px dashed rgb(255 255 255/0.1);border-radius:12px;padding:1rem;resize:horizontal;overflow:hidden;min-width:200px;max-width:100%;">
+      <p text="caption" style="color:rgba(226,226,240,0.35);margin-bottom:0.75rem;">↔ Drag narrow to see stacking</p>
+      <div layout="row" gap="md" style="align-items:stretch;flex-wrap:wrap;">
+        <div surface="matte" density="default" radius="lg" style="flex:1;min-width:120px;">
+          <p weight="semibold">Main content</p>
+          <p text="caption" style="color:rgba(226,226,240,0.4);">Grows to fill</p>
+        </div>
+        <div surface="glass" density="default" radius="lg" style="min-width:120px;">
+          <p weight="semibold">Sidebar</p>
+          <p text="caption" style="color:rgba(226,226,240,0.4);">Fixed width</p>
+        </div>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+  <h2 class="section-title">Why this matters</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`/* Old world: viewport breakpoints break reusable components */
+@media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } }
+/* — fails when the grid is in a narrow sidebar on a wide screen */
+
+/* aura: cq makes the grid respond to its actual space */
+<section cq>
+  <div layout="grid">  <!-- reflows at 480px/720px container width -->
+  </div>
+</section>
+
+/* Container breakpoints used internally */
+/* @container (max-width: 479px)  → 1 column  */
+/* @container (480px – 719px)     → 2 columns */
+/* @container (min-width: 720px)  → auto-fit  */`}</pre>
+</Layout>
