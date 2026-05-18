@@ -22,46 +22,51 @@ npm install useaura
 import 'useaura/css'`}</pre>
 
   <!-- Feature grid -->
+  <style>
+    .feature-card { text-decoration: none; display: block; color: inherit; }
+    .feature-card .card-title { color: #e2e2f0; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .feature-card .card-desc  { color: rgba(226,226,240,0.45); font-size: 0.8rem; line-height: 1.55; }
+  </style>
   <div layout="grid" gap="md" style="--aura-grid-min:220px;margin-bottom:3rem;">
-    <a href="/docs/surfaces/" surface="glass" density="spacious" radius="xl" motion="expressive" style="text-decoration:none;display:block;">
-      <p weight="semibold" style="margin-bottom:0.35rem;">Surfaces</p>
-      <p text="caption">glass · solid · matte · ghost · frosted · neon</p>
+    <a href="/docs/surfaces/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
+      <p class="card-title">Surfaces</p>
+      <p class="card-desc">glass · solid · matte · ghost · frosted · neon</p>
     </a>
-    <a href="/docs/tones/" surface="glass" density="spacious" radius="xl" motion="expressive" style="text-decoration:none;display:block;">
-      <p weight="semibold" style="margin-bottom:0.35rem;">Tones</p>
-      <p text="caption">primary · danger · success · warning · info · accent · neutral</p>
+    <a href="/docs/tones/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
+      <p class="card-title">Tones</p>
+      <p class="card-desc">primary · danger · success · warning · info · accent · neutral</p>
     </a>
-    <a href="/docs/typography/" surface="glass" density="spacious" radius="xl" motion="expressive" style="text-decoration:none;display:block;">
-      <p weight="semibold" style="margin-bottom:0.35rem;">Typography</p>
-      <p text="caption">display · heading · body · code · weight · truncate · balance</p>
+    <a href="/docs/typography/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
+      <p class="card-title">Typography</p>
+      <p class="card-desc">display · heading · body · code · weight · truncate · balance</p>
     </a>
-    <a href="/docs/layout/" surface="glass" density="spacious" radius="xl" motion="expressive" style="text-decoration:none;display:block;">
-      <p weight="semibold" style="margin-bottom:0.35rem;">Layout</p>
-      <p text="caption">stack · row · grid · sidebar · masonry · prose · gap · align</p>
+    <a href="/docs/layout/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
+      <p class="card-title">Layout</p>
+      <p class="card-desc">stack · row · grid · sidebar · masonry · prose · gap · align</p>
     </a>
-    <a href="/docs/responsive/" surface="glass" density="spacious" radius="xl" motion="expressive" style="text-decoration:none;display:block;">
-      <p weight="semibold" style="margin-bottom:0.35rem;">Responsive</p>
-      <p text="caption">cols · span · sm-cols · md-cols · lg-cols · hide · show</p>
+    <a href="/docs/responsive/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
+      <p class="card-title">Responsive</p>
+      <p class="card-desc">cols · span · sm-cols · md-cols · lg-cols · hide · show</p>
     </a>
-    <a href="/docs/forms/" surface="glass" density="spacious" radius="xl" motion="expressive" style="text-decoration:none;display:block;">
-      <p weight="semibold" style="margin-bottom:0.35rem;">Forms</p>
-      <p text="caption">input · textarea · select · range · checkbox · field · hint</p>
+    <a href="/docs/forms/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
+      <p class="card-title">Forms</p>
+      <p class="card-desc">input · textarea · select · range · checkbox · field · hint</p>
     </a>
-    <a href="/docs/states/" surface="glass" density="spacious" radius="xl" motion="expressive" style="text-decoration:none;display:block;">
-      <p weight="semibold" style="margin-bottom:0.35rem;">States</p>
-      <p text="caption">loading · skeleton · disabled · error · success · warning</p>
+    <a href="/docs/states/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
+      <p class="card-title">States</p>
+      <p class="card-desc">loading · skeleton · disabled · error · success · warning</p>
     </a>
-    <a href="/docs/elevation/" surface="glass" density="spacious" radius="xl" motion="expressive" style="text-decoration:none;display:block;">
-      <p weight="semibold" style="margin-bottom:0.35rem;">Elevation</p>
-      <p text="caption">none · low · mid · high · float</p>
+    <a href="/docs/elevation/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
+      <p class="card-title">Elevation</p>
+      <p class="card-desc">none · low · mid · high · float</p>
     </a>
-    <a href="/docs/motion/" surface="glass" density="spacious" radius="xl" motion="expressive" style="text-decoration:none;display:block;">
-      <p weight="semibold" style="margin-bottom:0.35rem;">Motion & Reveal</p>
-      <p text="caption">motion · float · axis · reveal · reveal-delay</p>
+    <a href="/docs/motion/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
+      <p class="card-title">Motion & Reveal</p>
+      <p class="card-desc">motion · float · axis · reveal · reveal-delay</p>
     </a>
-    <a href="/docs/scheme/" surface="glass" density="spacious" radius="xl" motion="expressive" style="text-decoration:none;display:block;">
-      <p weight="semibold" style="margin-bottom:0.35rem;">Scheme</p>
-      <p text="caption">scheme="dark" · scheme="light"</p>
+    <a href="/docs/scheme/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="expressive">
+      <p class="card-title">Scheme</p>
+      <p class="card-desc">scheme="dark" · scheme="light"</p>
     </a>
   </div>
 
