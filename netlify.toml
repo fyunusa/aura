@@ -4,8 +4,7 @@
   publish = "apps/docs/dist"
 
 [build.environment]
-  NODE_VERSION = "20"
-  PNPM_VERSION = "9"
+  NODE_VERSION = "22"
 
 [[headers]]
   for = "/*"
