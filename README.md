@@ -15,7 +15,7 @@ npm install useaura
 
 ```html
 <!-- Import once -->
-<link rel="stylesheet" href="node_modules/aura/dist/forma.css" />
+<link rel="stylesheet" href="node_modules/useaura/dist/forma.css" />
 
 <!-- Write intent, not utilities -->
 <div surface="glass" tone="primary" density="spacious" radius="xl">
@@ -36,7 +36,7 @@ npm install useaura
 
 ```typescript
 // vite.config.ts
-import forma from 'aura/vite'
+import forma from 'useaura/vite'
 export default { plugins: [forma()] }
 ```
 
@@ -60,7 +60,7 @@ npm install useaura
 ```
 ```javascript
 // tailwind.config.js
-import formaPreset from 'aura/tailwind'
+import formaPreset from 'useaura/tailwind'
 export default { presets: [formaPreset] }
 ```
 

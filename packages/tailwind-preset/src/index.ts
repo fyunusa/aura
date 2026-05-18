@@ -8,7 +8,7 @@ import type { Config } from 'tailwindcss'
  * Usage:
  * ```js
  * // tailwind.config.js
- * import auraPreset from 'aura/tailwind'
+ * import auraPreset from 'useaura/tailwind'
  * export default { presets: [auraPreset] }
  * ```
  */
