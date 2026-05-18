@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Responsive">
+  <h1 class="page-title">Responsive</h1>
+  <p class="page-desc">
+    Control grid column counts at different breakpoints, make items span multiple columns,
+    and conditionally show or hide elements — all with attributes.
+  </p>
+
+  <DemoBlock title="cols=" description="Sets grid-template-columns directly. Apply to any layout=&quot;grid&quot; parent."
+    code={`<div layout="grid" cols="1" gap="md">...</div>  <!-- 1 column  -->
+<div layout="grid" cols="2" gap="md">...</div>  <!-- 2 columns -->
+<div layout="grid" cols="3" gap="md">...</div>  <!-- 3 columns -->
+<div layout="grid" cols="4" gap="md">...</div>  <!-- 4 columns -->
+<div layout="grid" cols="auto" gap="md">...</div> <!-- auto-fit -->`}>
+    <div layout="grid" cols="3" gap="sm">
+      {[1,2,3,4,5,6].map(n => (
+        <div surface="glass" density="compact" radius="md" style="text-align:center;">{n}</div>
+      ))}
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Responsive breakpoints"
+    description="Use sm-cols, md-cols, lg-cols, xl-cols to override the column count at each breakpoint. Resize this window to see them change."
+    code={`<div layout="grid" cols="1" sm-cols="2" md-cols="3" lg-cols="4" gap="md">
+  <div>...</div>
+  <div>...</div>
+  <div>...</div>
+  <div>...</div>
+</div>
+
+<!-- Breakpoints:
+  sm-cols  ≥ 640px
+  md-cols  ≥ 768px
+  lg-cols  ≥ 1024px
+  xl-cols  ≥ 1280px
+-->`}>
+    <div layout="grid" cols="1" sm-cols="2" md-cols="3" lg-cols="4" gap="sm">
+      {[1,2,3,4].map(n => (
+        <div surface="glass" density="compact" radius="md" style="text-align:center;padding:0.75rem;">{n}</div>
+      ))}
+    </div>
+    <p style="font-size:0.75rem;opacity:0.4;margin-top:0.75rem;">↑ 1 col → 2 → 3 → 4 as viewport widens</p>
+  </DemoBlock>
+
+  <DemoBlock title="span=" description="Makes an item span multiple columns in a grid. Use span=&quot;full&quot; to span all columns."
+    code={`<div layout="grid" cols="12" gap="sm">
+  <div span="full">Full width (12 cols)</div>
+  <div span="6">Half (6)</div>
+  <div span="6">Half (6)</div>
+  <div span="4">Third (4)</div>
+  <div span="4">Third (4)</div>
+  <div span="4">Third (4)</div>
+</div>`}>
+    <div layout="grid" cols="12" gap="sm">
+      <div surface="solid" tone="primary" density="compact" radius="md" span="full" style="text-align:center;">Full width (span="full")</div>
+      <div surface="glass" density="compact" radius="md" span="6" style="text-align:center;">span="6"</div>
+      <div surface="glass" density="compact" radius="md" span="6" style="text-align:center;">span="6"</div>
+      <div surface="glass" density="compact" radius="md" span="4" style="text-align:center;">4</div>
+      <div surface="glass" density="compact" radius="md" span="4" style="text-align:center;">4</div>
+      <div surface="glass" density="compact" radius="md" span="4" style="text-align:center;">4</div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="hide= / show="
+    description="Conditionally hide or show elements at specific breakpoints. Resize to observe."
+    code={`<!-- Hidden on mobile (< 640px) -->
+<div hide="mobile">Hidden on mobile</div>
+
+<!-- Hidden on desktop (≥ 1024px) -->
+<div hide="desktop">Hidden on desktop</div>
+
+<!-- Only visible on mobile -->
+<div show="mobile">Only on mobile</div>
+
+<!-- Only visible on desktop -->
+<div show="desktop">Only on desktop</div>
+
+<!-- Breakpoints:
+  mobile   < 640px
+  tablet   640px – 1023px
+  desktop  ≥ 1024px
+-->`}>
+    <div layout="stack" gap="sm">
+      <div surface="solid" tone="primary" density="compact" radius="md" hide="mobile">
+        <span text="label">hide="mobile" — hidden below 640px</span>
+      </div>
+      <div surface="solid" tone="success" density="compact" radius="md" hide="desktop">
+        <span text="label">hide="desktop" — hidden above 1024px</span>
+      </div>
+      <div surface="solid" tone="info" density="compact" radius="md" show="mobile">
+        <span text="label">show="mobile" — only on mobile</span>
+      </div>
+      <div surface="solid" tone="accent" density="compact" radius="md" show="desktop">
+        <span text="label">show="desktop" — only on desktop</span>
+      </div>
+    </div>
+  </DemoBlock>
+
+</Layout>

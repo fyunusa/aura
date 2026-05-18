@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Elevation">
+  <h1 class="page-title">Elevation</h1>
+  <p class="page-desc">
+    The <code>elevation=</code> attribute applies layered box shadows. Each level conveys
+    a different depth — from subtle card lift to high-floating overlays.
+  </p>
+
+  <DemoBlock title="All levels"
+    code={`<div surface="glass" density="spacious" radius="xl" elevation="none">none</div>
+<div surface="glass" density="spacious" radius="xl" elevation="low">low</div>
+<div surface="glass" density="spacious" radius="xl" elevation="mid">mid</div>
+<div surface="glass" density="spacious" radius="xl" elevation="high">high</div>
+<div surface="glass" density="spacious" radius="xl" elevation="float">float</div>`}>
+    <div layout="row" gap="xl" wrap style="align-items:flex-end;padding-bottom:0.5rem;">
+      {[
+        { v: 'none',  label: 'none' },
+        { v: 'low',   label: 'low' },
+        { v: 'mid',   label: 'mid' },
+        { v: 'high',  label: 'high' },
+        { v: 'float', label: 'float' },
+      ].map(({ v, label }) => (
+        <div surface="glass" density="spacious" radius="xl" elevation={v} style="min-width:110px;text-align:center;">
+          <p text="label">{label}</p>
+        </div>
+      ))}
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="elevation on a card"
+    description="Elevation pairs naturally with surface=&quot;glass&quot; or surface=&quot;matte&quot;."
+    code={`<div surface="glass" density="spacious" radius="xl" elevation="mid">
+  <h3 text="subheading">Card title</h3>
+  <p text="caption" style="margin-top: 0.5rem;">Elevated card component</p>
+</div>`}>
+    <div style="padding:1rem;background:rgb(0 0 0/0.3);border-radius:12px;">
+      <div surface="glass" density="spacious" radius="xl" elevation="mid" style="max-width:300px;">
+        <p text="subheading">Card title</p>
+        <p text="caption" style="margin-top:0.5rem;">Elevated card component with mid shadow</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="elevation on a floating panel"
+    description="float elevation is designed for tooltips, dropdowns, and modals."
+    code={`<div surface="frosted" density="spacious" radius="xl" elevation="float">
+  <p text="label">Floating panel</p>
+</div>`}>
+    <div style="padding:2rem;background:radial-gradient(ellipse at center,#1a1060 0%,transparent 70%);border-radius:12px;display:flex;justify-content:center;">
+      <div surface="frosted" density="spacious" radius="xl" elevation="float">
+        <p text="subheading">Floating panel</p>
+        <p text="caption" style="margin-top:0.25rem;">elevation="float" — max depth</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">CSS custom properties</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`--aura-shadow-low:   0 1px 3px  rgb(0 0 0 / 0.2),  0 1px 2px  rgb(0 0 0 / 0.12)
+--aura-shadow-mid:   0 4px 12px rgb(0 0 0 / 0.3),  0 2px 4px  rgb(0 0 0 / 0.2)
+--aura-shadow-high:  0 10px 30px rgb(0 0 0 / 0.4), 0 4px 8px  rgb(0 0 0 / 0.3)
+--aura-shadow-float: 0 20px 60px rgb(0 0 0 / 0.5), 0 8px 20px rgb(0 0 0 / 0.4)`}</pre>
+
+</Layout>

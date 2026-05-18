@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Layout">
+  <h1 class="page-title">Layout</h1>
+  <p class="page-desc">
+    The <code>layout=</code> attribute sets a complete layout primitive — flex or grid with
+    sensible defaults. Compose with <code>gap=</code>, <code>align=</code>, <code>justify=</code>,
+    and <code>adaptive</code>.
+  </p>
+
+  <DemoBlock title="layout=&quot;stack&quot;"
+    description="Flex column. Children stack vertically."
+    code={`<div layout="stack" gap="sm">
+  <div surface="glass" density="compact" radius="md">Item A</div>
+  <div surface="glass" density="compact" radius="md">Item B</div>
+  <div surface="glass" density="compact" radius="md">Item C</div>
+</div>`}>
+    <div layout="stack" gap="sm" style="max-width:300px;">
+      <div surface="glass" density="compact" radius="md" style="text-align:center;">Item A</div>
+      <div surface="glass" density="compact" radius="md" style="text-align:center;">Item B</div>
+      <div surface="glass" density="compact" radius="md" style="text-align:center;">Item C</div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="layout=&quot;row&quot;"
+    description="Flex row with centered alignment by default."
+    code={`<div layout="row" gap="md">
+  <div surface="glass" density="compact" radius="md" grow>A</div>
+  <div surface="glass" density="compact" radius="md" grow>B</div>
+  <div surface="glass" density="compact" radius="md" grow>C</div>
+</div>`}>
+    <div layout="row" gap="md">
+      <div surface="glass" density="compact" radius="md" grow style="text-align:center;">A</div>
+      <div surface="glass" density="compact" radius="md" grow style="text-align:center;">B</div>
+      <div surface="glass" density="compact" radius="md" grow style="text-align:center;">C</div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="layout=&quot;cluster&quot;"
+    description="Flex row with wrap. Great for tag lists and button groups."
+    code={`<div layout="cluster" gap="sm">
+  <span surface="ghost" density="compact" radius="full">Design</span>
+  <span surface="ghost" density="compact" radius="full">Engineering</span>
+  <span surface="ghost" tone="primary" density="compact" radius="full">Featured</span>
+  <span surface="ghost" density="compact" radius="full">Open Source</span>
+</div>`}>
+    <div layout="cluster" gap="sm">
+      <span surface="ghost" density="compact" radius="full">Design</span>
+      <span surface="ghost" density="compact" radius="full">Engineering</span>
+      <span surface="ghost" tone="primary" density="compact" radius="full">Featured</span>
+      <span surface="ghost" density="compact" radius="full">Open Source</span>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="layout=&quot;grid&quot;"
+    description="CSS grid using auto-fit minmax. Use cols= to fix the column count."
+    code={`<!-- Auto-fit responsive grid -->
+<div layout="grid" gap="md">
+  <div surface="glass" density="spacious" radius="lg">A</div>
+  <div surface="glass" density="spacious" radius="lg">B</div>
+  <div surface="glass" density="spacious" radius="lg">C</div>
+</div>
+
+<!-- Fixed 3 columns -->
+<div layout="grid" cols="3" gap="md">...</div>`}>
+    <div layout="grid" gap="md" style="--aura-grid-min:140px;">
+      {['A','B','C','D','E','F'].map((x) => (
+        <div surface="glass" density="spacious" radius="lg" style="text-align:center;">{x}</div>
+      ))}
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="layout=&quot;center&quot;"
+    description="Centers children both horizontally and vertically."
+    code={`<div layout="center" style="height: 120px;">
+  <div surface="solid" tone="primary" density="default" radius="md">Centered</div>
+</div>`}>
+    <div layout="center" style="height:120px;border:1px solid rgb(255 255 255/0.06);border-radius:10px;">
+      <div surface="solid" tone="primary" density="default" radius="md">Centered</div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="layout=&quot;sidebar&quot;"
+    description="Fixed sidebar + fluid main. Width is controlled by --aura-sidebar-width."
+    code={`<div layout="sidebar" style="--aura-sidebar-width: 200px; height: 160px;">
+  <aside surface="matte" density="spacious">Sidebar</aside>
+  <main surface="glass" density="spacious">Main content</main>
+</div>`}>
+    <div layout="sidebar" style="--aura-sidebar-width:180px;height:140px;">
+      <aside surface="matte" density="spacious" radius="lg" style="font-weight:600;">Sidebar</aside>
+      <main surface="glass" density="spacious" radius="lg">Main content area</main>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="layout=&quot;masonry&quot;"
+    description="CSS columns masonry. Items fill columns naturally by height."
+    code={`<div layout="masonry" style="--aura-masonry-cols: 3;">
+  <div surface="glass" density="spacious" radius="lg">Short card</div>
+  <div surface="glass" density="spacious" radius="lg">This one is taller with more content.</div>
+  <div surface="glass" density="spacious" radius="lg">Another card</div>
+</div>`}>
+    <div layout="masonry" style="--aura-masonry-cols:3;">
+      <div surface="glass" density="spacious" radius="lg" style="margin-bottom:0.75rem;"><p style="font-weight:600;">Short</p></div>
+      <div surface="glass" density="spacious" radius="lg" style="margin-bottom:0.75rem;"><p style="font-weight:600;">Tall</p><p text="caption" style="margin-top:0.5rem;">This card has more content and takes up more vertical space in the masonry grid.</p></div>
+      <div surface="glass" density="spacious" radius="lg" style="margin-bottom:0.75rem;"><p style="font-weight:600;">Medium</p><p text="caption" style="margin-top:0.25rem;">Some text here too.</p></div>
+      <div surface="glass" density="spacious" radius="lg" style="margin-bottom:0.75rem;"><p style="font-weight:600;">Short again</p></div>
+      <div surface="glass" density="spacious" radius="lg" style="margin-bottom:0.75rem;"><p style="font-weight:600;">Final card</p></div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="layout=&quot;prose&quot;"
+    description="Constrains content to 65ch for optimal reading width, centered with inline padding."
+    code={`<div layout="prose">
+  <h2 text="heading">Article Title</h2>
+  <p text="body">The prose layout keeps your content readable at any viewport width...</p>
+</div>`}>
+    <div layout="prose" style="border:1px dashed rgb(255 255 255/0.1);border-radius:8px;padding:1.5rem;">
+      <p text="subheading" style="margin-bottom:0.5rem;">Article Title</p>
+      <p text="body">The prose layout constrains content to <span text="code">65ch</span> and centers it — exactly the right line length for comfortable reading without a single media query.</p>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">gap= / align= / justify=</h2>
+
+  <DemoBlock title="gap=" code={`<div layout="row" gap="xs">...</div>  <!-- 0.25rem -->
+<div layout="row" gap="sm">...</div>  <!-- 0.5rem  -->
+<div layout="row" gap="md">...</div>  <!-- 1rem    -->
+<div layout="row" gap="lg">...</div>  <!-- 1.5rem  -->
+<div layout="row" gap="xl">...</div>  <!-- 2.5rem  -->`}>
+    <div layout="stack" gap="xs">
+      {(['xs','sm','md','lg','xl'] as const).map(g => (
+        <div layout="row" gap={g} style="align-items:center;">
+          <span text="label" style="width:24px;opacity:0.4;">{g}</span>
+          <div surface="solid" tone="primary" density="compact" radius="full" style="width:8px;height:8px;padding:0;"></div>
+          <div surface="solid" tone="accent" density="compact" radius="full" style="width:8px;height:8px;padding:0;"></div>
+          <div surface="solid" tone="info" density="compact" radius="full" style="width:8px;height:8px;padding:0;"></div>
+        </div>
+      ))}
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="adaptive" description="layout=&quot;row&quot; adaptive collapses to column on mobile. layout=&quot;stack&quot; adaptive expands to row on desktop."
+    code={`<!-- Collapses to column on screens < 768px -->
+<div layout="row" gap="md" adaptive>
+  <button surface="solid" tone="primary" density="default" radius="md">Primary</button>
+  <button surface="ghost"               density="default" radius="md">Secondary</button>
+</div>`}>
+    <div layout="row" gap="md" adaptive>
+      <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">Primary action</button>
+      <button surface="ghost" density="default" radius="md" motion="expressive">Secondary</button>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="grow / shrink / wrap"
+    code={`<div layout="row" gap="sm">
+  <div surface="matte" density="compact" radius="md" grow>Grows to fill</div>
+  <div surface="matte" density="compact" radius="md" shrink>Shrinks, no grow</div>
+</div>
+
+<div layout="row" gap="sm" wrap>
+  <!-- Children wrap when they run out of space -->
+</div>`}>
+    <div layout="row" gap="sm">
+      <div surface="solid" tone="primary" density="compact" radius="md" grow style="text-align:center;">grow</div>
+      <div surface="matte" density="compact" radius="md" shrink>shrink</div>
+    </div>
+  </DemoBlock>
+
+</Layout>

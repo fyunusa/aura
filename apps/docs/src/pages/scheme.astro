@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Scheme">
+  <h1 class="page-title">Scheme</h1>
+  <p class="page-desc">
+    The <code>scheme=</code> attribute forces a color scheme on any element. Apply to
+    <code>&lt;html&gt;</code> or <code>&lt;body&gt;</code> for a global override, or to any
+    container to create isolated light or dark regions.
+  </p>
+
+  <DemoBlock title="scheme=&quot;dark&quot;"
+    description="The default aura scheme. Dark background (#0a0a0f) with light text."
+    code={`<div scheme="dark" style="padding: 1.5rem; border-radius: 12px;">
+  <div surface="glass" density="spacious" radius="xl">
+    <p weight="semibold">Dark card</p>
+    <p text="caption">scheme="dark" — default</p>
+  </div>
+</div>`}>
+    <div scheme="dark" style="padding:1.5rem;border-radius:12px;">
+      <div layout="stack" gap="sm">
+        <div surface="glass" density="spacious" radius="xl">
+          <p weight="semibold">Dark card</p>
+          <p text="caption" style="margin-top:0.25rem;">Default dark surface tokens</p>
+        </div>
+        <div layout="row" gap="sm">
+          <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">Primary</button>
+          <button surface="ghost" density="default" radius="md" motion="expressive">Ghost</button>
+        </div>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="scheme=&quot;light&quot;"
+    description="Inverts surface tokens for a light background. All surfaces, inputs, and shadows adapt automatically."
+    code={`<div scheme="light" style="padding: 1.5rem; border-radius: 12px;">
+  <div surface="glass" density="spacious" radius="xl">
+    <p weight="semibold">Light card</p>
+    <p text="caption">scheme="light" — inverted tokens</p>
+  </div>
+</div>`}>
+    <div scheme="light" style="padding:1.5rem;border-radius:12px;">
+      <div layout="stack" gap="sm">
+        <div surface="glass" density="spacious" radius="xl">
+          <p weight="semibold">Light card</p>
+          <p text="caption" style="margin-top:0.25rem;">Tokens inverted for light context</p>
+        </div>
+        <div layout="row" gap="sm">
+          <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">Primary</button>
+          <button surface="ghost" density="default" radius="md" motion="expressive">Ghost</button>
+        </div>
+        <div field>
+          <label>Light input</label>
+          <input input placeholder="Input in light mode…" />
+        </div>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Side-by-side comparison"
+    code={`<div scheme="dark"  style="flex: 1; padding: 1rem; border-radius: 10px;">Dark</div>
+<div scheme="light" style="flex: 1; padding: 1rem; border-radius: 10px;">Light</div>`}>
+    <div layout="row" gap="lg">
+      <div scheme="dark" style="flex:1;padding:1.25rem;border-radius:10px;">
+        <p text="overline" style="margin-bottom:0.75rem;">Dark</p>
+        <div surface="matte" density="compact" radius="lg" style="margin-bottom:0.5rem;">
+          <p text="body">Card on dark</p>
+        </div>
+        <button surface="solid" tone="primary" density="compact" radius="md" motion="expressive">Action</button>
+      </div>
+      <div scheme="light" style="flex:1;padding:1.25rem;border-radius:10px;">
+        <p text="overline" style="margin-bottom:0.75rem;">Light</p>
+        <div surface="matte" density="compact" radius="lg" style="margin-bottom:0.5rem;">
+          <p text="body">Card on light</p>
+        </div>
+        <button surface="solid" tone="primary" density="compact" radius="md" motion="expressive">Action</button>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">Global usage</h2>
+  <p style="font-size:0.875rem;color:rgba(226,226,240,0.5);margin-bottom:1rem;">
+    Apply to the root element to theme your entire page. Combine with a system preference check
+    via <code>prefers-color-scheme</code> in CSS.
+  </p>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`<!-- Force dark globally -->
+<html scheme="dark">
+
+<!-- Force light globally -->
+<html scheme="light">
+
+<!-- System preference (CSS only) -->
+@media (prefers-color-scheme: light) {
+  html { scheme: light; }     /* not real CSS — use JS or body attr */
+}
+
+/* OR just set the custom properties directly */
+@media (prefers-color-scheme: light) {
+  :root {
+    --aura-color-primary:   #5b48e8;
+    --aura-input-bg:        rgba(0,0,0,0.04);
+    --aura-input-border:    rgba(0,0,0,0.14);
+    background: #f8f8fc;
+    color: #1a1a2e;
+  }
+}`}</pre>
+
+</Layout>

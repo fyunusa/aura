@@ -1,9 +1,64 @@
 ---
+import 'useaura/css'
+
 interface Props {
   title: string
   description?: string
 }
 const { title, description = 'A lightweight, zero-config CSS library using semantic HTML attributes.' } = Astro.props
+
+const path = Astro.url.pathname
+
+const nav = [
+  {
+    group: 'Getting Started',
+    links: [
+      { label: 'Overview',     href: '/docs/' },
+      { label: 'Installation', href: '/docs/getting-started/' },
+    ],
+  },
+  {
+    group: 'Core',
+    links: [
+      { label: 'Surfaces',    href: '/docs/surfaces/' },
+      { label: 'Tones',       href: '/docs/tones/' },
+      { label: 'Typography',  href: '/docs/typography/' },
+    ],
+  },
+  {
+    group: 'Layout',
+    links: [
+      { label: 'Layout',      href: '/docs/layout/' },
+      { label: 'Responsive',  href: '/docs/responsive/' },
+      { label: 'Elevation',   href: '/docs/elevation/' },
+    ],
+  },
+  {
+    group: 'Interactive',
+    links: [
+      { label: 'Forms',   href: '/docs/forms/' },
+      { label: 'States',  href: '/docs/states/' },
+    ],
+  },
+  {
+    group: 'Utilities',
+    links: [
+      { label: 'Motion & Reveal', href: '/docs/motion/' },
+      { label: 'Scheme',          href: '/docs/scheme/' },
+    ],
+  },
+  {
+    group: 'Reference',
+    links: [
+      { label: 'All Attributes', href: '/docs/attributes/' },
+    ],
+  },
+]
+
+function isActive(href: string) {
+  if (href === '/docs/') return path === '/docs/' || path === '/docs'
+  return path.startsWith(href)
+}
 ---
 <!doctype html>
 <html lang="en">
@@ -11,10 +66,10 @@ const { title, description = 'A lightweight, zero-config CSS library using seman
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <title>{title}</title>
-    <link rel="stylesheet" href="/forma.css" />
+    <title>{title} — aura</title>
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
       body {
         background: #0a0a0f;
         color: #e2e2f0;
@@ -22,26 +77,205 @@ const { title, description = 'A lightweight, zero-config CSS library using seman
         font-size: 1rem;
         line-height: 1.6;
       }
-      a { color: inherit; }
-      code {
-        font-family: 'Fira Code', monospace;
-        font-size: 0.85em;
-        background: rgb(255 255 255 / 0.05);
-        padding: 0.1em 0.3em;
-        border-radius: 4px;
+      a { color: inherit; text-decoration: none; }
+
+      /* ── Top bar ── */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.5rem;
+        height: 56px;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background: rgb(10 10 15 / 0.85);
+        border-bottom: 1px solid rgb(255 255 255 / 0.06);
+      }
+      .topbar-logo {
+        font-weight: 800;
+        font-size: 1.1rem;
+        letter-spacing: -0.03em;
+        color: #e2e2f0;
+      }
+      .topbar-logo span { color: #7c6af7; }
+      .topbar-links { display: flex; gap: 1.25rem; align-items: center; }
+      .topbar-links a { font-size: 0.875rem; opacity: 0.55; transition: opacity 150ms; }
+      .topbar-links a:hover { opacity: 1; }
+      .badge {
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.15em 0.55em;
+        border-radius: 9999px;
+        background: rgb(124 106 247 / 0.15);
+        color: #a89df5;
+        border: 1px solid rgb(124 106 247 / 0.25);
+      }
+
+      /* ── Shell ── */
+      .shell {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        min-height: calc(100dvh - 56px);
+      }
+
+      /* ── Sidebar ── */
+      .sidebar {
+        position: sticky;
+        top: 56px;
+        height: calc(100dvh - 56px);
+        overflow-y: auto;
+        padding: 1.5rem 0;
+        border-right: 1px solid rgb(255 255 255 / 0.06);
+        scrollbar-width: thin;
+        scrollbar-color: rgb(255 255 255 / 0.08) transparent;
+      }
+      .nav-group { margin-bottom: 1.5rem; padding: 0 1rem; }
+      .nav-group-label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(226,226,240,0.3);
+        padding: 0 0.5rem;
+        margin-bottom: 0.35rem;
+      }
+      .nav-link {
+        display: block;
+        padding: 0.35rem 0.6rem;
+        font-size: 0.875rem;
+        border-radius: 6px;
+        color: rgba(226,226,240,0.55);
+        transition: color 120ms, background 120ms;
+        line-height: 1.4;
+      }
+      .nav-link:hover { color: #e2e2f0; background: rgb(255 255 255 / 0.04); }
+      .nav-link.active { color: #a89df5; background: rgb(124 106 247 / 0.12); font-weight: 500; }
+
+      /* ── Main ── */
+      .main-content {
+        min-width: 0;
+        padding: 3rem 2.5rem 6rem;
+        max-width: 860px;
+      }
+
+      /* ── Page headings ── */
+      .page-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.6rem;
+        line-height: 1.1;
+      }
+      .page-desc {
+        font-size: 1.05rem;
+        color: rgba(226,226,240,0.55);
+        margin-bottom: 3rem;
+        line-height: 1.7;
+      }
+      .page-desc code { font-family: 'Fira Code', monospace; font-size: 0.85em; background: rgb(255 255 255 / 0.07); padding: 0.1em 0.35em; border-radius: 4px; color: #c4b9ff; }
+      h2.section-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.6rem;
+        color: #e2e2f0;
+      }
+
+      /* ── Demo blocks ── */
+      .demo + .demo { margin-top: 2.5rem; }
+      .demo-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(226,226,240,0.3);
+        margin-bottom: 0.6rem;
+      }
+      .demo-preview {
+        padding: 1.5rem;
+        border: 1px solid rgb(255 255 255 / 0.07);
+        border-radius: 10px 10px 0 0;
+        background: rgb(255 255 255 / 0.02);
+      }
+      .demo-code {
+        background: rgb(10 10 15 / 0.8);
+        border: 1px solid rgb(255 255 255 / 0.07);
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        padding: 0.9rem 1.1rem;
+        font-family: 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 0.78rem;
+        color: rgba(226,226,240,0.65);
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.6;
+      }
+      .divider {
+        border: none;
+        border-top: 1px solid rgb(255 255 255 / 0.06);
+        margin: 2.5rem 0;
+      }
+
+      /* ── Mobile ── */
+      @media (max-width: 768px) {
+        .shell { grid-template-columns: 1fr; }
+        .sidebar {
+          position: static;
+          height: auto;
+          overflow-x: auto;
+          overflow-y: hidden;
+          white-space: nowrap;
+          border-right: none;
+          border-bottom: 1px solid rgb(255 255 255 / 0.06);
+          padding: 0.75rem 1rem;
+          display: flex;
+          gap: 0.25rem;
+        }
+        .nav-group {
+          display: inline-flex;
+          gap: 0.25rem;
+          margin-bottom: 0;
+          padding: 0;
+        }
+        .nav-group-label { display: none; }
+        .main-content { padding: 2rem 1.25rem 4rem; }
+        .page-title { font-size: 1.8rem; }
       }
     </style>
   </head>
   <body>
-    <nav layout="row" gap="md" justify="between" density="default"
-         style="position: sticky; top: 0; backdrop-filter: blur(12px); background: rgb(10 10 15 / 0.8); border-bottom: 1px solid rgb(255 255 255 / 0.05); z-index: 100; padding: 0.75rem 2rem;">
-      <a href="/" style="font-weight: 700; text-decoration: none; font-size: 1.1rem;">aura</a>
-      <div layout="row" gap="md">
-        <a href="/docs/getting-started/" style="opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Docs</a>
-        <a href="/docs/attributes/" style="opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Reference</a>
-        <a href="https://github.com/fyunusa/aura" style="opacity: 0.6; text-decoration: none; font-size: 0.9rem;">GitHub</a>
+    <!-- Top bar -->
+    <header class="topbar">
+      <a href="/docs/" class="topbar-logo">aura<span>.</span></a>
+      <div class="topbar-links">
+        <span class="badge">v0.2.0</span>
+        <a href="/docs/getting-started/">Docs</a>
+        <a href="/docs/attributes/">Reference</a>
+        <a href="https://github.com/fyunusa/aura" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
-    </nav>
-    <slot />
+    </header>
+
+    <!-- Shell -->
+    <div class="shell">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        {nav.map(({ group, links }) => (
+          <div class="nav-group">
+            <p class="nav-group-label">{group}</p>
+            {links.map(({ label, href }) => (
+              <a href={href} class={`nav-link${isActive(href) ? ' active' : ''}`}>{label}</a>
+            ))}
+          </div>
+        ))}
+      </aside>
+
+      <!-- Content -->
+      <main class="main-content">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>

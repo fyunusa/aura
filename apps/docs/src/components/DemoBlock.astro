@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string
+  code: string
+  description?: string
+}
+const { title, code, description } = Astro.props
+---
+<div class="demo">
+  <p class="demo-label">{title}</p>
+  {description && <p style="font-size: 0.875rem; color: rgba(226,226,240,0.5); margin-bottom: 0.75rem; line-height: 1.5;">{description}</p>}
+  <div class="demo-preview">
+    <slot />
+  </div>
+  <pre class="demo-code">{code}</pre>
+</div>

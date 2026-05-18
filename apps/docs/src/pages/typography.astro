@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Typography">
+  <h1 class="page-title">Typography</h1>
+  <p class="page-desc">
+    Control text scale, weight, truncation, and alignment with semantic attributes.
+    No class names, no utility soup.
+  </p>
+
+  <DemoBlock title="text= — type scale"
+    description="Sets font size, weight, line-height, and letter-spacing as a semantic bundle."
+    code={`<p text="display">Display</p>
+<p text="heading">Heading</p>
+<p text="subheading">Subheading</p>
+<p text="body">Body — the quick brown fox jumps over the lazy dog</p>
+<p text="caption">Caption — supporting detail text</p>
+<p text="label">Label</p>
+<p text="overline">Overline</p>
+<code text="code">const x = useaura()</code>`}>
+    <div layout="stack" gap="sm" style="overflow:hidden;">
+      <p text="display" style="line-height:1.1;">Display</p>
+      <p text="heading">Heading</p>
+      <p text="subheading">Subheading</p>
+      <p text="body">Body — the quick brown fox jumps over the lazy dog</p>
+      <p text="caption">Caption — supporting detail text</p>
+      <p text="label">Label</p>
+      <p text="overline">Overline</p>
+      <p><code text="code">const x = useaura()</code></p>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="weight="
+    code={`<p weight="light">Light — 300</p>
+<p weight="regular">Regular — 400</p>
+<p weight="medium">Medium — 500</p>
+<p weight="semibold">Semibold — 600</p>
+<p weight="bold">Bold — 700</p>
+<p weight="black">Black — 900</p>`}>
+    <div layout="stack" gap="xs">
+      <p weight="light">Light — 300</p>
+      <p weight="regular">Regular — 400</p>
+      <p weight="medium">Medium — 500</p>
+      <p weight="semibold">Semibold — 600</p>
+      <p weight="bold">Bold — 700</p>
+      <p weight="black">Black — 900</p>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="truncate="
+    description="Clamp text to 1, 2, 3, or 4 lines. Boolean truncate= clips to a single line."
+    code={`<!-- Single line -->
+<p truncate>The quick brown fox jumps over the lazy dog and keeps running</p>
+
+<!-- 2-line clamp -->
+<p truncate="2">The quick brown fox jumps over the lazy dog and keeps running
+through the forest until it can no longer be seen.</p>
+
+<!-- 3-line clamp -->
+<p truncate="3">Long content that wraps across three lines and no further...</p>`}>
+    <div layout="stack" gap="md" style="max-width:460px;">
+      <div>
+        <p text="label" style="opacity:0.4;margin-bottom:0.25rem;">truncate (1 line)</p>
+        <p truncate>The quick brown fox jumps over the lazy dog and keeps running through the forest</p>
+      </div>
+      <div>
+        <p text="label" style="opacity:0.4;margin-bottom:0.25rem;">truncate="2"</p>
+        <p truncate="2">The quick brown fox jumps over the lazy dog and keeps running through the forest until it can no longer be seen.</p>
+      </div>
+      <div>
+        <p text="label" style="opacity:0.4;margin-bottom:0.25rem;">truncate="3"</p>
+        <p truncate="3">The quick brown fox jumps over the lazy dog and keeps running through the forest until it can no longer be seen. It crosses the meadow, passes the old barn, and disappears into the distance.</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="balance"
+    description="Applies text-wrap: balance so multi-line headings break evenly."
+    code={`<h2 text="heading" balance>This heading balances its line breaks nicely</h2>`}>
+    <div style="max-width:380px;">
+      <h2 text="heading" balance>This heading balances its line breaks nicely</h2>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="text-align="
+    code={`<p text-align="left">Left aligned text</p>
+<p text-align="center">Center aligned text</p>
+<p text-align="right">Right aligned text</p>`}>
+    <div layout="stack" gap="sm">
+      <p text-align="left"   style="border-bottom:1px solid rgb(255 255 255/0.06);padding-bottom:0.5rem;">Left aligned text</p>
+      <p text-align="center" style="border-bottom:1px solid rgb(255 255 255/0.06);padding-bottom:0.5rem;">Center aligned text</p>
+      <p text-align="right">Right aligned text</p>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">CSS custom properties</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`--aura-text-display:    4rem
+--aura-text-heading:    2rem
+--aura-text-subheading: 1.25rem
+--aura-text-body:       1rem
+--aura-text-caption:    0.8rem
+--aura-text-label:      0.85rem
+--aura-font-sans:       system-ui, -apple-system, sans-serif
+--aura-font-mono:       'Fira Code', 'Cascadia Code', monospace`}</pre>
+
+</Layout>

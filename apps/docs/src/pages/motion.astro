@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Motion & Reveal">
+  <h1 class="page-title">Motion & Reveal</h1>
+  <p class="page-desc">
+    Three motion systems in one: <code>motion=</code> for hover/interaction transitions,
+    <code>float=</code> for idle loop animations, and <code>reveal=</code> for
+    scroll-triggered entrance effects. All driven by CSS custom properties.
+  </p>
+
+  <DemoBlock title="motion="
+    description="Applies a transition preset to all interactive CSS properties. Hover the buttons below."
+    code={`<button surface="solid" tone="primary" density="default" radius="md" motion="subtle">subtle</button>
+<button surface="solid" tone="primary" density="default" radius="md" motion="expressive">expressive</button>
+<button surface="solid" tone="primary" density="default" radius="md" motion="dramatic">dramatic</button>`}>
+    <div layout="row" gap="md" wrap>
+      <button surface="solid" tone="primary" density="default" radius="md" motion="subtle">subtle (150ms)</button>
+      <button surface="solid" tone="accent"  density="default" radius="md" motion="expressive">expressive (280ms)</button>
+      <button surface="glass"               density="default" radius="md" motion="dramatic">dramatic (500ms)</button>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="float="
+    description="Continuous floating animation. Pairs beautifully with glass surfaces."
+    code={`<div surface="glass" tone="primary" density="spacious" radius="xl" float="slow">
+  Slow float
+</div>
+
+<div surface="glass" tone="accent" density="spacious" radius="xl" float="med">
+  Medium float
+</div>
+
+<div surface="glass" tone="info" density="spacious" radius="xl" float="fast">
+  Fast float
+</div>`}>
+    <div layout="row" gap="lg" wrap style="padding:1rem 0;">
+      <div surface="glass" tone="primary" density="spacious" radius="xl" float="slow" style="min-width:120px;text-align:center;">
+        <p text="label">slow</p>
+      </div>
+      <div surface="glass" tone="accent" density="spacious" radius="xl" float="med" style="min-width:120px;text-align:center;">
+        <p text="label">med</p>
+      </div>
+      <div surface="glass" tone="info" density="spacious" radius="xl" float="fast" style="min-width:120px;text-align:center;">
+        <p text="label">fast</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="float with axis="
+    description="By default float= animates the Y axis. Use axis=&quot;x&quot; or axis=&quot;xy&quot; for other directions."
+    code={`<div float="med" axis="x">Horizontal float</div>
+<div float="slow" axis="xy">Diagonal float</div>`}>
+    <div layout="row" gap="lg" wrap style="padding:1rem 0;">
+      <div surface="neon" tone="primary" density="spacious" radius="xl" float="med" axis="x" style="min-width:140px;text-align:center;">
+        <p text="label">axis="x"</p>
+      </div>
+      <div surface="neon" tone="accent" density="spacious" radius="xl" float="slow" axis="xy" style="min-width:140px;text-align:center;">
+        <p text="label">axis="xy"</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">reveal=</h2>
+  <p style="font-size:0.875rem;color:rgba(226,226,240,0.5);margin-bottom:1.5rem;">
+    Scroll-triggered entrance animation. Elements are invisible until they enter the viewport,
+    then animate in. Requires the JS runtime to observe scroll positions.
+    Add <code>reveal-delay="300"</code> (in ms) to stagger multiple items.
+  </p>
+
+  <DemoBlock title="reveal= directions"
+    code={`<!-- Animate from bottom (most common) -->
+<div reveal="bottom">Slides up from below</div>
+
+<!-- Other directions -->
+<div reveal="top">Slides down from above</div>
+<div reveal="left">Slides in from the left</div>
+<div reveal="right">Slides in from the right</div>
+
+<!-- Scale up -->
+<div reveal="scale">Scales up from 90%</div>
+
+<!-- Blur in -->
+<div reveal="blur">Blurs into focus</div>
+
+<!-- Stagger with delay -->
+<div reveal="bottom" reveal-delay="0">First</div>
+<div reveal="bottom" reveal-delay="100">Second</div>
+<div reveal="bottom" reveal-delay="200">Third</div>`}>
+    <div layout="grid" gap="md" cols="3" style="--aura-grid-min:120px;">
+      {[
+        { v: 'bottom', label: 'bottom' },
+        { v: 'top',    label: 'top' },
+        { v: 'left',   label: 'left' },
+        { v: 'right',  label: 'right' },
+        { v: 'scale',  label: 'scale' },
+        { v: 'blur',   label: 'blur' },
+      ].map(({ v, label }) => (
+        <div surface="glass" density="spacious" radius="lg" reveal={v} style="text-align:center;">
+          <p text="label">reveal="{label}"</p>
+        </div>
+      ))}
+    </div>
+    <p style="font-size:0.75rem;opacity:0.4;margin-top:0.75rem;">↑ Scroll out and back in to replay</p>
+  </DemoBlock>
+
+  <DemoBlock title="Staggered reveal"
+    code={`<div layout="grid" cols="4" gap="md">
+  <div surface="glass" density="spacious" radius="lg" reveal="bottom" reveal-delay="0">1</div>
+  <div surface="glass" density="spacious" radius="lg" reveal="bottom" reveal-delay="80">2</div>
+  <div surface="glass" density="spacious" radius="lg" reveal="bottom" reveal-delay="160">3</div>
+  <div surface="glass" density="spacious" radius="lg" reveal="bottom" reveal-delay="240">4</div>
+</div>`}>
+    <div layout="grid" cols="4" gap="sm" style="--aura-grid-min:80px;">
+      {[0,80,160,240].map((delay, i) => (
+        <div surface="solid" tone="primary" density="spacious" radius="lg" reveal="bottom" reveal-delay={String(delay)} style="text-align:center;">
+          <p text="label">{i+1}</p>
+        </div>
+      ))}
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">CSS custom properties</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`/* Motion */
+--aura-motion-subtle-duration:     150ms
+--aura-motion-subtle-ease:         ease
+--aura-motion-expressive-duration: 280ms
+--aura-motion-expressive-ease:     cubic-bezier(0.34, 1.56, 0.64, 1)
+--aura-motion-dramatic-duration:   500ms
+--aura-motion-dramatic-ease:       cubic-bezier(0.22, 1, 0.36, 1)
+
+/* Float */
+--aura-float-slow-duration:  4s
+--aura-float-med-duration:   2.5s
+--aura-float-fast-duration:  1.5s
+--aura-float-amplitude-sm:   6px
+--aura-float-amplitude-md:   12px
+--aura-float-amplitude-lg:   22px
+
+/* Reveal */
+--aura-reveal-distance: 24px
+--aura-reveal-duration: 480ms
+--aura-reveal-ease:     cubic-bezier(0.22, 1, 0.36, 1)`}</pre>
+
+</Layout>

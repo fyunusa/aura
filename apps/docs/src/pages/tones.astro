@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Tones">
+  <h1 class="page-title">Tones</h1>
+  <p class="page-desc">
+    The <code>tone=</code> attribute sets <code>--aura-tone-color</code>, which is consumed by
+    surfaces, borders, and text. Tones and surfaces compose independently — set tone once,
+    change surface freely.
+  </p>
+
+  <DemoBlock title="All tones — ghost surface"
+    code={`<div surface="ghost" tone="primary" density="default" radius="lg">primary</div>
+<div surface="ghost" tone="danger"  density="default" radius="lg">danger</div>
+<div surface="ghost" tone="success" density="default" radius="lg">success</div>
+<div surface="ghost" tone="warning" density="default" radius="lg">warning</div>
+<div surface="ghost" tone="info"    density="default" radius="lg">info</div>
+<div surface="ghost" tone="accent"  density="default" radius="lg">accent</div>
+<div surface="ghost" tone="neutral" density="default" radius="lg">neutral</div>`}>
+    <div layout="row" gap="sm" wrap>
+      <div surface="ghost" tone="primary" density="default" radius="lg">primary</div>
+      <div surface="ghost" tone="danger"  density="default" radius="lg">danger</div>
+      <div surface="ghost" tone="success" density="default" radius="lg">success</div>
+      <div surface="ghost" tone="warning" density="default" radius="lg">warning</div>
+      <div surface="ghost" tone="info"    density="default" radius="lg">info</div>
+      <div surface="ghost" tone="accent"  density="default" radius="lg">accent</div>
+      <div surface="ghost" tone="neutral" density="default" radius="lg">neutral</div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="All tones — solid surface"
+    code={`<button surface="solid" tone="primary" density="default" radius="md" motion="expressive">primary</button>
+<button surface="solid" tone="danger"  density="default" radius="md" motion="expressive">danger</button>
+<button surface="solid" tone="success" density="default" radius="md" motion="expressive">success</button>
+<button surface="solid" tone="warning" density="default" radius="md" motion="expressive">warning</button>
+<button surface="solid" tone="info"    density="default" radius="md" motion="expressive">info</button>
+<button surface="solid" tone="accent"  density="default" radius="md" motion="expressive">accent</button>
+<button surface="solid" tone="neutral" density="default" radius="md" motion="expressive">neutral</button>`}>
+    <div layout="row" gap="sm" wrap>
+      <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">primary</button>
+      <button surface="solid" tone="danger"  density="default" radius="md" motion="expressive">danger</button>
+      <button surface="solid" tone="success" density="default" radius="md" motion="expressive">success</button>
+      <button surface="solid" tone="warning" density="default" radius="md" motion="expressive">warning</button>
+      <button surface="solid" tone="info"    density="default" radius="md" motion="expressive">info</button>
+      <button surface="solid" tone="accent"  density="default" radius="md" motion="expressive">accent</button>
+      <button surface="solid" tone="neutral" density="default" radius="md" motion="expressive">neutral</button>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="All tones — neon surface"
+    code={`<div surface="neon" tone="primary" density="default" radius="md">primary</div>
+<div surface="neon" tone="danger"  density="default" radius="md">danger</div>
+<div surface="neon" tone="success" density="default" radius="md">success</div>
+<div surface="neon" tone="accent"  density="default" radius="md">accent</div>`}>
+    <div layout="row" gap="sm" wrap>
+      <div surface="neon" tone="primary" density="default" radius="md">primary</div>
+      <div surface="neon" tone="danger"  density="default" radius="md">danger</div>
+      <div surface="neon" tone="success" density="default" radius="md">success</div>
+      <div surface="neon" tone="accent"  density="default" radius="md">accent</div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">Tone as text color</h2>
+  <p style="font-size:0.875rem;color:rgba(226,226,240,0.5);margin-bottom:1.25rem;">
+    Without a surface, <code>tone=</code> sets the text color only.
+  </p>
+
+  <DemoBlock title="Inline tone (no surface)"
+    code={`<p>Status: <span tone="success">All systems operational</span></p>
+<p>Warning: <span tone="warning">Approaching usage limit</span></p>
+<p>Error:   <span tone="danger">Authentication failed</span></p>`}>
+    <div layout="stack" gap="xs">
+      <p style="font-size:0.9rem;">Status: <span tone="success">All systems operational</span></p>
+      <p style="font-size:0.9rem;">Warning: <span tone="warning">Approaching usage limit</span></p>
+      <p style="font-size:0.9rem;">Error: <span tone="danger">Authentication failed</span></p>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">Custom tone color</h2>
+  <p style="font-size:0.875rem;color:rgba(226,226,240,0.5);margin-bottom:1.25rem;">
+    Override the tone CSS variable at the root (or any scope) to use your own brand color.
+  </p>
+
+  <DemoBlock title="Token override via CSS or init()"
+    code={`/* CSS */
+:root { --aura-color-primary: #f97316; }
+
+/* OR via JS runtime */
+import { init } from 'useaura'
+init({ tokens: { tone: { primary: '#f97316' } } })`}>
+    <div style="--aura-color-primary: #f97316;">
+      <div layout="row" gap="sm" wrap>
+        <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">Custom orange</button>
+        <div surface="ghost" tone="primary" density="default" radius="md">Ghost orange</div>
+      </div>
+    </div>
+  </DemoBlock>
+
+</Layout>

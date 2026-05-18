@@ -2,72 +2,132 @@
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="aura — Style with intent, not with soup.">
-  <main layout="cover" style="background: radial-gradient(ellipse at 50% 0%, #1a1060 0%, transparent 65%); min-height: 100dvh;">
-    <section layout="stack" gap="xl" align="center" style="text-align: center; padding: 6rem 2rem;" max="640px">
+<Layout title="Overview">
+  <h1 class="page-title">aura</h1>
+  <p class="page-desc">
+    A lightweight (~8kb gzip), zero-config CSS library where semantic HTML attributes
+    produce complete, composable styles. Works directly in the browser with a CDN link —
+    no build step required.
+  </p>
 
-      <div reveal="scale">
-        <div surface="glass" tone="primary" density="spacious" radius="xl" style="display: inline-block;">
-          <h1 style="font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; color: #e2e2f0;">
-            aura
-          </h1>
-          <p style="color: rgba(226,226,240,0.6); font-size: 1.1rem; margin-top: 0.5rem;">
-            Style with intent, not with soup.
-          </p>
-        </div>
-      </div>
+  <!-- Quick install -->
+  <h2 class="section-title" style="margin-bottom:0.75rem;">Quick start</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);margin-bottom:2.5rem;">{`<!-- CDN (no install) -->
+<link rel="stylesheet" href="https://unpkg.com/useaura@0.2.0/dist/forma.css" />
 
-      <p reveal="bottom" style="color: rgba(226,226,240,0.55); max-width: 480px; line-height: 1.7; font-size: 1rem;">
-        A lightweight (~8kb), zero-config CSS library where semantic HTML attributes
-        compile to atomic styles. Works with or without a build step.
-      </p>
+<!-- npm -->
+npm install useaura
 
-      <div layout="row" gap="sm" reveal="bottom">
-        <a href="/docs/getting-started/"
-           surface="solid" tone="primary" density="default" radius="full" motion="expressive"
-           style="text-decoration: none; color: #fff; font-weight: 600; font-size: 0.95rem;">
-          Get started →
-        </a>
-        <a href="/docs/attributes/"
-           surface="ghost" density="default" radius="full" motion="expressive"
-           style="text-decoration: none; color: #e2e2f0; font-size: 0.95rem;">
-          Attribute reference
-        </a>
-      </div>
+<!-- Then import -->
+import 'useaura/css'`}</pre>
 
-      <div layout="row" gap="md" reveal="bottom" style="margin-top: 1rem;">
-        <div surface="matte" density="compact" radius="full" style="font-family: monospace; font-size: 0.8rem; color: rgba(226,226,240,0.5);">
-          npm install useaura
-        </div>
+  <!-- Feature grid -->
+  <div layout="grid" gap="md" style="--aura-grid-min:220px;margin-bottom:3rem;">
+    <a href="/docs/surfaces/" style="text-decoration:none;">
+      <div surface="glass" density="spacious" radius="xl" motion="expressive" style="height:100%;">
+        <p weight="semibold" style="margin-bottom:0.35rem;">Surfaces</p>
+        <p text="caption">glass · solid · matte · ghost · frosted · neon</p>
       </div>
-    </section>
+    </a>
+    <a href="/docs/tones/" style="text-decoration:none;">
+      <div surface="glass" density="spacious" radius="xl" motion="expressive" style="height:100%;">
+        <p weight="semibold" style="margin-bottom:0.35rem;">Tones</p>
+        <p text="caption">primary · danger · success · warning · info · accent · neutral</p>
+      </div>
+    </a>
+    <a href="/docs/typography/" style="text-decoration:none;">
+      <div surface="glass" density="spacious" radius="xl" motion="expressive" style="height:100%;">
+        <p weight="semibold" style="margin-bottom:0.35rem;">Typography</p>
+        <p text="caption">display · heading · body · code · weight · truncate · balance</p>
+      </div>
+    </a>
+    <a href="/docs/layout/" style="text-decoration:none;">
+      <div surface="glass" density="spacious" radius="xl" motion="expressive" style="height:100%;">
+        <p weight="semibold" style="margin-bottom:0.35rem;">Layout</p>
+        <p text="caption">stack · row · grid · sidebar · masonry · prose · gap · align</p>
+      </div>
+    </a>
+    <a href="/docs/responsive/" style="text-decoration:none;">
+      <div surface="glass" density="spacious" radius="xl" motion="expressive" style="height:100%;">
+        <p weight="semibold" style="margin-bottom:0.35rem;">Responsive</p>
+        <p text="caption">cols · span · sm-cols · md-cols · lg-cols · hide · show</p>
+      </div>
+    </a>
+    <a href="/docs/forms/" style="text-decoration:none;">
+      <div surface="glass" density="spacious" radius="xl" motion="expressive" style="height:100%;">
+        <p weight="semibold" style="margin-bottom:0.35rem;">Forms</p>
+        <p text="caption">input · textarea · select · range · checkbox · field · hint</p>
+      </div>
+    </a>
+    <a href="/docs/states/" style="text-decoration:none;">
+      <div surface="glass" density="spacious" radius="xl" motion="expressive" style="height:100%;">
+        <p weight="semibold" style="margin-bottom:0.35rem;">States</p>
+        <p text="caption">loading · skeleton · disabled · error · success · warning</p>
+      </div>
+    </a>
+    <a href="/docs/elevation/" style="text-decoration:none;">
+      <div surface="glass" density="spacious" radius="xl" motion="expressive" style="height:100%;">
+        <p weight="semibold" style="margin-bottom:0.35rem;">Elevation</p>
+        <p text="caption">none · low · mid · high · float</p>
+      </div>
+    </a>
+    <a href="/docs/motion/" style="text-decoration:none;">
+      <div surface="glass" density="spacious" radius="xl" motion="expressive" style="height:100%;">
+        <p weight="semibold" style="margin-bottom:0.35rem;">Motion & Reveal</p>
+        <p text="caption">motion · float · axis · reveal · reveal-delay</p>
+      </div>
+    </a>
+    <a href="/docs/scheme/" style="text-decoration:none;">
+      <div surface="glass" density="spacious" radius="xl" motion="expressive" style="height:100%;">
+        <p weight="semibold" style="margin-bottom:0.35rem;">Scheme</p>
+        <p text="caption">scheme="dark" · scheme="light"</p>
+      </div>
+    </a>
+  </div>
 
-    <!-- Feature cards -->
-    <section layout="grid" gap="lg" style="--forma-grid-min: 260px; max-width: 1000px; margin-inline: auto; padding: 0 2rem 6rem;">
-      <div reveal="bottom" surface="glass" density="spacious" radius="xl">
-        <h3 style="color: #e2e2f0; margin-bottom: 0.5rem;">Zero config</h3>
-        <p style="color: rgba(226,226,240,0.55); font-size: 0.9rem;">
-          Drop in the CSS, add attributes. No config file, no class generation step.
-        </p>
-      </div>
-      <div reveal="bottom" surface="glass" density="spacious" radius="xl">
-        <h3 style="color: #e2e2f0; margin-bottom: 0.5rem;">~8kb gzip</h3>
-        <p style="color: rgba(226,226,240,0.55); font-size: 0.9rem;">
-          The entire system — surfaces, layout, motion, reveal — in under 8kb.
-        </p>
-      </div>
-      <div reveal="bottom" surface="glass" density="spacious" radius="xl">
-        <h3 style="color: #e2e2f0; margin-bottom: 0.5rem;">Token overrides</h3>
-        <p style="color: rgba(226,226,240,0.55); font-size: 0.9rem;">
-          Every value is a CSS custom property. Override anything with a single <code>init()</code> call.
-        </p>
-      </div>
-      <div reveal="bottom" surface="glass" density="spacious" radius="xl">
-        <h3 style="color: #e2e2f0; margin-bottom: 0.5rem;">SSR safe</h3>
-        <p style="color: rgba(226,226,240,0.55); font-size: 0.9rem;">
-          CSS works with zero JS. Runtime gracefully degrades in server environments.
-        </p>
-      </div>
-    </section>
-  </main>
+  <!-- Example snippet -->
+  <h2 class="section-title" style="margin-bottom:0.75rem;">Example</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);margin-bottom:2rem;">{`<!-- Composed card -->
+<div surface="glass" tone="primary" density="spacious" radius="xl" elevation="mid" reveal="bottom">
+  <h2 text="heading" balance>Feature title</h2>
+  <p text="body">Describe the feature here.</p>
+</div>
+
+<!-- Responsive form -->
+<form layout="stack" gap="md">
+  <div field>
+    <label>Email</label>
+    <input input type="email" placeholder="you@example.com" />
+  </div>
+  <button surface="solid" tone="primary" density="default" radius="full" motion="expressive">
+    Submit
+  </button>
+</form>
+
+<!-- Responsive grid -->
+<div layout="grid" cols="1" md-cols="2" lg-cols="3" gap="lg">
+  <div surface="matte" density="spacious" radius="xl">Card 1</div>
+  <div surface="matte" density="spacious" radius="xl">Card 2</div>
+  <div surface="matte" density="spacious" radius="xl">Card 3</div>
+</div>`}</pre>
+
+  <!-- Next steps -->
+  <div layout="row" gap="sm" wrap>
+    <a href="/docs/getting-started/"
+       surface="solid" tone="primary" density="default" radius="full" motion="expressive"
+       style="color:#fff;font-weight:600;font-size:0.9rem;">
+      Installation →
+    </a>
+    <a href="/docs/surfaces/"
+       surface="ghost" density="default" radius="full" motion="expressive"
+       style="color:#e2e2f0;font-size:0.9rem;">
+      Browse docs
+    </a>
+    <a href="/docs/attributes/"
+       surface="ghost" density="default" radius="full" motion="expressive"
+       style="color:#e2e2f0;font-size:0.9rem;">
+      All attributes
+    </a>
+  </div>
+
 </Layout>

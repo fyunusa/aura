@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Forms">
+  <h1 class="page-title">Forms</h1>
+  <p class="page-desc">
+    The <code>input=</code> attribute styles form controls. Wrap inputs in a
+    <code>field</code> element to compose labels, hints, and validation states automatically.
+  </p>
+
+  <DemoBlock title="Text input"
+    code={`<input input placeholder="Enter a value…" />`}>
+    <div style="max-width:400px;">
+      <input input placeholder="Enter a value…" />
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Textarea"
+    code={`<textarea input="textarea" placeholder="Write something longer…"></textarea>`}>
+    <div style="max-width:400px;">
+      <textarea input="textarea" placeholder="Write something longer…"></textarea>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Select"
+    code={`<select input="select">
+  <option>Option A</option>
+  <option>Option B</option>
+  <option>Option C</option>
+</select>`}>
+    <div style="max-width:400px;">
+      <select input="select">
+        <option>Option A</option>
+        <option>Option B</option>
+        <option>Option C</option>
+      </select>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Range"
+    code={`<input input="range" type="range" value="60" />`}>
+    <div style="max-width:400px;">
+      <input input="range" type="range" value="60" />
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="Checkbox & Radio"
+    code={`<!-- Checkbox -->
+<input input="checkbox" type="checkbox" id="c1" checked />
+<label for="c1">Accept terms</label>
+
+<!-- Radio -->
+<input input="radio" type="radio" name="plan" id="r1" checked />
+<label for="r1">Starter</label>
+
+<input input="radio" type="radio" name="plan" id="r2" />
+<label for="r2">Pro</label>`}>
+    <div layout="stack" gap="sm">
+      <div layout="row" gap="sm">
+        <input input="checkbox" type="checkbox" id="cb-demo1" checked />
+        <label for="cb-demo1" text="label">Checked checkbox</label>
+      </div>
+      <div layout="row" gap="sm">
+        <input input="checkbox" type="checkbox" id="cb-demo2" />
+        <label for="cb-demo2" text="label">Unchecked checkbox</label>
+      </div>
+      <div layout="row" gap="sm" style="margin-top:0.25rem;">
+        <input input="radio" type="radio" name="demo-radio" id="r-demo1" checked />
+        <label for="r-demo1" text="label">Option A (selected)</label>
+      </div>
+      <div layout="row" gap="sm">
+        <input input="radio" type="radio" name="demo-radio" id="r-demo2" />
+        <label for="r-demo2" text="label">Option B</label>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">Field wrapper</h2>
+  <p style="font-size:0.875rem;color:rgba(226,226,240,0.5);margin-bottom:1.5rem;">
+    Wrap inputs in a <code>field</code> element to get automatic label/hint spacing
+    and validation state styling.
+  </p>
+
+  <DemoBlock title="field + hint"
+    code={`<div field>
+  <label>Email address</label>
+  <input input placeholder="you@example.com" />
+  <span hint>We'll never share your email.</span>
+</div>`}>
+    <div style="max-width:400px;">
+      <div field>
+        <label>Email address</label>
+        <input input placeholder="you@example.com" />
+        <span hint>We'll never share your email.</span>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="field state=&quot;error&quot;"
+    description="Add state=&quot;error&quot; to the field wrapper to apply error color to the label, hint, and border."
+    code={`<div field state="error">
+  <label>Password</label>
+  <input input type="password" value="short" />
+  <span hint>Must be at least 8 characters.</span>
+</div>`}>
+    <div style="max-width:400px;">
+      <div field state="error">
+        <label>Password</label>
+        <input input type="password" value="short" />
+        <span hint>Must be at least 8 characters.</span>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="field state=&quot;success&quot;"
+    code={`<div field state="success">
+  <label>Username</label>
+  <input input value="fyunusa" />
+  <span hint>Username is available!</span>
+</div>`}>
+    <div style="max-width:400px;">
+      <div field state="success">
+        <label>Username</label>
+        <input input value="fyunusa" />
+        <span hint>Username is available!</span>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">Full form example</h2>
+
+  <DemoBlock title="Login form"
+    code={`<form layout="stack" gap="md" surface="matte" density="spacious" radius="xl" style="max-width: 400px;">
+  <h2 text="subheading">Sign in</h2>
+
+  <div field>
+    <label>Email</label>
+    <input input type="email" placeholder="you@example.com" />
+  </div>
+
+  <div field>
+    <label>Password</label>
+    <input input type="password" placeholder="••••••••" />
+    <span hint>Forgot your password?</span>
+  </div>
+
+  <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">
+    Sign in
+  </button>
+</form>`}>
+    <form layout="stack" gap="md" surface="matte" density="spacious" radius="xl" style="max-width:400px;">
+      <p text="subheading">Sign in</p>
+      <div field>
+        <label>Email</label>
+        <input input type="email" placeholder="you@example.com" />
+      </div>
+      <div field>
+        <label>Password</label>
+        <input input type="password" placeholder="••••••••" />
+        <span hint>Forgot your password?</span>
+      </div>
+      <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">Sign in</button>
+    </form>
+  </DemoBlock>
+
+</Layout>

@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>useaura demo</title>
-  <link rel="stylesheet" href="https://unpkg.com/useaura/dist/forma.css" />
+  <link rel="stylesheet" href="https://unpkg.com/useaura@0.2.0/dist/forma.css" />
   <script type="module">
-    import { init } from 'https://unpkg.com/useaura/dist/runtime.js'
+    import { init } from 'https://unpkg.com/useaura@0.2.0/dist/runtime.js'
     init()
   </script>
   <style>
@@ -21,103 +21,422 @@
 </head>
 <body>
 
-  <!-- Nav -->
+  <!-- ── Nav ──────────────────────────────────────────────────────────────── -->
   <nav layout="row" gap="md" justify="between"
        style="position: sticky; top: 0; backdrop-filter: blur(12px);
               background: rgb(10 10 15 / 0.8);
               border-bottom: 1px solid rgb(255 255 255 / 0.06);
               padding: 0.75rem 2rem; z-index: 100;">
-    <span style="font-weight: 700; font-size: 1.1rem;">useaura</span>
-    <div layout="row" gap="sm">
-      <a href="#surfaces"  style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Surfaces</a>
-      <a href="#layout"    style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Layout</a>
-      <a href="#buttons"   style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Buttons</a>
+    <span weight="bold" style="font-size: 1.1rem;">useaura</span>
+    <div layout="row" gap="sm" style="flex-wrap: wrap;">
+      <a href="#surfaces"   style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Surfaces</a>
+      <a href="#tones"      style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Tones</a>
+      <a href="#typography" style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Typography</a>
+      <a href="#forms"      style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Forms</a>
+      <a href="#states"     style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">States</a>
+      <a href="#elevation"  style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Elevation</a>
+      <a href="#layout"     style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Layout</a>
+      <a href="#responsive" style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Responsive</a>
+      <a href="#scheme"     style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Scheme</a>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
   <section layout="cover" style="background: radial-gradient(ellipse at 50% 0%, #1a1060 0%, transparent 65%); padding: 6rem 2rem;">
     <div layout="stack" gap="lg" align="center" style="text-align: center; max-width: 560px; margin: 0 auto;">
       <div reveal="scale" surface="glass" tone="primary" density="spacious" radius="xl" style="display: inline-block;">
-        <h1 style="font-size: 2.8rem; font-weight: 800; letter-spacing: -0.04em;">useaura</h1>
-        <p style="color: rgba(226,226,240,0.6); margin-top: 0.4rem;">Style with intent, not with soup.</p>
+        <h1 text="display">useaura</h1>
+        <p text="body" style="opacity: 0.6; margin-top: 0.4rem;">Style with intent, not with soup.</p>
       </div>
-      <p reveal="bottom" style="color: rgba(226,226,240,0.5); line-height: 1.7;">
-        A lightweight ~8kb CSS library. Drop in the CDN link, write attributes.
+      <p reveal="bottom" style="opacity: 0.5; line-height: 1.7;">
+        A lightweight CSS library. Drop in the CDN link, write attributes.
       </p>
       <div reveal="bottom" layout="row" gap="sm">
-        <button surface="solid" tone="primary" density="default" radius="full" motion="expressive">
-          Get started →
-        </button>
-        <button surface="ghost" density="default" radius="full" motion="expressive">
-          View docs
-        </button>
+        <button surface="solid" tone="primary" density="default" radius="full" motion="expressive">Get started →</button>
+        <button surface="ghost" density="default" radius="full" motion="expressive">View docs</button>
       </div>
-      <div reveal="bottom" surface="matte" density="compact" radius="full"
-           style="font-family: monospace; font-size: 0.8rem; color: rgba(226,226,240,0.45);">
-        &lt;link rel="stylesheet" href="https://unpkg.com/useaura/dist/forma.css"&gt;
+      <div reveal="bottom" surface="matte" density="compact" radius="full">
+        <span text="code">link href="https://unpkg.com/useaura@0.2.0/dist/forma.css"</span>
       </div>
     </div>
   </section>
 
-  <!-- Surfaces -->
-  <section id="surfaces" style="max-width: 1000px; margin: 0 auto; padding: 4rem 2rem;">
-    <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 2rem;">Surfaces</h2>
-    <div layout="grid" gap="lg" style="--aura-grid-min: 200px;">
-      <div surface="glass"  density="spacious" radius="xl">
-        <p style="font-weight: 600; margin-bottom: 0.25rem;">glass</p>
-        <p style="font-size: 0.85rem; opacity: 0.5;">Frosted backdrop</p>
-      </div>
-      <div surface="solid"  tone="primary" density="spacious" radius="xl">
-        <p style="font-weight: 600; margin-bottom: 0.25rem;">solid + primary</p>
-        <p style="font-size: 0.85rem; opacity: 0.7;">Filled tone</p>
-      </div>
-      <div surface="matte"  density="spacious" radius="xl">
-        <p style="font-weight: 600; margin-bottom: 0.25rem;">matte</p>
-        <p style="font-size: 0.85rem; opacity: 0.5;">Subtle fill</p>
-      </div>
-      <div surface="ghost"  density="spacious" radius="xl">
-        <p style="font-weight: 600; margin-bottom: 0.25rem;">ghost</p>
-        <p style="font-size: 0.85rem; opacity: 0.5;">Border only</p>
-      </div>
+  <!-- ── Surfaces ──────────────────────────────────────────────────────────── -->
+  <section id="surfaces" style="max-width: 1040px; margin: 0 auto; padding: 4rem 2rem;">
+    <h2 text="heading" style="margin-bottom: 2rem;">Surfaces</h2>
+    <div layout="grid" gap="lg" cols="auto" style="--aura-grid-min: 180px;">
+      <div surface="glass"   density="spacious" radius="xl"><p weight="semibold">glass</p><p text="caption">Frosted backdrop</p></div>
+      <div surface="solid"   tone="primary" density="spacious" radius="xl"><p weight="semibold">solid + primary</p><p text="caption">Filled tone</p></div>
+      <div surface="matte"   density="spacious" radius="xl"><p weight="semibold">matte</p><p text="caption">Subtle fill</p></div>
+      <div surface="ghost"   density="spacious" radius="xl"><p weight="semibold">ghost</p><p text="caption">Border only</p></div>
+      <div surface="frosted" density="spacious" radius="xl"><p weight="semibold">frosted</p><p text="caption">Heavy blur</p></div>
+      <div surface="neon"    tone="primary" density="spacious" radius="xl"><p weight="semibold">neon + primary</p><p text="caption">Glow effect</p></div>
     </div>
   </section>
 
-  <!-- Layout -->
-  <section id="layout" style="max-width: 1000px; margin: 0 auto; padding: 0 2rem 4rem;">
-    <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 2rem;">Layout</h2>
+  <!-- ── Tones ─────────────────────────────────────────────────────────────── -->
+  <section id="tones" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
+    <h2 text="heading" style="margin-bottom: 2rem;">Tones</h2>
     <div layout="stack" gap="md">
-      <!-- Row -->
-      <div surface="matte" density="spacious" radius="lg">
-        <p style="font-size: 0.8rem; opacity: 0.4; margin-bottom: 1rem; font-family: monospace;">layout="row" gap="md"</p>
-        <div layout="row" gap="md">
-          <div surface="glass" density="compact" radius="md" style="flex: 1; text-align: center;">A</div>
-          <div surface="glass" density="compact" radius="md" style="flex: 1; text-align: center;">B</div>
-          <div surface="glass" density="compact" radius="md" style="flex: 1; text-align: center;">C</div>
+      <!-- Ghost row -->
+      <div layout="row" gap="sm" wrap>
+        <div surface="ghost" tone="primary" density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">primary</span></div>
+        <div surface="ghost" tone="danger"  density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">danger</span></div>
+        <div surface="ghost" tone="success" density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">success</span></div>
+        <div surface="ghost" tone="warning" density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">warning</span></div>
+        <div surface="ghost" tone="info"    density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">info</span></div>
+        <div surface="ghost" tone="accent"  density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">accent</span></div>
+        <div surface="ghost" tone="neutral" density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">neutral</span></div>
+      </div>
+      <!-- Solid row -->
+      <div layout="row" gap="sm" wrap>
+        <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">primary</button>
+        <button surface="solid" tone="danger"  density="default" radius="md" motion="expressive">danger</button>
+        <button surface="solid" tone="success" density="default" radius="md" motion="expressive">success</button>
+        <button surface="solid" tone="warning" density="default" radius="md" motion="expressive">warning</button>
+        <button surface="solid" tone="info"    density="default" radius="md" motion="expressive">info</button>
+        <button surface="solid" tone="accent"  density="default" radius="md" motion="expressive">accent</button>
+        <button surface="solid" tone="neutral" density="default" radius="md" motion="expressive">neutral</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Typography ────────────────────────────────────────────────────────── -->
+  <section id="typography" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
+    <h2 text="heading" style="margin-bottom: 2rem;">Typography</h2>
+    <div layout="stack" gap="lg">
+
+      <!-- Text scale -->
+      <div surface="matte" density="spacious" radius="xl">
+        <p text="overline" style="margin-bottom: 1.5rem;">Text scale</p>
+        <div layout="stack" gap="md">
+          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">display</span> <span text="display">The quick fox</span></div>
+          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">heading</span>  <span text="heading">The quick fox</span></div>
+          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">subheading</span><span text="subheading">The quick fox</span></div>
+          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">body</span>     <span text="body">The quick brown fox jumps over the lazy dog</span></div>
+          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">caption</span>  <span text="caption">The quick brown fox jumps over the lazy dog</span></div>
+          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">label</span>    <span text="label">The quick fox</span></div>
+          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">overline</span> <span text="overline">The quick fox</span></div>
+          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">code</span>     <span text="code">const x = useaura()</span></div>
         </div>
       </div>
-      <!-- Stack -->
-      <div surface="matte" density="spacious" radius="lg">
-        <p style="font-size: 0.8rem; opacity: 0.4; margin-bottom: 1rem; font-family: monospace;">layout="stack" gap="sm"</p>
-        <div layout="stack" gap="sm">
-          <div surface="glass" density="compact" radius="md" style="text-align: center;">Top</div>
-          <div surface="glass" density="compact" radius="md" style="text-align: center;">Middle</div>
-          <div surface="glass" density="compact" radius="md" style="text-align: center;">Bottom</div>
+
+      <!-- Weight + Truncation -->
+      <div layout="row" gap="md" style="align-items: flex-start;">
+        <div surface="matte" density="spacious" radius="xl" style="flex: 1;">
+          <p text="overline" style="margin-bottom: 1rem;">Weight</p>
+          <div layout="stack" gap="xs">
+            <p weight="light">Light — 300</p>
+            <p weight="regular">Regular — 400</p>
+            <p weight="medium">Medium — 500</p>
+            <p weight="semibold">Semibold — 600</p>
+            <p weight="bold">Bold — 700</p>
+            <p weight="black">Black — 900</p>
+          </div>
+        </div>
+        <div surface="matte" density="spacious" radius="xl" style="flex: 1; min-width: 0;">
+          <p text="overline" style="margin-bottom: 1rem;">Truncate</p>
+          <div layout="stack" gap="sm">
+            <p truncate><span text="label" style="opacity:0.4;">1 line: </span>The quick brown fox jumps over the lazy dog and keeps on running through the meadow</p>
+            <p truncate="2"><span text="label" style="opacity:0.4;">2 lines: </span>The quick brown fox jumps over the lazy dog and keeps on running through the meadow until it reaches the distant hills</p>
+            <p truncate="3"><span text="label" style="opacity:0.4;">3 lines: </span>The quick brown fox jumps over the lazy dog and keeps on running through the meadow until it reaches the distant hills beyond the valley</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Buttons -->
-  <section id="buttons" style="max-width: 1000px; margin: 0 auto; padding: 0 2rem 6rem;">
-    <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 2rem;">Buttons &amp; Motion</h2>
-    <div layout="row" gap="md" style="flex-wrap: wrap;">
-      <button surface="solid"  tone="primary"  density="default" radius="full" motion="expressive">Primary</button>
-      <button surface="solid"  tone="neutral"  density="default" radius="full" motion="expressive">Neutral</button>
-      <button surface="ghost"                  density="default" radius="full" motion="expressive">Ghost</button>
-      <button surface="glass"                  density="default" radius="full" motion="expressive">Glass</button>
-      <button surface="solid"  tone="primary"  density="compact" radius="md"   motion="expressive">Compact</button>
-      <button surface="solid"  tone="primary"  density="spacious" radius="lg"  motion="expressive">Spacious</button>
+  <!-- ── Forms ─────────────────────────────────────────────────────────────── -->
+  <section id="forms" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
+    <h2 text="heading" style="margin-bottom: 2rem;">Forms</h2>
+    <div layout="grid" gap="xl" style="grid-template-columns: 1fr 1fr; align-items: start;">
+
+      <!-- Left column: text inputs -->
+      <div layout="stack" gap="md">
+        <div field>
+          <label>Default input</label>
+          <input input placeholder="Enter something…" />
+        </div>
+        <div field>
+          <label>With hint</label>
+          <input input placeholder="username@example.com" />
+          <span hint>Used for login and notifications.</span>
+        </div>
+        <div field state="error">
+          <label>Error state</label>
+          <input input value="bad-value" />
+          <span hint>This field is required and must be valid.</span>
+        </div>
+        <div field state="success">
+          <label>Success state</label>
+          <input input value="valid@email.com" />
+          <span hint>Looks good!</span>
+        </div>
+        <div field>
+          <label>Textarea</label>
+          <textarea input="textarea" placeholder="Write something longer…"></textarea>
+        </div>
+        <div field>
+          <label>Select</label>
+          <select input="select">
+            <option>Option A</option>
+            <option>Option B</option>
+            <option>Option C</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Right column: special inputs -->
+      <div layout="stack" gap="md">
+        <div field>
+          <label>Range</label>
+          <input input="range" type="range" value="60" />
+          <span hint>Drag to adjust value</span>
+        </div>
+        <div field>
+          <label>Checkboxes</label>
+          <div layout="row" gap="sm">
+            <input input="checkbox" type="checkbox" checked id="cb1" />
+            <label for="cb1" text="label">Checked</label>
+          </div>
+          <div layout="row" gap="sm">
+            <input input="checkbox" type="checkbox" id="cb2" />
+            <label for="cb2" text="label">Unchecked</label>
+          </div>
+        </div>
+        <div field>
+          <label>Radio group</label>
+          <div layout="stack" gap="xs">
+            <div layout="row" gap="sm">
+              <input input="radio" type="radio" name="rb" id="rb1" checked />
+              <label for="rb1" text="label">Option A</label>
+            </div>
+            <div layout="row" gap="sm">
+              <input input="radio" type="radio" name="rb" id="rb2" />
+              <label for="rb2" text="label">Option B</label>
+            </div>
+            <div layout="row" gap="sm">
+              <input input="radio" type="radio" name="rb" id="rb3" />
+              <label for="rb3" text="label">Option C</label>
+            </div>
+          </div>
+        </div>
+        <div layout="row" gap="sm" style="margin-top: 0.5rem;">
+          <button surface="solid" tone="primary" density="default" radius="md" motion="expressive" style="flex: 1;">Submit</button>
+          <button surface="ghost" density="default" radius="md" motion="expressive">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── States ────────────────────────────────────────────────────────────── -->
+  <section id="states" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
+    <h2 text="heading" style="margin-bottom: 2rem;">States</h2>
+    <div layout="grid" gap="lg" cols="auto" style="--aura-grid-min: 200px;">
+
+      <div layout="stack" gap="sm" surface="matte" density="spacious" radius="xl">
+        <p text="overline">loading</p>
+        <button surface="solid" tone="primary" density="default" radius="md" state="loading">
+          Saving…
+        </button>
+      </div>
+
+      <div layout="stack" gap="sm" surface="matte" density="spacious" radius="xl">
+        <p text="overline">disabled</p>
+        <button surface="solid" tone="primary" density="default" radius="md" state="disabled">
+          Can't click
+        </button>
+        <div field state="disabled">
+          <label>Disabled field</label>
+          <input input placeholder="Not editable" />
+        </div>
+      </div>
+
+      <div layout="stack" gap="sm" surface="matte" density="spacious" radius="xl">
+        <p text="overline">skeleton</p>
+        <div state="skeleton" surface="glass" density="spacious" radius="lg" style="height: 60px;"></div>
+        <div state="skeleton" radius="md" style="height: 14px; width: 70%;"></div>
+        <div state="skeleton" radius="md" style="height: 14px; width: 50%;"></div>
+      </div>
+
+      <div layout="stack" gap="sm" surface="matte" density="spacious" radius="xl">
+        <p text="overline">semantic states</p>
+        <div surface="ghost" tone="danger"  density="compact" radius="md" state="error">
+          <span text="label">⚠ Something went wrong</span>
+        </div>
+        <div surface="ghost" tone="success" density="compact" radius="md" state="success">
+          <span text="label">✓ Saved successfully</span>
+        </div>
+        <div surface="ghost" tone="warning" density="compact" radius="md" state="warning">
+          <span text="label">⚡ Approaching limit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Elevation ─────────────────────────────────────────────────────────── -->
+  <section id="elevation" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
+    <h2 text="heading" style="margin-bottom: 2rem;">Elevation</h2>
+    <div layout="row" gap="lg" wrap style="align-items: flex-end;">
+      <div surface="glass" density="spacious" radius="xl" elevation="none"  style="flex: 1; min-width: 140px;">
+        <p text="label">none</p>
+        <p text="caption">No shadow</p>
+      </div>
+      <div surface="glass" density="spacious" radius="xl" elevation="low"   style="flex: 1; min-width: 140px;">
+        <p text="label">low</p>
+        <p text="caption">Subtle lift</p>
+      </div>
+      <div surface="glass" density="spacious" radius="xl" elevation="mid"   style="flex: 1; min-width: 140px;">
+        <p text="label">mid</p>
+        <p text="caption">Card depth</p>
+      </div>
+      <div surface="glass" density="spacious" radius="xl" elevation="high"  style="flex: 1; min-width: 140px;">
+        <p text="label">high</p>
+        <p text="caption">Modal depth</p>
+      </div>
+      <div surface="glass" density="spacious" radius="xl" elevation="float" style="flex: 1; min-width: 140px;">
+        <p text="label">float</p>
+        <p text="caption">Overlay depth</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Layout ────────────────────────────────────────────────────────────── -->
+  <section id="layout" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
+    <h2 text="heading" style="margin-bottom: 2rem;">Layout</h2>
+    <div layout="stack" gap="lg">
+
+      <!-- Row + Stack -->
+      <div layout="row" gap="md">
+        <div surface="matte" density="spacious" radius="lg" style="flex: 1;">
+          <p text="overline" style="margin-bottom: 1rem;">row</p>
+          <div layout="row" gap="sm">
+            <div surface="glass" density="compact" radius="md" grow style="text-align: center;">A</div>
+            <div surface="glass" density="compact" radius="md" grow style="text-align: center;">B</div>
+            <div surface="glass" density="compact" radius="md" grow style="text-align: center;">C</div>
+          </div>
+        </div>
+        <div surface="matte" density="spacious" radius="lg" style="flex: 1;">
+          <p text="overline" style="margin-bottom: 1rem;">cluster (wrap)</p>
+          <div layout="cluster" gap="sm">
+            <span surface="ghost" density="compact" radius="full">Tag one</span>
+            <span surface="ghost" density="compact" radius="full">Tag two</span>
+            <span surface="ghost" density="compact" radius="full">Longer tag</span>
+            <span surface="ghost" density="compact" radius="full">Tag four</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Masonry -->
+      <div surface="matte" density="spacious" radius="xl">
+        <p text="overline" style="margin-bottom: 1rem;">masonry</p>
+        <div layout="masonry" style="--aura-masonry-cols: 3;">
+          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card A</p><p text="caption">Short</p></div>
+          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card B</p><p text="caption">This one is taller because it has more content that wraps over several lines of text.</p></div>
+          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card C</p><p text="caption">Medium length content here.</p></div>
+          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card D</p><p text="caption">Short again</p></div>
+          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card E</p><p text="caption">Another tall card with lots of interesting content that keeps going and going a bit longer.</p></div>
+          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card F</p><p text="caption">Final card</p></div>
+        </div>
+      </div>
+
+      <!-- Prose -->
+      <div surface="matte" density="spacious" radius="xl">
+        <p text="overline" style="margin-bottom: 1rem;">prose</p>
+        <div layout="prose">
+          <p text="heading" style="margin-bottom: 0.75rem;">A readable article title</p>
+          <p text="body" style="margin-bottom: 1rem;">
+            The <span text="code">layout="prose"</span> layout constrains content to
+            <span text="code">65ch</span> and centers it — optimal line length for reading.
+            It also adds breathing room on smaller viewports via <span text="code">padding-inline</span>.
+          </p>
+          <p text="body">
+            Pair it with <span text="code">balance</span> on headings and <span text="code">text="body"</span>
+            for a pleasant reading experience without writing a single media query.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Responsive grid ───────────────────────────────────────────────────── -->
+  <section id="responsive" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
+    <h2 text="heading" style="margin-bottom: 2rem;">Responsive Grid</h2>
+    <div layout="stack" gap="lg">
+
+      <div surface="matte" density="spacious" radius="xl">
+        <p text="overline" style="margin-bottom: 0.5rem;">cols="1" md-cols="2" lg-cols="3"</p>
+        <p text="caption" style="margin-bottom: 1.5rem; opacity: 0.5;">Resize window to see columns adapt</p>
+        <div layout="grid" gap="md" cols="1" md-cols="2" lg-cols="3">
+          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 1</p></div>
+          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 2</p></div>
+          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 3</p></div>
+          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 4</p></div>
+          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 5</p></div>
+          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 6</p></div>
+        </div>
+      </div>
+
+      <div surface="matte" density="spacious" radius="xl">
+        <p text="overline" style="margin-bottom: 0.5rem;">span — item spanning multiple columns</p>
+        <p text="caption" style="margin-bottom: 1.5rem; opacity: 0.5;">Requires cols="12" grid parent</p>
+        <div layout="grid" gap="md" cols="12">
+          <div surface="solid" tone="primary" density="spacious" radius="lg" span="full"><p text="label" text-align="center">span="full" (12 cols)</p></div>
+          <div surface="glass" density="spacious" radius="lg" span="6"><p text-align="center">span="6"</p></div>
+          <div surface="glass" density="spacious" radius="lg" span="6"><p text-align="center">span="6"</p></div>
+          <div surface="glass" density="spacious" radius="lg" span="4"><p text-align="center">span="4"</p></div>
+          <div surface="glass" density="spacious" radius="lg" span="4"><p text-align="center">span="4"</p></div>
+          <div surface="glass" density="spacious" radius="lg" span="4"><p text-align="center">span="4"</p></div>
+        </div>
+      </div>
+
+      <div surface="matte" density="spacious" radius="xl">
+        <p text="overline" style="margin-bottom: 1rem;">hide / show at breakpoints</p>
+        <div layout="row" gap="sm" wrap>
+          <div surface="solid" tone="primary"  density="default" radius="md" hide="mobile"><span text="label">Hidden on mobile</span></div>
+          <div surface="solid" tone="success"  density="default" radius="md" hide="desktop"><span text="label">Hidden on desktop</span></div>
+          <div surface="solid" tone="info"     density="default" radius="md" show="mobile"><span text="label">Only on mobile</span></div>
+          <div surface="solid" tone="accent"   density="default" radius="md" show="desktop"><span text="label">Only on desktop</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Scheme ────────────────────────────────────────────────────────────── -->
+  <section id="scheme" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 6rem;">
+    <h2 text="heading" style="margin-bottom: 2rem;">Scheme</h2>
+    <div layout="row" gap="lg" style="align-items: flex-start;">
+
+      <!-- Dark (default — just showing the existing page context) -->
+      <div surface="matte" density="spacious" radius="xl" style="flex: 1;">
+        <p text="overline" style="margin-bottom: 1rem;">scheme="dark" (default)</p>
+        <div layout="stack" gap="sm">
+          <div surface="glass" tone="primary" density="spacious" radius="lg">
+            <p weight="semibold">Dark card</p>
+            <p text="caption">Default dark surface tokens</p>
+          </div>
+          <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">Dark button</button>
+        </div>
+      </div>
+
+      <!-- Light scheme -->
+      <div scheme="light" density="spacious" radius="xl" style="flex: 1; padding: 1.5rem; border-radius: 1.25rem;">
+        <p text="overline" style="margin-bottom: 1rem; opacity: 0.5;">scheme="light"</p>
+        <div layout="stack" gap="sm">
+          <div surface="glass" tone="primary" density="spacious" radius="lg">
+            <p weight="semibold">Light card</p>
+            <p text="caption">Tokens inverted for light context</p>
+          </div>
+          <div layout="row" gap="sm" wrap>
+            <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">Light button</button>
+            <button surface="ghost" density="default" radius="md" motion="expressive">Ghost</button>
+          </div>
+          <div field>
+            <label>Light input</label>
+            <input input placeholder="Inverted borders…" />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

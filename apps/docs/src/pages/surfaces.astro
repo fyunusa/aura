@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="Surfaces">
+  <h1 class="page-title">Surfaces</h1>
+  <p class="page-desc">
+    The <code>surface=</code> attribute sets the visual material of an element — controlling
+    background, blur, and border treatment. Combine with <code>tone=</code> to tint any surface.
+  </p>
+
+  <DemoBlock title="glass" description="Frosted glass with a subtle blur and low-opacity white background."
+    code={`<div surface="glass" density="spacious" radius="xl">
+  Glass surface
+</div>`}>
+    <div surface="glass" density="spacious" radius="xl" style="max-width:320px;">
+      <p style="font-weight:600;">Glass surface</p>
+      <p style="font-size:0.875rem;opacity:0.5;margin-top:0.25rem;">Backdrop blur + transparent fill</p>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="solid" description="Filled background using the active tone color. Defaults to a subtle white fill when no tone is set."
+    code={`<div surface="solid" tone="primary" density="spacious" radius="xl">
+  Solid + primary
+</div>
+
+<div surface="solid" density="spacious" radius="xl">
+  Solid (no tone)
+</div>`}>
+    <div layout="row" gap="md" wrap>
+      <div surface="solid" tone="primary" density="spacious" radius="xl" style="min-width:160px;">
+        <p style="font-weight:600;">Solid + primary</p>
+      </div>
+      <div surface="solid" density="spacious" radius="xl" style="min-width:160px;">
+        <p style="font-weight:600;">Solid (no tone)</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="matte" description="No border, minimal fill. Great for content sections and wrappers."
+    code={`<div surface="matte" density="spacious" radius="xl">
+  Matte surface
+</div>`}>
+    <div surface="matte" density="spacious" radius="xl" style="max-width:320px;">
+      <p style="font-weight:600;">Matte surface</p>
+      <p style="font-size:0.875rem;opacity:0.5;margin-top:0.25rem;">Subtle fill, no border</p>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="ghost" description="Border-only. Transparent background with a tinted border when a tone is applied."
+    code={`<div surface="ghost" density="spacious" radius="xl">
+  Ghost (no tone)
+</div>
+
+<div surface="ghost" tone="primary" density="spacious" radius="xl">
+  Ghost + primary
+</div>`}>
+    <div layout="row" gap="md" wrap>
+      <div surface="ghost" density="spacious" radius="xl" style="min-width:160px;">
+        <p style="font-weight:600;">Ghost (no tone)</p>
+      </div>
+      <div surface="ghost" tone="primary" density="spacious" radius="xl" style="min-width:160px;">
+        <p style="font-weight:600;">Ghost + primary</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="frosted" description="Heavy blur with a high-opacity background. Suitable for modals and sidebars."
+    code={`<div surface="frosted" density="spacious" radius="xl">
+  Frosted surface
+</div>`}>
+    <div surface="frosted" density="spacious" radius="xl" style="max-width:320px;">
+      <p style="font-weight:600;">Frosted surface</p>
+      <p style="font-size:0.875rem;opacity:0.5;margin-top:0.25rem;">High-opacity backdrop blur</p>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="neon" description="Glowing border effect driven by the active tone color. Best with tone= applied."
+    code={`<div surface="neon" tone="primary" density="spacious" radius="xl">
+  Neon + primary
+</div>
+
+<div surface="neon" tone="accent" density="spacious" radius="xl">
+  Neon + accent
+</div>`}>
+    <div layout="row" gap="md" wrap>
+      <div surface="neon" tone="primary" density="spacious" radius="xl" style="min-width:160px;">
+        <p style="font-weight:600;">Neon + primary</p>
+      </div>
+      <div surface="neon" tone="accent" density="spacious" radius="xl" style="min-width:160px;">
+        <p style="font-weight:600;">Neon + accent</p>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">Density & Radius</h2>
+  <p style="font-size:0.9rem;color:rgba(226,226,240,0.5);margin-bottom:1.5rem;">
+    <code>density=</code> controls internal padding. <code>radius=</code> controls border-radius.
+    Both work independently of surface.
+  </p>
+
+  <DemoBlock title="density" code={`<div surface="matte" density="compact"  radius="md">compact</div>
+<div surface="matte" density="default"  radius="md">default</div>
+<div surface="matte" density="spacious" radius="md">spacious</div>`}>
+    <div layout="row" gap="md" align="center" wrap>
+      <div surface="matte" density="compact"  radius="md">compact</div>
+      <div surface="matte" density="default"  radius="md">default</div>
+      <div surface="matte" density="spacious" radius="md">spacious</div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="radius" code={`<div surface="solid" tone="primary" density="default" radius="none">none</div>
+<div surface="solid" tone="primary" density="default" radius="sm">sm</div>
+<div surface="solid" tone="primary" density="default" radius="md">md</div>
+<div surface="solid" tone="primary" density="default" radius="lg">lg</div>
+<div surface="solid" tone="primary" density="default" radius="xl">xl</div>
+<div surface="solid" tone="primary" density="default" radius="full">full</div>`}>
+    <div layout="row" gap="sm" align="center" wrap>
+      <div surface="solid" tone="primary" density="default" radius="none">none</div>
+      <div surface="solid" tone="primary" density="default" radius="sm">sm</div>
+      <div surface="solid" tone="primary" density="default" radius="md">md</div>
+      <div surface="solid" tone="primary" density="default" radius="lg">lg</div>
+      <div surface="solid" tone="primary" density="default" radius="xl">xl</div>
+      <div surface="solid" tone="primary" density="default" radius="full">full</div>
+    </div>
+  </DemoBlock>
+
+</Layout>

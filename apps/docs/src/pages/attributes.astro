@@ -1,73 +1,173 @@
 ---
 import Layout from '../layouts/Layout.astro'
 
-const attributes = [
-  { name: 'surface', values: 'glass | solid | matte | ghost | neon | frosted', description: 'Visual material — controls background, blur, and border treatment.' },
-  { name: 'tone', values: 'primary | danger | success | warning | neutral', description: 'Semantic color. Sets --forma-tone-color, read by surface and text.' },
-  { name: 'density', values: 'compact | default | spacious', description: 'Internal padding scale.' },
-  { name: 'radius', values: 'none | sm | md | lg | xl | full', description: 'Border radius scale.' },
-  { name: 'layer', values: 'base | raised | floating | overlay | top', description: 'Semantic z-index. Sets position: relative or fixed as appropriate.' },
-  { name: 'layout', values: 'stack | row | cluster | grid | center | cover', description: 'Layout primitive. Sets display, flex-direction, and related properties.' },
-  { name: 'gap', values: 'xs | sm | md | lg | xl', description: 'Gap between flex/grid children.' },
-  { name: 'align', values: 'start | center | end | stretch', description: 'align-items shorthand.' },
-  { name: 'justify', values: 'start | center | end | between', description: 'justify-content shorthand.' },
-  { name: 'adaptive', values: '(boolean)', description: 'Auto-switches layout direction at 768px breakpoint.' },
-  { name: 'max', values: '<CSS length>', description: 'Max-width constraint with auto inline margins.' },
-  { name: 'motion', values: 'none | subtle | expressive | dramatic', description: 'Transition preset controlling duration and easing.' },
-  { name: 'float', values: 'slow | med | fast', description: 'Continuous CSS float animation.' },
-  { name: 'axis', values: 'x | xy', description: 'Float animation axis override (default: y).' },
-  { name: 'reveal', values: 'bottom | top | left | right | scale | blur', description: 'Scroll-triggered entrance animation. Activated by IntersectionObserver.' },
-  { name: 'reveal-delay', values: '<ms number>', description: 'Delay for the reveal animation in milliseconds.' },
+const sections = [
+  {
+    title: 'Surfaces',
+    attrs: [
+      { name: 'surface', values: 'glass | solid | matte | ghost | frosted | neon', description: 'Visual material — controls background, blur, and border treatment.' },
+      { name: 'density', values: 'compact | default | spacious', description: 'Internal padding scale.' },
+      { name: 'radius',  values: 'none | sm | md | lg | xl | full', description: 'Border radius scale.' },
+    ],
+  },
+  {
+    title: 'Color',
+    attrs: [
+      { name: 'tone', values: 'primary | danger | success | warning | neutral | info | accent', description: 'Semantic color. Sets --aura-tone-color, consumed by surfaces, borders, and text.' },
+    ],
+  },
+  {
+    title: 'Typography',
+    attrs: [
+      { name: 'text',       values: 'display | heading | subheading | body | caption | label | overline | code', description: 'Semantic text style — font size, weight, line-height, and letter-spacing.' },
+      { name: 'weight',     values: 'light | regular | medium | semibold | bold | black', description: 'Font weight override.' },
+      { name: 'truncate',   values: '(boolean) | 2 | 3 | 4 | 5', description: 'Single-line ellipsis or multi-line clamp.' },
+      { name: 'balance',    values: '(boolean)', description: 'Applies text-wrap: balance to multi-line headings.' },
+      { name: 'text-align', values: 'left | center | right', description: 'Text alignment.' },
+    ],
+  },
+  {
+    title: 'Layout',
+    attrs: [
+      { name: 'layout',   values: 'stack | row | cluster | grid | center | cover | sidebar | masonry | holy-grail | prose', description: 'Layout primitive. Sets display, flex-direction, and related properties.' },
+      { name: 'gap',      values: 'xs | sm | md | lg | xl', description: 'Gap between flex/grid children.' },
+      { name: 'align',    values: 'start | center | end | stretch', description: 'align-items shorthand.' },
+      { name: 'justify',  values: 'start | center | end | between', description: 'justify-content shorthand.' },
+      { name: 'adaptive', values: '(boolean)', description: 'Auto-switches layout direction at 768px.' },
+      { name: 'wrap',     values: '(boolean)', description: 'Enables flex-wrap.' },
+      { name: 'grow',     values: '(boolean)', description: 'flex-grow: 1.' },
+      { name: 'shrink',   values: '(boolean)', description: 'flex-shrink: 0.' },
+      { name: 'max',      values: '<CSS length>', description: 'Max-width constraint with auto inline margins.' },
+    ],
+  },
+  {
+    title: 'Responsive Grid',
+    attrs: [
+      { name: 'cols',    values: '1 | 2 | 3 | 4 | 5 | 6 | 12 | auto', description: 'Fixed grid column count.' },
+      { name: 'span',    values: '1 | 2 | 3 | 4 | 6 | full', description: 'Grid item column span.' },
+      { name: 'sm-cols', values: '1–6', description: 'Column count at ≥ 640px.' },
+      { name: 'md-cols', values: '1–6', description: 'Column count at ≥ 768px.' },
+      { name: 'lg-cols', values: '1–6 | 12', description: 'Column count at ≥ 1024px.' },
+      { name: 'xl-cols', values: '2–6', description: 'Column count at ≥ 1280px.' },
+      { name: 'hide',    values: 'mobile | tablet | desktop', description: 'Hide element at a given breakpoint.' },
+      { name: 'show',    values: 'mobile | tablet | desktop', description: 'Show element only at a given breakpoint.' },
+    ],
+  },
+  {
+    title: 'Forms',
+    attrs: [
+      { name: 'input', values: '(boolean) | textarea | select | range | checkbox | radio', description: 'Styles a form control. Boolean value targets text input.' },
+      { name: 'field', values: '(boolean)', description: 'Wrapper for label + input + hint. Applies spacing and state styles.' },
+      { name: 'hint',  values: '(boolean)', description: 'Secondary text below a field. Inherits field error/success color.' },
+    ],
+  },
+  {
+    title: 'States',
+    attrs: [
+      { name: 'state', values: 'loading | skeleton | disabled | error | success | warning', description: 'Interactive or semantic state. Applies opacity, spinner, shimmer, or tone color.' },
+    ],
+  },
+  {
+    title: 'Elevation',
+    attrs: [
+      { name: 'elevation', values: 'none | low | mid | high | float', description: 'Box shadow depth level.' },
+    ],
+  },
+  {
+    title: 'Layer (z-index)',
+    attrs: [
+      { name: 'layer', values: 'base | raised | floating | overlay | top', description: 'Semantic z-index.' },
+    ],
+  },
+  {
+    title: 'Motion',
+    attrs: [
+      { name: 'motion',       values: 'none | subtle | expressive | dramatic', description: 'Transition preset for hover/interaction animations.' },
+      { name: 'float',        values: 'slow | med | fast', description: 'Continuous idle float animation.' },
+      { name: 'axis',         values: 'x | xy', description: 'Float animation axis override (default: y).' },
+      { name: 'reveal',       values: 'bottom | top | left | right | scale | blur', description: 'Scroll-triggered entrance animation (requires JS runtime).' },
+      { name: 'reveal-delay', values: '<ms number>', description: 'Delay for reveal animation in milliseconds.' },
+    ],
+  },
+  {
+    title: 'Scheme',
+    attrs: [
+      { name: 'scheme', values: 'dark | light', description: 'Forces a color scheme. Overrides surface and input tokens for the scoped element.' },
+    ],
+  },
 ]
 ---
 
-<Layout title="Attribute Reference — aura">
-  <div style="max-width: 900px; margin-inline: auto; padding: 4rem 2rem;">
+<Layout title="Attribute Reference">
+  <h1 class="page-title">Attribute Reference</h1>
+  <p class="page-desc">
+    Every attribute aura recognises. All values map to CSS custom properties
+    and can be overridden via <code>init()</code> or plain CSS.
+  </p>
 
-    <div reveal="bottom">
-      <h1 style="font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem;">
-        Attribute Reference
-      </h1>
-      <p style="color: rgba(226,226,240,0.6); font-size: 1.05rem; margin-bottom: 3rem;">
-        Every attribute aura recognises. All values are driven by CSS custom properties
-        and can be overridden via <code>init()</code>.
-      </p>
-    </div>
-
-    <div layout="stack" gap="sm">
-      {attributes.map((attr) => (
-        <div reveal="bottom" surface="matte" density="default" radius="lg"
-             style="display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: start;">
-          <div>
-            <code style="font-size: 0.95rem; color: #a89df5; font-weight: 600;">{attr.name}=</code>
-          </div>
-          <div layout="stack" gap="xs">
-            <div style="font-family: monospace; font-size: 0.8rem; color: rgba(226,226,240,0.45);">
-              {attr.values}
+  {sections.map(({ title, attrs }) => (
+    <div style="margin-bottom: 3rem;">
+      <h2 class="section-title" style="margin-bottom: 0.75rem;">{title}</h2>
+      <div layout="stack" gap="xs">
+        {attrs.map((attr) => (
+          <div surface="matte" density="default" radius="lg"
+               style="display: grid; grid-template-columns: 160px 1fr; gap: 1.25rem; align-items: start; padding: 0.75rem 1rem;">
+            <div>
+              <code style="font-size: 0.88rem; color: #a89df5; font-weight: 600; font-family: 'Fira Code', monospace;">{attr.name}=</code>
             </div>
-            <p style="font-size: 0.9rem; color: rgba(226,226,240,0.65);">{attr.description}</p>
+            <div layout="stack" gap="xs">
+              <p style="font-family: monospace; font-size: 0.75rem; color: rgba(226,226,240,0.4); line-height: 1.5;">{attr.values}</p>
+              <p style="font-size: 0.875rem; color: rgba(226,226,240,0.65);">{attr.description}</p>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-
-    <div reveal="bottom" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgb(255 255 255 / 0.06);">
-      <h2 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem;">CSS Custom Properties</h2>
-      <p style="color: rgba(226,226,240,0.55); font-size: 0.9rem; margin-bottom: 1rem;">
-        All tokens are exposed as CSS custom properties on <code>:root</code> and can be
-        overridden in your own stylesheet or via the <code>init()</code> config API.
-      </p>
-      <div surface="matte" density="default" radius="lg">
-        <pre style="padding: 1rem; font-family: monospace; font-size: 0.8rem; overflow-x: auto; color: rgba(226,226,240,0.7);">--forma-color-primary    /* #7C6AF7 */
---forma-color-danger     /* #ef4444 */
---forma-glass-blur       /* 14px    */
---forma-glass-opacity    /* 0.10    */
---forma-radius-md        /* 0.5rem  */
---forma-gap-md           /* 1rem    */
---forma-motion-subtle-duration   /* 150ms */
---forma-reveal-distance  /* 24px   */
-/* ... see tokens.css for the full list */</pre>
+        ))}
       </div>
     </div>
-  </div>
+  ))}
+
+  <hr class="divider" />
+
+  <h2 class="section-title" style="margin-bottom:0.75rem;">Key CSS custom properties</h2>
+  <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);">{`/* Tones */
+--aura-color-primary: #7C6AF7
+--aura-color-danger:  #ef4444
+--aura-color-success: #22c55e
+--aura-color-warning: #f59e0b
+--aura-color-neutral: #6b7280
+--aura-color-info:    #3b82f6
+--aura-color-accent:  #a855f7
+
+/* Typography */
+--aura-text-display:    4rem
+--aura-text-heading:    2rem
+--aura-text-subheading: 1.25rem
+--aura-font-mono:       'Fira Code', 'Cascadia Code', monospace
+
+/* Radius */
+--aura-radius-sm: 0.25rem   --aura-radius-md: 0.5rem
+--aura-radius-lg: 0.75rem   --aura-radius-xl: 1.25rem
+
+/* Gap */
+--aura-gap-xs: 0.25rem   --aura-gap-sm: 0.5rem   --aura-gap-md: 1rem
+--aura-gap-lg: 1.5rem    --aura-gap-xl: 2.5rem
+
+/* Shadows */
+--aura-shadow-low    --aura-shadow-mid
+--aura-shadow-high   --aura-shadow-float
+
+/* Layout */
+--aura-sidebar-width: 260px
+--aura-prose-width:   65ch
+--aura-masonry-cols:  3
+
+/* Forms */
+--aura-input-bg:           rgb(255 255 255 / 0.05)
+--aura-input-border:       rgb(255 255 255 / 0.12)
+--aura-input-border-focus: var(--aura-color-primary)
+
+/* Motion */
+--aura-motion-expressive-duration: 280ms
+--aura-reveal-distance: 24px
+--aura-reveal-duration: 480ms`}</pre>
+
 </Layout>

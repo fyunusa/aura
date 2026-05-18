@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro'
+import DemoBlock from '../components/DemoBlock.astro'
+---
+<Layout title="States">
+  <h1 class="page-title">States</h1>
+  <p class="page-desc">
+    The <code>state=</code> attribute communicates interactive and semantic states.
+    Combine with surfaces and tones for rich feedback patterns.
+  </p>
+
+  <DemoBlock title="state=&quot;loading&quot;"
+    description="Hides children and shows a centered spinner. Element retains its size."
+    code={`<button surface="solid" tone="primary" density="default" radius="md" state="loading">
+  Saving…
+</button>`}>
+    <div layout="row" gap="md" wrap>
+      <button surface="solid" tone="primary" density="default" radius="md" state="loading">Saving…</button>
+      <button surface="ghost" density="default" radius="md" state="loading">Loading</button>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="state=&quot;disabled&quot;"
+    description="Reduces opacity to 45% and disables pointer events. Works on any element."
+    code={`<button surface="solid" tone="primary" density="default" radius="md" state="disabled">
+  Disabled
+</button>
+
+<div field state="disabled">
+  <label>Disabled input</label>
+  <input input placeholder="Not editable" />
+</div>`}>
+    <div layout="stack" gap="md" style="max-width:360px;">
+      <div layout="row" gap="sm">
+        <button surface="solid" tone="primary" density="default" radius="md" state="disabled">Disabled button</button>
+        <button surface="ghost" density="default" radius="md" state="disabled">Also disabled</button>
+      </div>
+      <div field state="disabled">
+        <label>Disabled field</label>
+        <input input placeholder="Not editable" />
+      </div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="state=&quot;skeleton&quot;"
+    description="Animated shimmer for loading placeholders. Hides inner content and adds a pulse effect."
+    code={`<!-- Card skeleton -->
+<div surface="matte" density="spacious" radius="xl" layout="stack" gap="sm">
+  <div state="skeleton" style="height: 120px; border-radius: 8px;"></div>
+  <div state="skeleton" radius="md" style="height: 14px; width: 70%;"></div>
+  <div state="skeleton" radius="md" style="height: 14px; width: 45%;"></div>
+</div>`}>
+    <div surface="matte" density="spacious" radius="xl" layout="stack" gap="sm" style="max-width:300px;">
+      <div state="skeleton" style="height:100px;border-radius:8px;"></div>
+      <div state="skeleton" radius="md" style="height:13px;width:70%;"></div>
+      <div state="skeleton" radius="md" style="height:13px;width:50%;"></div>
+      <div state="skeleton" radius="md" style="height:13px;width:35%;"></div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock title="state=&quot;error&quot; / &quot;success&quot; / &quot;warning&quot;"
+    description="Sets --aura-tone-color for the element, allowing downstream surfaces and borders to inherit the semantic color."
+    code={`<div surface="ghost" tone="danger"  density="compact" radius="md" state="error">
+  ⚠ Something went wrong
+</div>
+<div surface="ghost" tone="success" density="compact" radius="md" state="success">
+  ✓ Changes saved
+</div>
+<div surface="ghost" tone="warning" density="compact" radius="md" state="warning">
+  ⚡ Storage at 90%
+</div>`}>
+    <div layout="stack" gap="sm" style="max-width:360px;">
+      <div surface="ghost" tone="danger"  density="compact" radius="md" state="error">
+        <span text="label">⚠ Something went wrong</span>
+      </div>
+      <div surface="ghost" tone="success" density="compact" radius="md" state="success">
+        <span text="label">✓ Changes saved successfully</span>
+      </div>
+      <div surface="ghost" tone="warning" density="compact" radius="md" state="warning">
+        <span text="label">⚡ Storage at 90% capacity</span>
+      </div>
+    </div>
+  </DemoBlock>
+
+  <hr class="divider" />
+
+  <h2 class="section-title">Combining states</h2>
+
+  <DemoBlock title="Banner notifications"
+    code={`<div surface="solid" tone="danger" density="default" radius="lg" layout="row" gap="sm" state="error">
+  <span>⚠</span>
+  <div layout="stack" gap="xs">
+    <p weight="semibold">Authentication failed</p>
+    <p text="caption">Your session has expired. Please sign in again.</p>
+  </div>
+</div>`}>
+    <div layout="stack" gap="sm" style="max-width:420px;">
+      <div surface="solid" tone="danger" density="default" radius="lg" layout="row" gap="sm" state="error">
+        <span style="font-size:1.1rem;">⚠</span>
+        <div layout="stack" gap="xs">
+          <p weight="semibold">Authentication failed</p>
+          <p text="caption">Your session has expired. Please sign in again.</p>
+        </div>
+      </div>
+      <div surface="solid" tone="success" density="default" radius="lg" layout="row" gap="sm" state="success">
+        <span style="font-size:1.1rem;">✓</span>
+        <div layout="stack" gap="xs">
+          <p weight="semibold">Deployment complete</p>
+          <p text="caption">Your site is live at aura-css.netlify.app</p>
+        </div>
+      </div>
+    </div>
+  </DemoBlock>
+
+</Layout>
