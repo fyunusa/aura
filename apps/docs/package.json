@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "astro": "^4.0.0",
-    "aura-css": "workspace:*"
+    "@fyunusa/aura-css": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.4.0"

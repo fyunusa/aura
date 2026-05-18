@@ -1,5 +1,5 @@
 {
-  "name": "aura-css",
+  "name": "@fyunusa/aura-css",
   "version": "0.1.0",
   "description": "Style with intent, not with soup.",
   "type": "module",

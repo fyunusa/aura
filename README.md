@@ -8,7 +8,7 @@ compile to atomic styles. Works with or without a build step.
 ## Install
 
 ```bash
-npm install aura-css
+npm install @fyunusa/aura-css
 ```
 
 ## Usage
@@ -43,7 +43,7 @@ export default { plugins: [forma()] }
 ## Token override
 
 ```typescript
-import { init } from 'aura-css'
+import { init } from '@fyunusa/aura-css'
 
 init({
   tokens: {
@@ -56,7 +56,7 @@ init({
 ## Works alongside Tailwind
 
 ```bash
-npm install aura-css
+npm install @fyunusa/aura-css
 ```
 ```javascript
 // tailwind.config.js

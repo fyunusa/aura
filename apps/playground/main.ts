@@ -1,5 +1,5 @@
-import 'aura-css/css'
-import { init } from 'aura-css'
+import '@fyunusa/aura-css/css'
+import { init } from '@fyunusa/aura-css'
 
 // Init with custom token overrides to demonstrate the config API
 init({
