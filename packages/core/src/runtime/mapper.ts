@@ -1,20 +1,52 @@
 export const AURA_ATTRS = [
+  // Core
   'surface',
   'tone',
   'density',
   'radius',
   'layer',
+  // Layout
   'layout',
   'gap',
   'align',
   'justify',
   'adaptive',
   'max',
+  'wrap',
+  'grow',
+  'shrink',
+  // Motion
   'motion',
   'float',
   'axis',
   'reveal',
   'reveal-delay',
+  // Typography
+  'text',
+  'weight',
+  'truncate',
+  'balance',
+  'text-align',
+  // Forms
+  'input',
+  'field',
+  'hint',
+  // State
+  'state',
+  // Elevation
+  'elevation',
+  // Responsive grid
+  'cols',
+  'span',
+  'sm-cols',
+  'md-cols',
+  'lg-cols',
+  'xl-cols',
+  // Visibility
+  'hide',
+  'show',
+  // Scheme
+  'scheme',
 ] as const
 
 export type AuraAttr = typeof AURA_ATTRS[number]

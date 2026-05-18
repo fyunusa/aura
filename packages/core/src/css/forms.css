@@ -1,0 +1,144 @@
+/* ─── Base input ────────────────────────────────────────────────────────────── */
+[input] {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--aura-input-bg, rgb(255 255 255 / 0.05));
+  border: 1px solid var(--aura-input-border, rgb(255 255 255 / 0.12));
+  border-radius: var(--aura-radius-md, 0.5rem);
+  color: inherit;
+  font: inherit;
+  padding: var(--aura-input-padding-y, 0.5rem) var(--aura-input-padding-x, 0.75rem);
+  width: 100%;
+  outline: none;
+  display: block;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+[input]:focus {
+  border-color: var(--aura-input-border-focus, var(--aura-color-primary, #7c6af7));
+  box-shadow: 0 0 0 3px var(--aura-input-focus-ring, rgba(124, 106, 247, 0.2));
+}
+
+[input]:hover:not(:focus):not(:disabled) {
+  border-color: rgb(255 255 255 / 0.22);
+}
+
+[input]::placeholder { opacity: 0.4; }
+
+/* ─── Textarea ──────────────────────────────────────────────────────────────── */
+[input="textarea"] {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+/* ─── Select ────────────────────────────────────────────────────────────────── */
+[input="select"] {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(226%2C226%2C240%2C0.5)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+/* ─── Range ─────────────────────────────────────────────────────────────────── */
+[input="range"] {
+  padding: 0;
+  height: 4px;
+  background: var(--aura-input-border, rgb(255 255 255 / 0.12));
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  accent-color: var(--aura-color-primary, #7c6af7);
+}
+[input="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--aura-color-primary, #7c6af7);
+  cursor: pointer;
+  margin-top: -6px;
+}
+[input="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 9999px;
+}
+
+/* ─── Checkbox & Radio ──────────────────────────────────────────────────────── */
+[input="checkbox"],
+[input="radio"] {
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 1.5px solid var(--aura-input-border, rgb(255 255 255 / 0.2));
+  background: transparent;
+  display: inline-grid;
+  place-content: center;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+[input="radio"] { border-radius: 50%; }
+
+[input="checkbox"]:checked,
+[input="radio"]:checked {
+  background: var(--aura-color-primary, #7c6af7);
+  border-color: var(--aura-color-primary, #7c6af7);
+}
+
+[input="checkbox"]:checked::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.25rem;
+  border-left: 1.5px solid white;
+  border-bottom: 1.5px solid white;
+  transform: rotate(-45deg) translateY(-1px);
+}
+[input="radio"]:checked::before {
+  content: '';
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: white;
+}
+
+/* ─── Field wrapper ─────────────────────────────────────────────────────────── */
+[field] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+[field] > label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+[hint] {
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+/* Field error state */
+[field][state="error"] > label,
+[field][state="error"] [hint] {
+  color: var(--aura-color-danger, #ef4444);
+  opacity: 1;
+}
+[field][state="error"] [input] {
+  border-color: var(--aura-color-danger, #ef4444);
+}
+[field][state="error"] [input]:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  border-color: var(--aura-color-danger, #ef4444);
+}
+
+/* Field success state */
+[field][state="success"] > label,
+[field][state="success"] [hint] {
+  color: var(--aura-color-success, #22c55e);
+  opacity: 1;
+}
+[field][state="success"] [input] {
+  border-color: var(--aura-color-success, #22c55e);
+}

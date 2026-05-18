@@ -5,6 +5,39 @@
   --aura-color-success: #22c55e;
   --aura-color-warning: #f59e0b;
   --aura-color-neutral: #6b7280;
+  --aura-color-info:    #3b82f6;
+  --aura-color-accent:  #a855f7;
+
+  /* Typography scale */
+  --aura-text-display:    4rem;
+  --aura-text-heading:    2rem;
+  --aura-text-subheading: 1.25rem;
+  --aura-text-body:       1rem;
+  --aura-text-caption:    0.8rem;
+  --aura-text-label:      0.85rem;
+  --aura-font-sans:       system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --aura-font-mono:       'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+
+  /* Elevation (shadows) */
+  --aura-shadow-low:   0 1px 3px rgb(0 0 0 / 0.2),  0 1px 2px  rgb(0 0 0 / 0.12);
+  --aura-shadow-mid:   0 4px 12px rgb(0 0 0 / 0.3),  0 2px 4px  rgb(0 0 0 / 0.2);
+  --aura-shadow-high:  0 10px 30px rgb(0 0 0 / 0.4), 0 4px 8px  rgb(0 0 0 / 0.3);
+  --aura-shadow-float: 0 20px 60px rgb(0 0 0 / 0.5), 0 8px 20px rgb(0 0 0 / 0.4);
+
+  /* Form tokens */
+  --aura-input-bg:           rgb(255 255 255 / 0.05);
+  --aura-input-border:       rgb(255 255 255 / 0.12);
+  --aura-input-border-focus: var(--aura-color-primary);
+  --aura-input-focus-ring:   rgba(124, 106, 247, 0.2);
+  --aura-input-padding-x:    0.75rem;
+  --aura-input-padding-y:    0.5rem;
+
+  /* Extended layout */
+  --aura-sidebar-width: 260px;
+  --aura-header-height: 64px;
+  --aura-aside-width:   220px;
+  --aura-prose-width:   65ch;
+  --aura-masonry-cols:  3;
 
   /* Surface tokens */
   --aura-glass-blur:       14px;

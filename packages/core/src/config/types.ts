@@ -12,6 +12,8 @@ export interface AuraConfig {
       success?: string
       warning?: string
       neutral?: string
+      info?: string
+      accent?: string
       [key: string]: string | undefined  // custom tones
     }
     surface?: {
@@ -40,6 +42,34 @@ export interface AuraConfig {
       subtle?: { duration?: string; ease?: string }
       expressive?: { duration?: string; ease?: string }
       dramatic?: { duration?: string; ease?: string }
+    }
+    typography?: {
+      display?: string
+      heading?: string
+      subheading?: string
+      body?: string
+      caption?: string
+      label?: string
+      fontSans?: string
+      fontMono?: string
+    }
+    elevation?: {
+      low?: string
+      mid?: string
+      high?: string
+      float?: string
+    }
+    form?: {
+      inputBg?: string
+      inputBorder?: string
+      inputBorderFocus?: string
+      inputFocusRing?: string
+    }
+    layout?: {
+      sidebarWidth?: string
+      headerHeight?: string
+      proseWidth?: string
+      masonryCols?: number
     }
   }
 }

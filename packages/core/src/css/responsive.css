@@ -1,0 +1,80 @@
+/* ─── Grid columns (applies to layout="grid" parents) ──────────────────────── */
+[cols="1"]    { grid-template-columns: repeat(1, 1fr); }
+[cols="2"]    { grid-template-columns: repeat(2, 1fr); }
+[cols="3"]    { grid-template-columns: repeat(3, 1fr); }
+[cols="4"]    { grid-template-columns: repeat(4, 1fr); }
+[cols="5"]    { grid-template-columns: repeat(5, 1fr); }
+[cols="6"]    { grid-template-columns: repeat(6, 1fr); }
+[cols="12"]   { grid-template-columns: repeat(12, 1fr); }
+[cols="auto"] { grid-template-columns: repeat(auto-fit, minmax(var(--aura-grid-min, 240px), 1fr)); }
+
+/* ─── Grid item span ────────────────────────────────────────────────────────── */
+[span="1"]    { grid-column: span 1; }
+[span="2"]    { grid-column: span 2; }
+[span="3"]    { grid-column: span 3; }
+[span="4"]    { grid-column: span 4; }
+[span="6"]    { grid-column: span 6; }
+[span="full"] { grid-column: 1 / -1; }
+
+/* ─── Responsive breakpoints ────────────────────────────────────────────────── */
+/* sm: ≥ 640px  |  md: ≥ 768px  |  lg: ≥ 1024px  |  xl: ≥ 1280px            */
+/* Use hyphenated attributes to avoid XML namespace issues: sm-cols, md-cols   */
+
+@media (min-width: 640px) {
+  [sm-cols="1"]  { grid-template-columns: repeat(1, 1fr); }
+  [sm-cols="2"]  { grid-template-columns: repeat(2, 1fr); }
+  [sm-cols="3"]  { grid-template-columns: repeat(3, 1fr); }
+  [sm-cols="4"]  { grid-template-columns: repeat(4, 1fr); }
+  [sm-cols="6"]  { grid-template-columns: repeat(6, 1fr); }
+}
+
+@media (min-width: 768px) {
+  [md-cols="1"]  { grid-template-columns: repeat(1, 1fr); }
+  [md-cols="2"]  { grid-template-columns: repeat(2, 1fr); }
+  [md-cols="3"]  { grid-template-columns: repeat(3, 1fr); }
+  [md-cols="4"]  { grid-template-columns: repeat(4, 1fr); }
+  [md-cols="6"]  { grid-template-columns: repeat(6, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  [lg-cols="1"]  { grid-template-columns: repeat(1, 1fr); }
+  [lg-cols="2"]  { grid-template-columns: repeat(2, 1fr); }
+  [lg-cols="3"]  { grid-template-columns: repeat(3, 1fr); }
+  [lg-cols="4"]  { grid-template-columns: repeat(4, 1fr); }
+  [lg-cols="6"]  { grid-template-columns: repeat(6, 1fr); }
+  [lg-cols="12"] { grid-template-columns: repeat(12, 1fr); }
+}
+
+@media (min-width: 1280px) {
+  [xl-cols="2"]  { grid-template-columns: repeat(2, 1fr); }
+  [xl-cols="3"]  { grid-template-columns: repeat(3, 1fr); }
+  [xl-cols="4"]  { grid-template-columns: repeat(4, 1fr); }
+  [xl-cols="5"]  { grid-template-columns: repeat(5, 1fr); }
+  [xl-cols="6"]  { grid-template-columns: repeat(6, 1fr); }
+}
+
+/* ─── Visibility helpers ────────────────────────────────────────────────────── */
+@media (max-width: 639px) {
+  [hide="mobile"] { display: none !important; }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  [hide="tablet"] { display: none !important; }
+}
+@media (min-width: 1024px) {
+  [hide="desktop"] { display: none !important; }
+}
+
+/* show= — hidden by default, visible at specified breakpoint */
+[show="mobile"]  { display: none !important; }
+[show="tablet"]  { display: none !important; }
+[show="desktop"] { display: none !important; }
+
+@media (max-width: 639px) {
+  [show="mobile"]  { display: revert !important; }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  [show="tablet"]  { display: revert !important; }
+}
+@media (min-width: 1024px) {
+  [show="desktop"] { display: revert !important; }
+}

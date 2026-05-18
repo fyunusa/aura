@@ -1,0 +1,6 @@
+/* ─── Elevation (box-shadow) ────────────────────────────────────────────────── */
+[elevation="none"]  { box-shadow: none; }
+[elevation="low"]   { box-shadow: var(--aura-shadow-low,   0 1px 3px  rgb(0 0 0 / 0.2),  0 1px 2px  rgb(0 0 0 / 0.12)); }
+[elevation="mid"]   { box-shadow: var(--aura-shadow-mid,   0 4px 12px rgb(0 0 0 / 0.3),  0 2px 4px  rgb(0 0 0 / 0.2)); }
+[elevation="high"]  { box-shadow: var(--aura-shadow-high,  0 10px 30px rgb(0 0 0 / 0.4), 0 4px 8px  rgb(0 0 0 / 0.3)); }
+[elevation="float"] { box-shadow: var(--aura-shadow-float, 0 20px 60px rgb(0 0 0 / 0.5), 0 8px 20px rgb(0 0 0 / 0.4)); }

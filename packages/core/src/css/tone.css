@@ -9,6 +9,8 @@
 [tone="success"] { --aura-tone-color: var(--aura-color-success); color: var(--aura-tone-color); }
 [tone="warning"] { --aura-tone-color: var(--aura-color-warning); color: var(--aura-tone-color); }
 [tone="neutral"] { --aura-tone-color: var(--aura-color-neutral); color: var(--aura-tone-color); }
+[tone="info"]    { --aura-tone-color: var(--aura-color-info);    color: var(--aura-tone-color); }
+[tone="accent"]  { --aura-tone-color: var(--aura-color-accent);  color: var(--aura-tone-color); }
 
 /* When tone + surface="solid", tint the bg */
 [tone][surface="solid"] {

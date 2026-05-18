@@ -1,0 +1,56 @@
+/*
+  scheme= — explicit light/dark override.
+  Apply to any element (or <html>/<body>) to force a color scheme
+  regardless of the OS preference.
+*/
+
+/* ─── Dark ──────────────────────────────────────────────────────────────────── */
+[scheme="dark"] {
+  color-scheme: dark;
+  background: var(--aura-bg-dark, #0a0a0f);
+  color: var(--aura-fg-dark, #e2e2f0);
+
+  /* Re-declare surface tokens for dark context */
+  --aura-input-bg:     rgb(255 255 255 / 0.05);
+  --aura-input-border: rgb(255 255 255 / 0.12);
+}
+
+/* ─── Light ─────────────────────────────────────────────────────────────────── */
+[scheme="light"] {
+  color-scheme: light;
+  background: var(--aura-bg-light, #f8f8fc);
+  color: var(--aura-fg-light, #1a1a2e);
+
+  /* Invert glass / matte surfaces for light context */
+  --aura-glass-opacity:   0.65;
+  --aura-glass-border:    rgba(0, 0, 0, 0.08);
+  --aura-frosted-opacity: 0.85;
+
+  /* Tone colors shift slightly warmer for light mode */
+  --aura-color-primary: #5b48e8;
+  --aura-color-accent:  #8b2fc9;
+
+  /* Form inputs invert */
+  --aura-input-bg:           rgba(0, 0, 0, 0.04);
+  --aura-input-border:       rgba(0, 0, 0, 0.14);
+  --aura-input-border-focus: var(--aura-color-primary);
+  --aura-input-focus-ring:   rgba(91, 72, 232, 0.18);
+
+  /* Shadows lighter */
+  --aura-shadow-low:   0 1px 3px  rgb(0 0 0 / 0.08), 0 1px 2px  rgb(0 0 0 / 0.05);
+  --aura-shadow-mid:   0 4px 12px rgb(0 0 0 / 0.1),  0 2px 4px  rgb(0 0 0 / 0.08);
+  --aura-shadow-high:  0 10px 30px rgb(0 0 0 / 0.12), 0 4px 8px rgb(0 0 0 / 0.1);
+  --aura-shadow-float: 0 20px 60px rgb(0 0 0 / 0.15), 0 8px 20px rgb(0 0 0 / 0.12);
+}
+
+/* Light-mode surface overrides */
+[scheme="light"] [surface="glass"] {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+[scheme="light"] [surface="matte"] {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+[scheme="light"] [surface="ghost"] {
+  border-color: rgba(0, 0, 0, 0.15);
+}

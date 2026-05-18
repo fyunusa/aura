@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>useaura demo</title>
+  <link rel="stylesheet" href="https://unpkg.com/useaura/dist/forma.css" />
+  <script type="module">
+    import { init } from 'https://unpkg.com/useaura/dist/runtime.js'
+    init()
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0a0f;
+      color: #e2e2f0;
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100dvh;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav layout="row" gap="md" justify="between"
+       style="position: sticky; top: 0; backdrop-filter: blur(12px);
+              background: rgb(10 10 15 / 0.8);
+              border-bottom: 1px solid rgb(255 255 255 / 0.06);
+              padding: 0.75rem 2rem; z-index: 100;">
+    <span style="font-weight: 700; font-size: 1.1rem;">useaura</span>
+    <div layout="row" gap="sm">
+      <a href="#surfaces"  style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Surfaces</a>
+      <a href="#layout"    style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Layout</a>
+      <a href="#buttons"   style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Buttons</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section layout="cover" style="background: radial-gradient(ellipse at 50% 0%, #1a1060 0%, transparent 65%); padding: 6rem 2rem;">
+    <div layout="stack" gap="lg" align="center" style="text-align: center; max-width: 560px; margin: 0 auto;">
+      <div reveal="scale" surface="glass" tone="primary" density="spacious" radius="xl" style="display: inline-block;">
+        <h1 style="font-size: 2.8rem; font-weight: 800; letter-spacing: -0.04em;">useaura</h1>
+        <p style="color: rgba(226,226,240,0.6); margin-top: 0.4rem;">Style with intent, not with soup.</p>
+      </div>
+      <p reveal="bottom" style="color: rgba(226,226,240,0.5); line-height: 1.7;">
+        A lightweight ~8kb CSS library. Drop in the CDN link, write attributes.
+      </p>
+      <div reveal="bottom" layout="row" gap="sm">
+        <button surface="solid" tone="primary" density="default" radius="full" motion="expressive">
+          Get started →
+        </button>
+        <button surface="ghost" density="default" radius="full" motion="expressive">
+          View docs
+        </button>
+      </div>
+      <div reveal="bottom" surface="matte" density="compact" radius="full"
+           style="font-family: monospace; font-size: 0.8rem; color: rgba(226,226,240,0.45);">
+        &lt;link rel="stylesheet" href="https://unpkg.com/useaura/dist/forma.css"&gt;
+      </div>
+    </div>
+  </section>
+
+  <!-- Surfaces -->
+  <section id="surfaces" style="max-width: 1000px; margin: 0 auto; padding: 4rem 2rem;">
+    <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 2rem;">Surfaces</h2>
+    <div layout="grid" gap="lg" style="--aura-grid-min: 200px;">
+      <div surface="glass"  density="spacious" radius="xl">
+        <p style="font-weight: 600; margin-bottom: 0.25rem;">glass</p>
+        <p style="font-size: 0.85rem; opacity: 0.5;">Frosted backdrop</p>
+      </div>
+      <div surface="solid"  tone="primary" density="spacious" radius="xl">
+        <p style="font-weight: 600; margin-bottom: 0.25rem;">solid + primary</p>
+        <p style="font-size: 0.85rem; opacity: 0.7;">Filled tone</p>
+      </div>
+      <div surface="matte"  density="spacious" radius="xl">
+        <p style="font-weight: 600; margin-bottom: 0.25rem;">matte</p>
+        <p style="font-size: 0.85rem; opacity: 0.5;">Subtle fill</p>
+      </div>
+      <div surface="ghost"  density="spacious" radius="xl">
+        <p style="font-weight: 600; margin-bottom: 0.25rem;">ghost</p>
+        <p style="font-size: 0.85rem; opacity: 0.5;">Border only</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layout -->
+  <section id="layout" style="max-width: 1000px; margin: 0 auto; padding: 0 2rem 4rem;">
+    <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 2rem;">Layout</h2>
+    <div layout="stack" gap="md">
+      <!-- Row -->
+      <div surface="matte" density="spacious" radius="lg">
+        <p style="font-size: 0.8rem; opacity: 0.4; margin-bottom: 1rem; font-family: monospace;">layout="row" gap="md"</p>
+        <div layout="row" gap="md">
+          <div surface="glass" density="compact" radius="md" style="flex: 1; text-align: center;">A</div>
+          <div surface="glass" density="compact" radius="md" style="flex: 1; text-align: center;">B</div>
+          <div surface="glass" density="compact" radius="md" style="flex: 1; text-align: center;">C</div>
+        </div>
+      </div>
+      <!-- Stack -->
+      <div surface="matte" density="spacious" radius="lg">
+        <p style="font-size: 0.8rem; opacity: 0.4; margin-bottom: 1rem; font-family: monospace;">layout="stack" gap="sm"</p>
+        <div layout="stack" gap="sm">
+          <div surface="glass" density="compact" radius="md" style="text-align: center;">Top</div>
+          <div surface="glass" density="compact" radius="md" style="text-align: center;">Middle</div>
+          <div surface="glass" density="compact" radius="md" style="text-align: center;">Bottom</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Buttons -->
+  <section id="buttons" style="max-width: 1000px; margin: 0 auto; padding: 0 2rem 6rem;">
+    <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 2rem;">Buttons &amp; Motion</h2>
+    <div layout="row" gap="md" style="flex-wrap: wrap;">
+      <button surface="solid"  tone="primary"  density="default" radius="full" motion="expressive">Primary</button>
+      <button surface="solid"  tone="neutral"  density="default" radius="full" motion="expressive">Neutral</button>
+      <button surface="ghost"                  density="default" radius="full" motion="expressive">Ghost</button>
+      <button surface="glass"                  density="default" radius="full" motion="expressive">Glass</button>
+      <button surface="solid"  tone="primary"  density="compact" radius="md"   motion="expressive">Compact</button>
+      <button surface="solid"  tone="primary"  density="spacious" radius="lg"  motion="expressive">Spacious</button>
+    </div>
+  </section>
+
+</body>
+</html>
