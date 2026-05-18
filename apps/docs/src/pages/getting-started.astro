@@ -17,11 +17,11 @@ import Layout from '../layouts/Layout.astro'
     <section reveal="bottom" style="margin-bottom: 3rem;">
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">1. Install</h2>
       <div surface="matte" density="default" radius="lg">
-        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);">npm install aura
+        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);">npm install aura-css
 # or
-pnpm add aura
+pnpm add aura-css
 # or
-yarn add aura</pre>
+yarn add aura-css</pre>
       </div>
     </section>
 
@@ -29,10 +29,10 @@ yarn add aura</pre>
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">2. Import the CSS</h2>
       <div surface="matte" density="default" radius="lg">
         <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>&lt;!-- In your HTML --&gt;
-&lt;link rel="stylesheet" href="node_modules/aura/dist/forma.css" /&gt;
+&lt;link rel="stylesheet" href="node_modules/aura-css/dist/forma.css" /&gt;
 
 /* Or in JS/TS */
-import 'aura/css'</code></pre>
+import 'aura-css/css'</code></pre>
       </div>
     </section>
 
@@ -60,7 +60,7 @@ import 'aura/css'</code></pre>
         Override any design token at runtime by calling <code>init()</code>:
       </p>
       <div surface="matte" density="default" radius="lg">
-        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>import {'{'} init {'}'} from 'aura'
+        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>import {'{'} init {'}'} from 'aura-css'
 
 init({'{'}
   tokens: {'{'}
@@ -75,7 +75,7 @@ init({'{'}
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">With Vite (zero runtime)</h2>
       <div surface="matte" density="default" radius="lg">
         <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>// vite.config.ts
-import forma from 'aura/vite'
+import forma from 'aura-css/vite'
 
 export default {'{'}
   plugins: [forma()]

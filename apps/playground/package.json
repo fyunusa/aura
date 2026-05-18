@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "aura": "workspace:*"
+    "aura-css": "workspace:*"
   },
   "devDependencies": {
     "vite": "^5.0.0",
