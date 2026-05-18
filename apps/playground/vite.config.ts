@@ -53,10 +53,10 @@ export default defineConfig({
   resolve: {
     alias: [
       // More-specific paths must come before the bare package name
-      { find: '@fyunusa/aura-css/css',     replacement: resolve(root, 'css/index.css') },
-      { find: '@fyunusa/aura-css/runtime', replacement: resolve(root, 'runtime/index.ts') },
+      { find: 'useaura/css',     replacement: resolve(root, 'css/index.css') },
+      { find: 'useaura/runtime', replacement: resolve(root, 'runtime/index.ts') },
       // Exact match only — regex prevents this from swallowing subpath imports
-      { find: /^@fyunusa/aura-css$/, replacement: resolve(root, 'index.ts') },
+      { find: /^useaura$/, replacement: resolve(root, 'index.ts') },
     ],
   },
 })

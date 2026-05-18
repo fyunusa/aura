@@ -17,11 +17,11 @@ import Layout from '../layouts/Layout.astro'
     <section reveal="bottom" style="margin-bottom: 3rem;">
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">1. Install</h2>
       <div surface="matte" density="default" radius="lg">
-        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);">npm install @fyunusa/aura-css
+        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);">npm install useaura
 # or
-pnpm add @fyunusa/aura-css
+pnpm add useaura
 # or
-yarn add @fyunusa/aura-css</pre>
+yarn add useaura</pre>
       </div>
     </section>
 
@@ -29,10 +29,10 @@ yarn add @fyunusa/aura-css</pre>
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">2. Import the CSS</h2>
       <div surface="matte" density="default" radius="lg">
         <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>&lt;!-- In your HTML --&gt;
-&lt;link rel="stylesheet" href="node_modules/@fyunusa/aura-css/dist/forma.css" /&gt;
+&lt;link rel="stylesheet" href="node_modules/useaura/dist/forma.css" /&gt;
 
 /* Or in JS/TS */
-import '@fyunusa/aura-css/css'</code></pre>
+import 'useaura/css'</code></pre>
       </div>
     </section>
 
@@ -60,7 +60,7 @@ import '@fyunusa/aura-css/css'</code></pre>
         Override any design token at runtime by calling <code>init()</code>:
       </p>
       <div surface="matte" density="default" radius="lg">
-        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>import {'{'} init {'}'} from '@fyunusa/aura-css'
+        <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>import {'{'} init {'}'} from 'useaura'
 
 init({'{'}
   tokens: {'{'}
@@ -75,7 +75,7 @@ init({'{'}
       <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">With Vite (zero runtime)</h2>
       <div surface="matte" density="default" radius="lg">
         <pre style="padding: 1rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: rgba(226,226,240,0.8);"><code>// vite.config.ts
-import forma from '@fyunusa/aura-css/vite'
+import forma from 'useaura/vite'
 
 export default {'{'}
   plugins: [forma()]

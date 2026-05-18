@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fyunusa/aura-css": "workspace:*"
+    "useaura": "workspace:*"
   },
   "devDependencies": {
     "vite": "^5.0.0",
