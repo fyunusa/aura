@@ -69,13 +69,15 @@ function isActive(href: string) {
     <title>{title} — aura</title>
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
+      html { scroll-behavior: smooth; overflow-x: hidden; }
       body {
         background: #0a0a0f;
         color: #e2e2f0;
         font-family: system-ui, -apple-system, sans-serif;
         font-size: 1rem;
         line-height: 1.6;
+        overflow-x: hidden;
+        min-width: 0;
       }
       a { color: inherit; text-decoration: none; }
 
@@ -101,8 +103,8 @@ function isActive(href: string) {
         color: #e2e2f0;
       }
       .topbar-logo span { color: #7c6af7; }
-      .topbar-links { display: flex; gap: 1.25rem; align-items: center; }
-      .topbar-links a { font-size: 0.875rem; opacity: 0.55; transition: opacity 150ms; }
+      .topbar-links { display: flex; gap: 1.25rem; align-items: center; flex-shrink: 0; }
+      .topbar-links a { font-size: 0.875rem; opacity: 0.55; transition: opacity 150ms; white-space: nowrap; }
       .topbar-links a:hover { opacity: 1; }
       .badge {
         font-size: 0.7rem;
@@ -157,8 +159,10 @@ function isActive(href: string) {
       /* ── Main ── */
       .main-content {
         min-width: 0;
+        width: 100%;
         padding: 3rem 2.5rem 6rem;
         max-width: 860px;
+        overflow-x: hidden;
       }
 
       /* ── Page headings ── */
@@ -212,6 +216,8 @@ function isActive(href: string) {
         overflow-x: auto;
         white-space: pre;
         line-height: 1.6;
+        max-width: 100%;
+        word-break: normal;
       }
       .divider {
         border: none;
@@ -233,6 +239,8 @@ function isActive(href: string) {
           padding: 0.75rem 1rem;
           display: flex;
           gap: 0.25rem;
+          /* prevent sidebar from stretching page width */
+          max-width: 100vw;
         }
         .nav-group {
           display: inline-flex;
@@ -241,8 +249,20 @@ function isActive(href: string) {
           padding: 0;
         }
         .nav-group-label { display: none; }
-        .main-content { padding: 2rem 1.25rem 4rem; }
-        .page-title { font-size: 1.8rem; }
+        .main-content {
+          padding: 1.75rem 1rem 4rem;
+          max-width: 100%;
+        }
+        .page-title { font-size: 1.65rem; }
+        .page-desc { font-size: 0.95rem; }
+        .demo-preview { padding: 1rem 0.75rem; overflow-x: auto; }
+        .topbar { padding: 0 1rem; }
+        .topbar-links .hide-mobile { display: none; }
+      }
+      @media (max-width: 480px) {
+        .topbar-links { gap: 0.75rem; }
+        .main-content { padding: 1.25rem 0.875rem 3rem; }
+        .page-title { font-size: 1.4rem; }
       }
     </style>
   </head>
@@ -252,8 +272,8 @@ function isActive(href: string) {
       <a href="/docs/" class="topbar-logo">aura<span>.</span></a>
       <div class="topbar-links">
         <span class="badge">v0.2.0</span>
-        <a href="/docs/getting-started/">Docs</a>
-        <a href="/docs/attributes/">Reference</a>
+        <a href="/docs/getting-started/" class="hide-mobile">Docs</a>
+        <a href="/docs/attributes/" class="hide-mobile">Reference</a>
         <a href="https://github.com/fyunusa/aura" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
     </header>
