@@ -1,0 +1,22 @@
+# Docs site — connect this repo to a Netlify site with no base directory
+[build]
+  command = "pnpm install --frozen-lockfile && pnpm build"
+  publish = "apps/docs/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PNPM_VERSION = "9"
+
+# SPA-style fallback for Astro static routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["404"]}
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

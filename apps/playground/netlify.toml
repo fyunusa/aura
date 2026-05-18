@@ -1,0 +1,16 @@
+# Playground site — in Netlify UI set "Base directory" to: apps/playground
+# Netlify will then run this config from apps/playground/
+[build]
+  command = "cd ../.. && pnpm install --frozen-lockfile && pnpm build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PNPM_VERSION = "9"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
