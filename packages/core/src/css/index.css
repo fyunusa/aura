@@ -21,3 +21,18 @@
 @import './spring.css';
 @import './container.css';
 @import './seed.css';
+/* v0.4.0 — comprehensive expansion */
+@import './utils.css';
+@import './gradient.css';
+@import './glow.css';
+@import './pattern.css';
+@import './animate.css';
+@import './mask.css';
+@import './clip.css';
+@import './filter.css';
+@import './divide.css';
+@import './scroll-snap.css';
+@import './badge.css';
+@import './text-effects.css';
+@import './tilt.css';
+@import './shimmer.css';

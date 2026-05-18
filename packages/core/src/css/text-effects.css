@@ -1,0 +1,89 @@
+/* ─── Text effects ────────────────────────────────────────────────────────────
+   text-shadow=, text-stroke=, typewriter cursor, highlight
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Text shadow ─────────────────────────────────────────────────────────── */
+[text-shadow="sm"]    { text-shadow: 0 1px 2px rgb(0 0 0 / 0.5); }
+[text-shadow="md"]    { text-shadow: 0 2px 6px rgb(0 0 0 / 0.5); }
+[text-shadow="lg"]    { text-shadow: 0 4px 12px rgb(0 0 0 / 0.6); }
+[text-shadow="xl"]    { text-shadow: 0 8px 24px rgb(0 0 0 / 0.6); }
+[text-shadow="glow"]  {
+  text-shadow:
+    0 0 8px  var(--aura-tone-color, var(--aura-color-primary)),
+    0 0 20px color-mix(in oklch, var(--aura-tone-color, var(--aura-color-primary)) 40%, transparent);
+}
+[text-shadow="color"] {
+  text-shadow: 3px 3px 0px color-mix(in oklch, var(--aura-tone-color, var(--aura-color-primary)) 60%, transparent);
+}
+[text-shadow="retro"] {
+  text-shadow: 3px 3px 0px var(--aura-color-danger), 6px 6px 0px rgba(0,0,0,0.2);
+}
+[text-shadow="none"]  { text-shadow: none; }
+
+/* ── Text stroke ─────────────────────────────────────────────────────────── */
+[text-stroke] {
+  -webkit-text-stroke: var(--aura-text-stroke-width, 1px) var(--aura-text-stroke-color, currentColor);
+}
+[text-stroke="sm"]    { -webkit-text-stroke-width: 0.5px; }
+[text-stroke="md"]    { -webkit-text-stroke-width: 1px;   }
+[text-stroke="lg"]    { -webkit-text-stroke-width: 2px;   }
+[text-stroke="xl"]    { -webkit-text-stroke-width: 3px;   }
+
+/* Hollow text (stroke only, transparent fill) */
+[text-stroke][text-hollow] {
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ── Text decoration ─────────────────────────────────────────────────────── */
+[underline="wavy"]  { text-decoration: underline wavy var(--aura-tone-color, var(--aura-color-primary)); }
+[underline="dotted"] { text-decoration: underline dotted; }
+[underline="thick"] { text-decoration: underline 3px; }
+[underline="offset"] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+[underline="grow"] {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease;
+}
+[underline="grow"]:hover { background-size: 100% 2px; }
+
+/* ── Highlight ───────────────────────────────────────────────────────────── */
+[highlight] {
+  background-image: linear-gradient(
+    var(--aura-highlight-angle, 0deg),
+    color-mix(in oklch, var(--aura-tone-color, var(--aura-color-primary)) var(--aura-highlight-opacity, 25%), transparent) 0%,
+    color-mix(in oklch, var(--aura-tone-color, var(--aura-color-primary)) var(--aura-highlight-opacity, 25%), transparent) 100%
+  );
+  background-size: 100% var(--aura-highlight-height, 40%);
+  background-repeat: no-repeat;
+  background-position: 0 85%;
+  padding: 0 2px;
+}
+[highlight="danger"]  { --aura-tone-color: var(--aura-color-danger);  }
+[highlight="success"] { --aura-tone-color: var(--aura-color-success); }
+[highlight="warning"] { --aura-tone-color: var(--aura-color-warning); }
+
+/* ── Text indent ─────────────────────────────────────────────────────────── */
+[indent="sm"] { text-indent: 1em; }
+[indent="md"] { text-indent: 2em; }
+[indent="lg"] { text-indent: 3em; }
+
+/* ── Word / letter spacing ───────────────────────────────────────────────── */
+[tracking="tight"]   { letter-spacing: -0.05em; }
+[tracking="normal"]  { letter-spacing: 0; }
+[tracking="wide"]    { letter-spacing: 0.05em; }
+[tracking="wider"]   { letter-spacing: 0.1em; }
+[tracking="widest"]  { letter-spacing: 0.2em; }
+
+[leading="none"]     { line-height: 1; }
+[leading="tight"]    { line-height: 1.25; }
+[leading="snug"]     { line-height: 1.375; }
+[leading="normal"]   { line-height: 1.5; }
+[leading="relaxed"]  { line-height: 1.625; }
+[leading="loose"]    { line-height: 2; }

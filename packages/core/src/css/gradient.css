@@ -1,0 +1,80 @@
+/* ─── Gradients ─────────────────────────────────────────────────────────────
+   Named gradient backgrounds + gradient text.
+   Override direction with style="--aura-gradient-angle: 180deg"
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Gradient backgrounds ─────────────────────────────────────────────────── */
+[gradient] {
+  background: linear-gradient(
+    var(--aura-gradient-angle, 135deg),
+    var(--aura-gradient-from, var(--aura-color-primary)),
+    var(--aura-gradient-to, var(--aura-color-accent))
+  );
+}
+
+[gradient="brand"]     { --aura-gradient-from: var(--aura-color-primary);  --aura-gradient-to: var(--aura-color-accent); }
+[gradient="danger"]    { --aura-gradient-from: #f97316; --aura-gradient-to: var(--aura-color-danger); }
+[gradient="success"]   { --aura-gradient-from: #10b981; --aura-gradient-to: var(--aura-color-info); }
+[gradient="warning"]   { --aura-gradient-from: var(--aura-color-warning); --aura-gradient-to: #f97316; }
+[gradient="sunset"]    { --aura-gradient-from: #f59e0b; --aura-gradient-to: #ec4899; }
+[gradient="ocean"]     { --aura-gradient-from: #06b6d4; --aura-gradient-to: #7c6af7; }
+[gradient="forest"]    { --aura-gradient-from: #22c55e; --aura-gradient-to: #06b6d4; }
+[gradient="fire"]      { --aura-gradient-from: #fbbf24; --aura-gradient-to: #ef4444; }
+[gradient="candy"]     { --aura-gradient-from: #ec4899; --aura-gradient-to: #8b5cf6; }
+[gradient="gold"]      { --aura-gradient-from: #f59e0b; --aura-gradient-to: #eab308; }
+[gradient="night"]     { --aura-gradient-from: #1e1b4b; --aura-gradient-to: #0f172a; }
+[gradient="dawn"]      { --aura-gradient-from: #fde68a; --aura-gradient-to: #fca5a5; }
+[gradient="mist"]      { --aura-gradient-from: rgb(255 255 255 / 0.1); --aura-gradient-to: rgb(255 255 255 / 0.02); }
+[gradient="aurora"]    { --aura-gradient-from: #7c6af7; --aura-gradient-to: #06b6d4; }
+[gradient="rose-gold"] { --aura-gradient-from: #f43f5e; --aura-gradient-to: #f59e0b; }
+[gradient="deep-sea"]  { --aura-gradient-from: #0f172a; --aura-gradient-to: #1e40af; }
+[gradient="spring"]    { --aura-gradient-from: #86efac; --aura-gradient-to: #67e8f9; }
+[gradient="neon"]      { --aura-gradient-from: #a855f7; --aura-gradient-to: #22d3ee; }
+
+/* ── Gradient directions ──────────────────────────────────────────────────── */
+[gradient][gradient-dir="t"]  { --aura-gradient-angle: 0deg; }
+[gradient][gradient-dir="tr"] { --aura-gradient-angle: 45deg; }
+[gradient][gradient-dir="r"]  { --aura-gradient-angle: 90deg; }
+[gradient][gradient-dir="br"] { --aura-gradient-angle: 135deg; }
+[gradient][gradient-dir="b"]  { --aura-gradient-angle: 180deg; }
+[gradient][gradient-dir="bl"] { --aura-gradient-angle: 225deg; }
+[gradient][gradient-dir="l"]  { --aura-gradient-angle: 270deg; }
+[gradient][gradient-dir="tl"] { --aura-gradient-angle: 315deg; }
+
+/* ── Radial gradients ─────────────────────────────────────────────────────── */
+[gradient="radial-brand"] {
+  background: radial-gradient(circle at var(--aura-gradient-center, 50% 50%),
+    var(--aura-color-primary),
+    var(--aura-color-accent)
+  );
+}
+[gradient="radial-glow"] {
+  background: radial-gradient(circle at var(--aura-gradient-center, 50% 50%),
+    rgb(from var(--aura-color-primary) r g b / 0.3) 0%,
+    transparent 70%
+  );
+}
+
+/* ── Gradient text ────────────────────────────────────────────────────────── */
+[text-gradient] {
+  background: linear-gradient(
+    var(--aura-gradient-angle, 135deg),
+    var(--aura-gradient-from, var(--aura-color-primary)),
+    var(--aura-gradient-to, var(--aura-color-accent))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+[text-gradient="brand"]   { --aura-gradient-from: var(--aura-color-primary); --aura-gradient-to: var(--aura-color-accent); }
+[text-gradient="sunset"]  { --aura-gradient-from: #f59e0b; --aura-gradient-to: #ec4899; }
+[text-gradient="ocean"]   { --aura-gradient-from: #06b6d4; --aura-gradient-to: #7c6af7; }
+[text-gradient="fire"]    { --aura-gradient-from: #fbbf24; --aura-gradient-to: #ef4444; }
+[text-gradient="candy"]   { --aura-gradient-from: #ec4899; --aura-gradient-to: #8b5cf6; }
+[text-gradient="forest"]  { --aura-gradient-from: #22c55e; --aura-gradient-to: #06b6d4; }
+[text-gradient="gold"]    { --aura-gradient-from: #f59e0b; --aura-gradient-to: #eab308; }
+[text-gradient="dawn"]    { --aura-gradient-from: #fde68a; --aura-gradient-to: #fb7185; }
+[text-gradient="neon"]    { --aura-gradient-from: #a855f7; --aura-gradient-to: #22d3ee; }
+[text-gradient="rose-gold"] { --aura-gradient-from: #f43f5e; --aura-gradient-to: #f59e0b; }

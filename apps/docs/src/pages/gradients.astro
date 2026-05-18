@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Gradients">
+  <h1 class="page-title">Gradients</h1>
+  <p class="page-desc">
+    Named gradient backgrounds and gradient text using the <code>gradient=</code> and
+    <code>text-gradient=</code> attrs. Override direction with <code>gradient-dir=</code> or
+    set <code>--aura-gradient-angle</code> inline.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Background gradients</h2>
+
+  <div class="demo">
+    <p class="demo-label">Named presets</p>
+    <div class="demo-preview" layout="grid" gap="sm" style="--aura-grid-min:120px;">
+      <div gradient="brand"     radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;">brand</div>
+      <div gradient="sunset"    radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;">sunset</div>
+      <div gradient="ocean"     radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;">ocean</div>
+      <div gradient="forest"    radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;">forest</div>
+      <div gradient="fire"      radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;">fire</div>
+      <div gradient="candy"     radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;">candy</div>
+      <div gradient="gold"      radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;">gold</div>
+      <div gradient="night"     radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;color:#e2e2f0;">night</div>
+      <div gradient="dawn"      radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;color:#1a1a2e;">dawn</div>
+      <div gradient="aurora"    radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;">aurora</div>
+      <div gradient="neon"      radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;">neon</div>
+      <div gradient="rose-gold" radius="lg" style="height:60px;display:grid;place-items:center;font-size:0.75rem;font-weight:600;">rose-gold</div>
+    </div>
+    <pre class="demo-code">{`<div gradient="sunset" radius="lg">…</div>
+<div gradient="ocean" radius="lg">…</div>
+<div gradient="neon" radius="lg">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Direction</p>
+    <div class="demo-preview" layout="row" gap="sm" wrap>
+      <div gradient="brand" gradient-dir="t"  radius="lg" style="width:80px;height:80px;display:grid;place-items:center;font-size:0.7rem;">↑ t</div>
+      <div gradient="brand" gradient-dir="r"  radius="lg" style="width:80px;height:80px;display:grid;place-items:center;font-size:0.7rem;">→ r</div>
+      <div gradient="brand" gradient-dir="b"  radius="lg" style="width:80px;height:80px;display:grid;place-items:center;font-size:0.7rem;">↓ b</div>
+      <div gradient="brand" gradient-dir="tr" radius="lg" style="width:80px;height:80px;display:grid;place-items:center;font-size:0.7rem;">↗ tr</div>
+    </div>
+    <pre class="demo-code">{`<div gradient="brand" gradient-dir="t">…</div>
+<div gradient="brand" gradient-dir="r">…</div>
+<div gradient="brand" gradient-dir="tr">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Custom via tokens</p>
+    <div class="demo-preview">
+      <div gradient radius="lg" style="height:80px;--aura-gradient-from:#06b6d4;--aura-gradient-to:#f59e0b;--aura-gradient-angle:90deg;display:grid;place-items:center;font-weight:600;">
+        Custom from/to/angle
+      </div>
+    </div>
+    <pre class="demo-code">{`<div gradient radius="lg"
+  style="--aura-gradient-from:#06b6d4;
+         --aura-gradient-to:#f59e0b;
+         --aura-gradient-angle:90deg">…</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Gradient text</h2>
+
+  <div class="demo">
+    <p class="demo-label">text-gradient= presets</p>
+    <div class="demo-preview" layout="stack" gap="sm">
+      <p text="heading" text-gradient="brand">Brand gradient heading</p>
+      <p text="heading" text-gradient="sunset">Sunset gradient heading</p>
+      <p text="heading" text-gradient="ocean">Ocean gradient heading</p>
+      <p text="heading" text-gradient="neon">Neon gradient heading</p>
+      <p text="heading" text-gradient="rose-gold">Rose gold heading</p>
+    </div>
+    <pre class="demo-code">{`<h2 text="heading" text-gradient="brand">Brand gradient heading</h2>
+<h2 text="heading" text-gradient="sunset">Sunset gradient heading</h2>
+<h2 text="heading" text-gradient="neon">Neon gradient heading</h2>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">All values</h2>
+  <pre class="demo-code">{`<!-- Background -->
+gradient="brand|danger|success|warning|sunset|ocean|forest|fire|candy|gold|night|dawn|mist|aurora|rose-gold|deep-sea|spring|neon"
+
+<!-- Direction -->
+gradient-dir="t|tr|r|br|b|bl|l|tl"
+
+<!-- Gradient text -->
+text-gradient="brand|sunset|ocean|fire|candy|forest|gold|dawn|neon|rose-gold"
+
+<!-- Custom tokens -->
+--aura-gradient-from: #color
+--aura-gradient-to:   #color
+--aura-gradient-angle: 135deg`}</pre>
+</Layout>

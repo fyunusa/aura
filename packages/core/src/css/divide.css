@@ -1,0 +1,41 @@
+/* ─── Child dividers ──────────────────────────────────────────────────────────
+   Add 1px lines between flex/grid children without manual hr elements.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── divide-x (vertical lines between row children) ──────────────────────── */
+[divide="x"] > * + * {
+  border-left: var(--aura-divide-width, 1px) var(--aura-divide-style, solid)
+    var(--aura-divide-color, var(--aura-border));
+}
+
+/* ── divide-y (horizontal lines between column children) ─────────────────── */
+[divide="y"] > * + * {
+  border-top: var(--aura-divide-width, 1px) var(--aura-divide-style, solid)
+    var(--aura-divide-color, var(--aura-border));
+}
+
+/* ── Tone colors ─────────────────────────────────────────────────────────── */
+[divide][tone="primary"] { --aura-divide-color: var(--aura-color-primary); }
+[divide][tone="danger"]  { --aura-divide-color: var(--aura-color-danger);  }
+[divide][tone="success"] { --aura-divide-color: var(--aura-color-success); }
+[divide][tone="warning"] { --aura-divide-color: var(--aura-color-warning); }
+[divide][tone="muted"]   { --aura-divide-color: var(--aura-muted); }
+
+/* ── Width variants ──────────────────────────────────────────────────────── */
+[divide-width="2"] { --aura-divide-width: 2px; }
+[divide-width="4"] { --aura-divide-width: 4px; }
+
+/* ── Style variants ──────────────────────────────────────────────────────── */
+[divide-style="dashed"] { --aura-divide-style: dashed; }
+[divide-style="dotted"] { --aura-divide-style: dotted; }
+[divide-style="solid"]  { --aura-divide-style: solid; }
+
+/* ── Opacity ─────────────────────────────────────────────────────────────── */
+[divide-opacity="25"]  { --aura-divide-color: rgb(from var(--aura-border) r g b / 0.25); }
+[divide-opacity="50"]  { --aura-divide-color: rgb(from var(--aura-border) r g b / 0.5); }
+
+/* ── Space / gap between divider and content ─────────────────────────────── */
+[divide="x"][divide-gap="sm"] > * + * { padding-left: var(--aura-gap-sm); }
+[divide="x"][divide-gap="md"] > * + * { padding-left: var(--aura-gap-md); }
+[divide="y"][divide-gap="sm"] > * + * { padding-top: var(--aura-gap-sm); }
+[divide="y"][divide-gap="md"] > * + * { padding-top: var(--aura-gap-md); }

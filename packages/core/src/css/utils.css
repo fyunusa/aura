@@ -1,0 +1,164 @@
+/* ─── General utilities ─────────────────────────────────────────────────────
+   High-frequency utilities that complement aura's semantic attrs.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── aspect= ─────────────────────────────────────────────────────────────── */
+[aspect="square"]   { aspect-ratio: 1; }
+[aspect="video"]    { aspect-ratio: 16/9; }
+[aspect="photo"]    { aspect-ratio: 4/3; }
+[aspect="portrait"] { aspect-ratio: 3/4; }
+[aspect="wide"]     { aspect-ratio: 21/9; }
+[aspect="golden"]   { aspect-ratio: 1.618; }
+[aspect="story"]    { aspect-ratio: 9/16; }
+
+/* ── overflow= ───────────────────────────────────────────────────────────── */
+[overflow="hidden"]  { overflow: hidden; }
+[overflow="auto"]    { overflow: auto; }
+[overflow="scroll"]  { overflow: scroll; }
+[overflow="clip"]    { overflow: clip; }
+[overflow="visible"] { overflow: visible; }
+[overflow="x"]       { overflow-x: auto; overflow-y: hidden; }
+[overflow="y"]       { overflow-y: auto; overflow-x: hidden; }
+[overflow="x-scroll"] { overflow-x: scroll; overflow-y: hidden; }
+[overflow="y-scroll"] { overflow-y: scroll; overflow-x: hidden; }
+
+/* ── cursor= ─────────────────────────────────────────────────────────────── */
+[cursor="pointer"]     { cursor: pointer; }
+[cursor="grab"]        { cursor: grab; }
+[cursor="grabbing"]    { cursor: grabbing; }
+[cursor="crosshair"]   { cursor: crosshair; }
+[cursor="not-allowed"] { cursor: not-allowed; }
+[cursor="text"]        { cursor: text; }
+[cursor="move"]        { cursor: move; }
+[cursor="zoom-in"]     { cursor: zoom-in; }
+[cursor="zoom-out"]    { cursor: zoom-out; }
+[cursor="none"]        { cursor: none; }
+[cursor="default"]     { cursor: default; }
+[cursor="wait"]        { cursor: wait; }
+[cursor="help"]        { cursor: help; }
+
+/* ── select= ─────────────────────────────────────────────────────────────── */
+[select="none"] { user-select: none; -webkit-user-select: none; }
+[select="all"]  { user-select: all; }
+[select="text"] { user-select: text; }
+[select="auto"] { user-select: auto; }
+
+/* ── pointer= ────────────────────────────────────────────────────────────── */
+[pointer="none"] { pointer-events: none; }
+[pointer="auto"] { pointer-events: auto; }
+
+/* ── opacity= ────────────────────────────────────────────────────────────── */
+[opacity="0"]   { opacity: 0; }
+[opacity="5"]   { opacity: 0.05; }
+[opacity="10"]  { opacity: 0.10; }
+[opacity="20"]  { opacity: 0.20; }
+[opacity="25"]  { opacity: 0.25; }
+[opacity="30"]  { opacity: 0.30; }
+[opacity="40"]  { opacity: 0.40; }
+[opacity="50"]  { opacity: 0.50; }
+[opacity="60"]  { opacity: 0.60; }
+[opacity="70"]  { opacity: 0.70; }
+[opacity="75"]  { opacity: 0.75; }
+[opacity="80"]  { opacity: 0.80; }
+[opacity="90"]  { opacity: 0.90; }
+[opacity="95"]  { opacity: 0.95; }
+[opacity="100"] { opacity: 1; }
+
+/* ── object= (for img/video) ─────────────────────────────────────────────── */
+[object="cover"]   { object-fit: cover;      object-position: center; }
+[object="contain"] { object-fit: contain;    object-position: center; }
+[object="fill"]    { object-fit: fill; }
+[object="none"]    { object-fit: none; }
+[object="scale"]   { object-fit: scale-down; }
+[object="top"]     { object-position: top; }
+[object="bottom"]  { object-position: bottom; }
+
+/* ── place= ──────────────────────────────────────────────────────────────── */
+[place="center"]  { place-items: center; display: grid; }
+[place="start"]   { place-items: start; }
+[place="end"]     { place-items: end; }
+[place="stretch"] { place-items: stretch; }
+
+/* ── size= ───────────────────────────────────────────────────────────────── */
+[size="full"]   { width: 100%;  height: 100%; }
+[size="screen"] { width: 100vw; height: 100vh; }
+[size="min"]    { width: min-content; }
+[size="max"]    { width: max-content; }
+[size="fit"]    { width: fit-content; }
+
+/* ── fit= (width shortcuts) ──────────────────────────────────────────────── */
+[w="full"]    { width: 100%; }
+[w="screen"]  { width: 100vw; }
+[w="auto"]    { width: auto; }
+[w="fit"]     { width: fit-content; }
+[h="full"]    { height: 100%; }
+[h="screen"]  { height: 100vh; }
+[h="auto"]    { height: auto; }
+
+/* ── position= ───────────────────────────────────────────────────────────── */
+[pos="relative"] { position: relative; }
+[pos="absolute"] { position: absolute; }
+[pos="fixed"]    { position: fixed; }
+[pos="sticky"]   { position: sticky; }
+[pos="static"]   { position: static; }
+
+/* ── inset= ──────────────────────────────────────────────────────────────── */
+[inset="0"]    { inset: 0; }
+[inset="auto"] { inset: auto; }
+
+/* ── z= ──────────────────────────────────────────────────────────────────── */
+[z="0"]    { z-index: 0; }
+[z="1"]    { z-index: 1; }
+[z="10"]   { z-index: 10; }
+[z="20"]   { z-index: 20; }
+[z="50"]   { z-index: 50; }
+[z="100"]  { z-index: 100; }
+[z="auto"] { z-index: auto; }
+[z="-1"]   { z-index: -1; }
+
+/* ── columns= (CSS column layout for text) ───────────────────────────────── */
+[columns="2"] { columns: 2; column-gap: var(--aura-gap-md); }
+[columns="3"] { columns: 3; column-gap: var(--aura-gap-md); }
+[columns="4"] { columns: 4; column-gap: var(--aura-gap-md); }
+[columns="auto"] { columns: auto; }
+[column-gap="sm"] { column-gap: var(--aura-gap-sm); }
+[column-gap="md"] { column-gap: var(--aura-gap-md); }
+[column-gap="lg"] { column-gap: var(--aura-gap-lg); }
+
+/* ── writing= ────────────────────────────────────────────────────────────── */
+[writing="vertical"]   { writing-mode: vertical-lr; }
+[writing="vertical-rl"] { writing-mode: vertical-rl; }
+[writing="horizontal"] { writing-mode: horizontal-tb; }
+
+/* ── list= ───────────────────────────────────────────────────────────────── */
+[list="none"]    { list-style: none; padding: 0; }
+[list="disc"]    { list-style: disc; padding-left: 1.5em; }
+[list="decimal"] { list-style: decimal; padding-left: 1.5em; }
+[list="check"]   { list-style: none; padding: 0; }
+[list="check"] li::before { content: '✓ '; color: var(--aura-color-success); font-weight: 700; }
+
+/* ── resize= ─────────────────────────────────────────────────────────────── */
+[resize="none"]       { resize: none; }
+[resize="both"]       { resize: both; }
+[resize="horizontal"] { resize: horizontal; }
+[resize="vertical"]   { resize: vertical; }
+
+/* ── blend= (mix-blend-mode) ─────────────────────────────────────────────── */
+[blend="multiply"]   { mix-blend-mode: multiply; }
+[blend="screen"]     { mix-blend-mode: screen; }
+[blend="overlay"]    { mix-blend-mode: overlay; }
+[blend="darken"]     { mix-blend-mode: darken; }
+[blend="lighten"]    { mix-blend-mode: lighten; }
+[blend="color-dodge"]{ mix-blend-mode: color-dodge; }
+[blend="color-burn"] { mix-blend-mode: color-burn; }
+[blend="hard-light"] { mix-blend-mode: hard-light; }
+[blend="soft-light"] { mix-blend-mode: soft-light; }
+[blend="difference"] { mix-blend-mode: difference; }
+[blend="exclusion"]  { mix-blend-mode: exclusion; }
+[blend="hue"]        { mix-blend-mode: hue; }
+[blend="saturation"] { mix-blend-mode: saturation; }
+[blend="color"]      { mix-blend-mode: color; }
+[blend="luminosity"] { mix-blend-mode: luminosity; }
+
+/* ── isolation= ─────────────────────────────────────────────────────────── */
+[isolate]            { isolation: isolate; }

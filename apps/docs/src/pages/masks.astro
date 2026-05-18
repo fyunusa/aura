@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Masks">
+  <h1 class="page-title">Masks</h1>
+  <p class="page-desc">
+    Fade out element edges with CSS <code>mask-image</code>. Apply <code>mask=</code> to images,
+    text containers, carousels, and backgrounds — zero JavaScript.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Edge fades</h2>
+
+  <div class="demo">
+    <p class="demo-label">fade-bottom</p>
+    <div class="demo-preview" style="background:linear-gradient(135deg,#7c3aed,#06b6d4);border-radius:10px;height:150px;" mask="fade-bottom">
+    </div>
+    <pre class="demo-code">{`<div gradient="brand" mask="fade-bottom">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">fade-top</p>
+    <div class="demo-preview" style="background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:10px;height:150px;" mask="fade-top">
+    </div>
+    <pre class="demo-code">{`<div gradient="fire" mask="fade-top">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">fade-x (both sides)</p>
+    <div class="demo-preview" mask="fade-x" style="overflow:hidden;">
+      <div layout="row" gap="md" style="padding:1rem 0;flex-wrap:nowrap;overflow:hidden;">
+        {Array.from({length:8}).map((_, i) => (
+          <div surface="glass" density="default" radius="lg" style="flex-shrink:0;width:100px;height:60px;display:grid;place-items:center;font-size:0.8rem;">
+            Item {i + 1}
+          </div>
+        ))}
+      </div>
+    </div>
+    <pre class="demo-code">{`<!-- Scrollable row that fades at edges -->
+<div mask="fade-x" style="overflow:hidden;">
+  <div layout="row" gap="md" style="flex-wrap:nowrap;">
+    <div>…</div>
+  </div>
+</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Vignette & circle</h2>
+
+  <div class="demo">
+    <p class="demo-label">vignette · circle</p>
+    <div class="demo-preview" layout="row" gap="lg">
+      <div gradient="ocean" mask="vignette" radius="xl" style="flex:1;height:140px;"></div>
+      <div gradient="sunset" mask="circle" style="width:140px;height:140px;border-radius:50%;flex-shrink:0;"></div>
+    </div>
+    <pre class="demo-code">{`<div gradient="ocean" mask="vignette">…</div>
+<img mask="circle" style="border-radius:50%" />`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">spotlight</p>
+    <div class="demo-preview" style="background:#08081a;border-radius:10px;height:160px;display:grid;place-items:center;" mask="spotlight">
+      <p text="heading" style="color:#e2e2f0;">Spotlight mask</p>
+    </div>
+    <pre class="demo-code">{`<div mask="spotlight">
+  <h2>Spotlight mask</h2>
+</div>
+
+<!-- Move spotlight with custom property -->
+<div mask="spotlight" style="--aura-mask-center:25% 40%">…</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Customisation tokens</h2>
+  <pre class="demo-code">{`<!-- All masks are customisable via CSS custom properties -->
+--aura-mask-start:  60%    /* solid region end */
+--aura-mask-end:    100%   /* fully transparent at */
+--aura-mask-edge:   15%    /* fade-x/y edge width */
+--aura-mask-center: 50% 50% /* spotlight focal point */
+
+<!-- Example: very sharp fade -->
+<div mask="fade-bottom" style="--aura-mask-start:80%;--aura-mask-end:95%">…</div>`}</pre>
+
+  <hr class="divider" />
+  <h2 class="section-title">All values</h2>
+  <pre class="demo-code">{`mask="fade-bottom|fade-top|fade-left|fade-right"
+mask="fade-x|fade-y"
+mask="vignette|circle|spotlight"`}</pre>
+</Layout>

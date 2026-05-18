@@ -1,0 +1,87 @@
+/* ─── clip-path shapes ────────────────────────────────────────────────────────
+   Apply any shape without SVG or images. Pure CSS clip-path.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Basic shapes ────────────────────────────────────────────────────────── */
+[clip="circle"]   { clip-path: circle(50%); }
+[clip="ellipse"]  { clip-path: ellipse(60% 45%); }
+
+/* ── Polygons ────────────────────────────────────────────────────────────── */
+[clip="diamond"]  { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+[clip="triangle"] { clip-path: polygon(50% 0%, 100% 100%, 0% 100%); }
+[clip="triangle-down"] { clip-path: polygon(0% 0%, 100% 0%, 50% 100%); }
+[clip="triangle-left"] { clip-path: polygon(100% 0%, 100% 100%, 0% 50%); }
+[clip="triangle-right"]{ clip-path: polygon(0% 0%, 100% 50%, 0% 100%); }
+
+[clip="hex"]      {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+[clip="hex-wide"] {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+[clip="pentagon"] {
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+[clip="star"]     {
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%,
+    79% 91%, 50% 70%, 21% 91%, 32% 57%,
+    2% 35%, 39% 35%
+  );
+}
+[clip="star-4"]   {
+  clip-path: polygon(
+    50% 0%, 61% 38%, 100% 38%, 70% 60%,
+    79% 100%, 50% 76%, 21% 100%, 30% 60%,
+    0% 38%, 39% 38%
+  );
+}
+
+/* ── Decorative ──────────────────────────────────────────────────────────── */
+[clip="arrow"]    {
+  clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+}
+[clip="arrow-left"] {
+  clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+}
+[clip="chevron"]  {
+  clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%);
+}
+[clip="ribbon"]   {
+  clip-path: polygon(0% 15%, 100% 0%, 100% 85%, 0% 100%);
+}
+[clip="notch"]    {
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - var(--aura-notch-size, 20px)) 0%,
+    100% var(--aura-notch-size, 20px),
+    100% 100%,
+    0% 100%
+  );
+}
+[clip="notch-left"] {
+  clip-path: polygon(
+    var(--aura-notch-size, 20px) 0%,
+    100% 0%,
+    100% 100%,
+    var(--aura-notch-size, 20px) 100%,
+    0% calc(100% - var(--aura-notch-size, 20px)),
+    0% var(--aura-notch-size, 20px)
+  );
+}
+[clip="frame"]    {
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%,
+    5% 5%, 5% 95%, 95% 95%, 95% 5%, 5% 5%
+  );
+}
+
+/* ── Rounded inset (soft shapes) ─────────────────────────────────────────── */
+/* Use CSS clip-path with radius for soft shapes — requires newer browsers */
+[clip="squircle"] {
+  clip-path: path("M 0,50 C 0,0 0,0 50,0 S 100,0 100,50 100,100 50,100 0,100 0,50 Z");
+}
+
+/* ── Transition on clips ─────────────────────────────────────────────────── */
+[clip][motion]:hover { clip-path: none; }

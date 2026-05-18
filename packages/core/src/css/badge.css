@@ -1,0 +1,86 @@
+/* ─── Badge / chip ────────────────────────────────────────────────────────────
+   Inline semantic labels. Use badge= on any inline element.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Base badge ──────────────────────────────────────────────────────────── */
+[badge] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--aura-badge-gap, 4px);
+  padding: var(--aura-badge-padding-y, 2px) var(--aura-badge-padding-x, 10px);
+  font-size: var(--aura-badge-size, 0.72em);
+  font-weight: var(--aura-badge-weight, 600);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  border-radius: var(--aura-badge-radius, 999px);
+  white-space: nowrap;
+  background: var(--aura-badge-bg,   color-mix(in oklch, var(--aura-color-primary) 15%, transparent));
+  color:      var(--aura-badge-text, var(--aura-color-primary));
+  border: 1px solid var(--aura-badge-border, color-mix(in oklch, var(--aura-color-primary) 30%, transparent));
+}
+
+/* ── Tones ───────────────────────────────────────────────────────────────── */
+[badge="primary"] {
+  --aura-badge-bg:     color-mix(in oklch, var(--aura-color-primary) 15%, transparent);
+  --aura-badge-text:   var(--aura-color-primary);
+  --aura-badge-border: color-mix(in oklch, var(--aura-color-primary) 30%, transparent);
+}
+[badge="danger"] {
+  --aura-badge-bg:     color-mix(in oklch, var(--aura-color-danger) 15%, transparent);
+  --aura-badge-text:   var(--aura-color-danger);
+  --aura-badge-border: color-mix(in oklch, var(--aura-color-danger) 30%, transparent);
+}
+[badge="success"] {
+  --aura-badge-bg:     color-mix(in oklch, var(--aura-color-success) 15%, transparent);
+  --aura-badge-text:   var(--aura-color-success);
+  --aura-badge-border: color-mix(in oklch, var(--aura-color-success) 30%, transparent);
+}
+[badge="warning"] {
+  --aura-badge-bg:     color-mix(in oklch, var(--aura-color-warning) 15%, transparent);
+  --aura-badge-text:   var(--aura-color-warning);
+  --aura-badge-border: color-mix(in oklch, var(--aura-color-warning) 30%, transparent);
+}
+[badge="info"] {
+  --aura-badge-bg:     color-mix(in oklch, var(--aura-color-info) 15%, transparent);
+  --aura-badge-text:   var(--aura-color-info);
+  --aura-badge-border: color-mix(in oklch, var(--aura-color-info) 30%, transparent);
+}
+[badge="neutral"] {
+  --aura-badge-bg:     var(--aura-surface-2);
+  --aura-badge-text:   var(--aura-text-muted);
+  --aura-badge-border: var(--aura-border);
+}
+[badge="outline"] {
+  background: transparent;
+  color: var(--aura-text);
+  border-color: var(--aura-border);
+}
+[badge="solid"] {
+  background: var(--aura-color-primary);
+  color: white;
+  border-color: transparent;
+}
+[badge="gradient"] {
+  background: linear-gradient(135deg, var(--aura-color-primary), var(--aura-color-accent));
+  color: white;
+  border-color: transparent;
+}
+
+/* ── Dot badge ───────────────────────────────────────────────────────────── */
+[badge="dot"] {
+  padding: 0;
+  width: var(--aura-badge-dot-size, 10px);
+  height: var(--aura-badge-dot-size, 10px);
+  background: var(--aura-color-primary);
+  border: none;
+}
+[badge="dot-danger"]  { width: var(--aura-badge-dot-size, 10px); height: var(--aura-badge-dot-size, 10px); padding: 0; background: var(--aura-color-danger);  border: none; border-radius: 999px; display: inline-block; }
+[badge="dot-success"] { width: var(--aura-badge-dot-size, 10px); height: var(--aura-badge-dot-size, 10px); padding: 0; background: var(--aura-color-success); border: none; border-radius: 999px; display: inline-block; }
+
+/* ── Size variants ───────────────────────────────────────────────────────── */
+[badge][badge-size="sm"] { --aura-badge-size: 0.65em; --aura-badge-padding-y: 1px; --aura-badge-padding-x: 7px; }
+[badge][badge-size="lg"] { --aura-badge-size: 0.85em; --aura-badge-padding-y: 4px; --aura-badge-padding-x: 14px; }
+
+/* ── Square badge ────────────────────────────────────────────────────────── */
+[badge][badge-shape="square"] { --aura-badge-radius: var(--aura-radius-sm); }
+[badge][badge-shape="rounded"] { --aura-badge-radius: var(--aura-radius-md); }

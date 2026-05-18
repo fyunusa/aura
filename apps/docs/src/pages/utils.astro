@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="General Utilities">
+  <h1 class="page-title">General Utilities</h1>
+  <p class="page-desc">
+    High-frequency one-liner utilities: aspect ratios, overflow, cursors, opacity, object-fit,
+    positioning, blend modes, columns, writing modes and more.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Aspect ratio</h2>
+  <pre class="demo-code">{`aspect="square"   → 1:1
+aspect="video"    → 16:9
+aspect="photo"    → 4:3
+aspect="portrait" → 3:4
+aspect="wide"     → 21:9
+aspect="golden"   → φ (1.618)
+aspect="story"    → 9:16`}</pre>
+
+  <div class="demo">
+    <div class="demo-preview" layout="row" gap="md" wrap>
+      <div gradient="brand"  aspect="square"   radius="lg" style="width:100px;display:grid;place-items:center;font-size:0.7rem;">square</div>
+      <div gradient="ocean"  aspect="video"    radius="lg" style="width:160px;display:grid;place-items:center;font-size:0.7rem;">16/9</div>
+      <div gradient="candy"  aspect="portrait" radius="lg" style="width:80px;display:grid;place-items:center;font-size:0.7rem;">portrait</div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Overflow</h2>
+  <pre class="demo-code">{`overflow="hidden|auto|scroll|clip|visible"
+overflow="x"      → overflow-x: auto
+overflow="y"      → overflow-y: auto
+overflow="x-scroll|y-scroll"`}</pre>
+
+  <hr class="divider" />
+  <h2 class="section-title">Cursor</h2>
+  <div class="demo">
+    <div class="demo-preview" layout="row" gap="sm" wrap>
+      {['pointer','grab','crosshair','not-allowed','text','move','zoom-in','wait','help'].map(c => (
+        <div surface="glass" density="default" radius="md" cursor={c} style="padding:0.4rem 0.75rem;font-size:0.75rem;">{c}</div>
+      ))}
+    </div>
+    <pre class="demo-code">{`<button cursor="pointer">click me</button>
+<div cursor="grab">draggable</div>
+<div cursor="not-allowed" pointer="none">disabled</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Opacity</h2>
+  <div class="demo">
+    <div class="demo-preview" layout="row" gap="sm" wrap style="align-items:center;">
+      {['10','25','50','75','90','100'].map(o => (
+        <div surface="solid" tone="primary" density="default" radius="lg" opacity={o} style="padding:0.5rem 0.75rem;font-size:0.75rem;">
+          {o}%
+        </div>
+      ))}
+    </div>
+    <pre class="demo-code">{`<div opacity="50">…</div>
+<div opacity="0">hidden but in DOM</div>
+<div opacity="100">fully visible</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Blend modes</h2>
+  <div class="demo">
+    <div class="demo-preview" style="background:linear-gradient(135deg,#7c6af7,#06b6d4);border-radius:10px;padding:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+      {['multiply','screen','overlay','difference','exclusion'].map(b => (
+        <div style={`background:white;padding:0.5rem 1rem;border-radius:6px;font-size:0.75rem;font-weight:600;color:#333;`} blend={b}>{b}</div>
+      ))}
+    </div>
+    <pre class="demo-code">{`<img blend="multiply" />
+<div blend="screen">…</div>
+<div blend="overlay">…</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Z-index</h2>
+  <pre class="demo-code">{`z="0|1|10|20|50|100|auto|-1"`}</pre>
+
+  <hr class="divider" />
+  <h2 class="section-title">Positioning</h2>
+  <pre class="demo-code">{`pos="relative|absolute|fixed|sticky|static"
+inset="0|auto"
+
+<!-- Sticky header example -->
+<nav pos="sticky" inset="0" z="50">…</nav>`}</pre>
+
+  <hr class="divider" />
+  <h2 class="section-title">Columns (text)</h2>
+  <div class="demo">
+    <div class="demo-preview">
+      <div columns="2" style="font-size:0.85rem;line-height:1.7;opacity:0.7;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      </div>
+    </div>
+    <pre class="demo-code">{`<div columns="2">Long text flows into 2 columns…</div>
+<div columns="3">Three column layout…</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Writing mode</h2>
+  <div class="demo">
+    <div class="demo-preview" layout="row" gap="md" style="align-items:flex-start;padding:1rem;">
+      <div surface="glass" density="default" radius="lg" writing="vertical" style="height:120px;padding:1rem;">Vertical LR</div>
+      <div surface="glass" density="default" radius="lg" writing="vertical-rl" style="height:120px;padding:1rem;">Vertical RL</div>
+    </div>
+    <pre class="demo-code">{`<p writing="vertical">Vertical text LR</p>
+<p writing="vertical-rl">Vertical text RL</p>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">List styles</h2>
+  <pre class="demo-code">{`list="none"    → no bullets
+list="disc"    → bullet points
+list="decimal" → numbers
+list="check"   → ✓ checkmarks (green)`}</pre>
+
+  <hr class="divider" />
+  <h2 class="section-title">Select & pointer-events</h2>
+  <pre class="demo-code">{`select="none"  → can't select text
+select="all"   → click selects all
+pointer="none" → click-through element
+pointer="auto" → restore pointer events
+
+resize="none|both|horizontal|vertical"
+isolate        → isolation: isolate (new stacking context)`}</pre>
+</Layout>

@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Glow & Ring">
+  <h1 class="page-title">Glow & Ring</h1>
+  <p class="page-desc">
+    Colored box glows, focus rings, text glows, and colored shadows.
+    <code>glow=</code> automatically inherits the <code>tone=</code> color when set.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Box glow</h2>
+
+  <div class="demo">
+    <p class="demo-label">Sizes (with tone)</p>
+    <div class="demo-preview" layout="row" gap="md" wrap style="padding:2rem;">
+      <div surface="glass" tone="primary" glow="sm"  density="default" radius="xl" style="padding:1rem 1.5rem;">glow sm</div>
+      <div surface="glass" tone="primary" glow       density="default" radius="xl" style="padding:1rem 1.5rem;">glow</div>
+      <div surface="glass" tone="primary" glow="lg"  density="default" radius="xl" style="padding:1rem 1.5rem;">glow lg</div>
+      <div surface="glass" tone="primary" glow="xl"  density="default" radius="xl" style="padding:1rem 1.5rem;">glow xl</div>
+    </div>
+    <pre class="demo-code">{`<div surface="glass" tone="primary" glow="sm">…</div>
+<div surface="glass" tone="primary" glow>…</div>
+<div surface="glass" tone="primary" glow="lg">…</div>
+<div surface="glass" tone="primary" glow="xl">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Tone colors</p>
+    <div class="demo-preview" layout="row" gap="md" wrap style="padding:2rem;">
+      <div surface="glass" tone="primary" glow density="default" radius="lg" style="padding:0.75rem 1.25rem;">primary</div>
+      <div surface="glass" tone="danger"  glow density="default" radius="lg" style="padding:0.75rem 1.25rem;">danger</div>
+      <div surface="glass" tone="success" glow density="default" radius="lg" style="padding:0.75rem 1.25rem;">success</div>
+      <div surface="glass" tone="warning" glow density="default" radius="lg" style="padding:0.75rem 1.25rem;">warning</div>
+      <div surface="glass" tone="info"    glow density="default" radius="lg" style="padding:0.75rem 1.25rem;">info</div>
+    </div>
+    <pre class="demo-code">{`<div tone="primary" glow>primary glow</div>
+<div tone="danger"  glow>danger glow</div>
+<div tone="success" glow>success glow</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">White glow</p>
+    <div class="demo-preview" style="background:#111;padding:2rem;border-radius:8px;">
+      <div surface="solid" glow="white" density="default" radius="xl" style="padding:1rem 2rem;display:inline-block;">
+        White glow
+      </div>
+    </div>
+    <pre class="demo-code">{`<div surface="solid" glow="white">White glow</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Focus ring</h2>
+
+  <div class="demo">
+    <p class="demo-label">ring= variants</p>
+    <div class="demo-preview" layout="row" gap="md" wrap>
+      <div surface="glass" ring tone="primary" density="default" radius="lg" style="padding:0.75rem 1.25rem;">ring (primary)</div>
+      <div surface="glass" ring tone="danger"  density="default" radius="lg" style="padding:0.75rem 1.25rem;">ring (danger)</div>
+      <div surface="glass" ring="lg" tone="success" density="default" radius="lg" style="padding:0.75rem 1.25rem;">ring lg</div>
+      <div surface="glass" ring="sm" density="default" radius="lg" style="padding:0.75rem 1.25rem;">ring sm</div>
+    </div>
+    <pre class="demo-code">{`<div ring tone="primary">…</div>
+<div ring="lg" tone="danger">…</div>
+<button ring="sm">…</button>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Text glow</h2>
+
+  <div class="demo">
+    <p class="demo-label">text-glow=</p>
+    <div class="demo-preview" layout="stack" gap="sm" style="background:#080810;padding:1.5rem;border-radius:8px;">
+      <p text="heading" text-glow tone="primary">Glowing primary text</p>
+      <p text="heading" text-glow="lg" text-gradient="neon">Neon text glow</p>
+      <p text="heading" text-glow="white" style="color:white;">White text glow</p>
+    </div>
+    <pre class="demo-code">{`<h2 text="heading" text-glow tone="primary">Glowing text</h2>
+<h2 text="heading" text-glow="lg" text-gradient="neon">Neon</h2>
+<h2 text="heading" text-glow="white">White glow</h2>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Colored shadows</h2>
+
+  <div class="demo">
+    <p class="demo-label">shadow= tones</p>
+    <div class="demo-preview" layout="row" gap="lg" wrap style="padding:2rem;">
+      <div surface="glass" shadow="primary" density="default" radius="lg" style="padding:1rem 1.5rem;">primary shadow</div>
+      <div surface="glass" shadow="danger"  density="default" radius="lg" style="padding:1rem 1.5rem;">danger shadow</div>
+      <div surface="glass" shadow="success" density="default" radius="lg" style="padding:1rem 1.5rem;">success shadow</div>
+    </div>
+    <pre class="demo-code">{`<div shadow="primary">…</div>
+<div shadow="danger">…</div>
+<div shadow="inner">…</div>`}</pre>
+  </div>
+</Layout>

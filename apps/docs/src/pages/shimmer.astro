@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Shimmer & Skeleton">
+  <h1 class="page-title">Shimmer & Skeleton</h1>
+  <p class="page-desc">
+    Loading states for any element. <code>shimmer=</code> overlays a sliding highlight;
+    <code>skeleton=</code> applies a full loading state with muted background and shimmering sweep.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Shimmer overlay</h2>
+
+  <div class="demo">
+    <p class="demo-label">shimmer on any element</p>
+    <div class="demo-preview" layout="stack" gap="md">
+      <div surface="glass" density="default" radius="lg" shimmer style="padding:1rem;">
+        This card has a shimmer overlay
+      </div>
+      <div gradient="brand" radius="lg" shimmer style="padding:1rem;color:white;">
+        Gradient card with shimmer
+      </div>
+      <div shimmer="wave" radius="lg" style="padding:1rem;height:60px;background:rgb(255 255 255/0.05);"></div>
+    </div>
+    <pre class="demo-code">{`<!-- Shimmer overlay (::after pseudo-element) -->
+<div surface="glass" shimmer>…</div>
+
+<!-- Wave shimmer (entire background animates) -->
+<div shimmer="wave">…</div>
+
+<!-- Fast shimmer -->
+<div shimmer="fast">…</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Skeleton loading</h2>
+
+  <div class="demo">
+    <p class="demo-label">Card skeleton</p>
+    <div class="demo-preview" layout="stack" gap="md" style="max-width:340px;">
+      <div surface="glass" density="spacious" radius="xl" layout="stack" gap="md">
+        <!-- Skeleton image -->
+        <div skeleton radius="lg" style="height:140px;"></div>
+        <!-- Skeleton text lines -->
+        <div skeleton radius="md" style="height:20px;width:75%;"></div>
+        <div skeleton radius="md" style="height:14px;width:90%;"></div>
+        <div skeleton radius="md" style="height:14px;width:60%;"></div>
+        <!-- Skeleton button -->
+        <div skeleton radius="full" style="height:36px;width:120px;"></div>
+      </div>
+    </div>
+    <pre class="demo-code">{`<div surface="glass" density="spacious" radius="xl" layout="stack" gap="md">
+  <div skeleton radius="lg" style="height:140px;"></div>
+  <div skeleton radius="md" style="height:20px;width:75%;"></div>
+  <div skeleton radius="md" style="height:14px;width:90%;"></div>
+  <div skeleton radius="full" style="height:36px;width:120px;"></div>
+</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">List skeleton</p>
+    <div class="demo-preview" layout="stack" gap="sm" style="max-width:400px;">
+      {Array.from({length: 3}).map((_, i) => (
+        <div layout="row" gap="md" style="align-items:center;">
+          <div skeleton radius="full" style="width:40px;height:40px;flex-shrink:0;"></div>
+          <div layout="stack" gap="xs" style="flex:1;">
+            <div skeleton radius="sm" style="height:14px;width:60%;"></div>
+            <div skeleton radius="sm" style="height:12px;width:80%;"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <pre class="demo-code">{`<div layout="row" gap="md" style="align-items:center;">
+  <div skeleton radius="full" style="width:40px;height:40px;"></div>
+  <div layout="stack" gap="xs" style="flex:1;">
+    <div skeleton radius="sm" style="height:14px;width:60%;"></div>
+    <div skeleton radius="sm" style="height:12px;width:80%;"></div>
+  </div>
+</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Speed variants</h2>
+
+  <div class="demo">
+    <div class="demo-preview" layout="row" gap="md">
+      <div shimmer="fast" style="flex:1;height:60px;background:rgb(255 255 255/0.06);border-radius:8px;"></div>
+      <div shimmer      style="flex:1;height:60px;background:rgb(255 255 255/0.06);border-radius:8px;"></div>
+      <div shimmer="slow" style="flex:1;height:60px;background:rgb(255 255 255/0.06);border-radius:8px;"></div>
+    </div>
+    <pre class="demo-code">{`<div shimmer="fast">…</div>    <!-- 0.9s -->
+<div shimmer>…</div>           <!-- 1.8s (default) -->
+<div shimmer="slow">…</div>    <!-- 3s -->
+
+<!-- Token override -->
+<div shimmer style="--aura-shimmer-speed:2.5s;--aura-shimmer-opacity:0.15">…</div>`}</pre>
+  </div>
+</Layout>

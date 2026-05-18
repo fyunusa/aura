@@ -1,0 +1,127 @@
+/* ─── CSS mask edge fades ─────────────────────────────────────────────────────
+   Fade-out edges using CSS mask-image. No JavaScript. No SVG.
+   Works on images, text containers, carousels, and more.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Bottom fade ─────────────────────────────────────────────────────────── */
+[mask="fade-bottom"] {
+  -webkit-mask-image: linear-gradient(to bottom,
+    black var(--aura-mask-start, 50%),
+    transparent var(--aura-mask-end, 100%)
+  );
+  mask-image: linear-gradient(to bottom,
+    black var(--aura-mask-start, 50%),
+    transparent var(--aura-mask-end, 100%)
+  );
+}
+
+/* ── Top fade ────────────────────────────────────────────────────────────── */
+[mask="fade-top"] {
+  -webkit-mask-image: linear-gradient(to top,
+    black var(--aura-mask-start, 50%),
+    transparent var(--aura-mask-end, 100%)
+  );
+  mask-image: linear-gradient(to top,
+    black var(--aura-mask-start, 50%),
+    transparent var(--aura-mask-end, 100%)
+  );
+}
+
+/* ── Left and right fades ─────────────────────────────────────────────────── */
+[mask="fade-right"] {
+  -webkit-mask-image: linear-gradient(to right,
+    black var(--aura-mask-start, 60%),
+    transparent var(--aura-mask-end, 100%)
+  );
+  mask-image: linear-gradient(to right,
+    black var(--aura-mask-start, 60%),
+    transparent var(--aura-mask-end, 100%)
+  );
+}
+
+[mask="fade-left"] {
+  -webkit-mask-image: linear-gradient(to left,
+    black var(--aura-mask-start, 60%),
+    transparent var(--aura-mask-end, 100%)
+  );
+  mask-image: linear-gradient(to left,
+    black var(--aura-mask-start, 60%),
+    transparent var(--aura-mask-end, 100%)
+  );
+}
+
+/* ── Both sides horizontal fade ──────────────────────────────────────────── */
+[mask="fade-x"] {
+  -webkit-mask-image: linear-gradient(to right,
+    transparent 0%,
+    black var(--aura-mask-edge, 15%),
+    black calc(100% - var(--aura-mask-edge, 15%)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(to right,
+    transparent 0%,
+    black var(--aura-mask-edge, 15%),
+    black calc(100% - var(--aura-mask-edge, 15%)),
+    transparent 100%
+  );
+}
+
+/* ── Both sides vertical fade ────────────────────────────────────────────── */
+[mask="fade-y"] {
+  -webkit-mask-image: linear-gradient(to bottom,
+    transparent 0%,
+    black var(--aura-mask-edge, 15%),
+    black calc(100% - var(--aura-mask-edge, 15%)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(to bottom,
+    transparent 0%,
+    black var(--aura-mask-edge, 15%),
+    black calc(100% - var(--aura-mask-edge, 15%)),
+    transparent 100%
+  );
+}
+
+/* ── Vignette ────────────────────────────────────────────────────────────── */
+[mask="vignette"] {
+  -webkit-mask-image: radial-gradient(ellipse at center,
+    black var(--aura-mask-start, 40%),
+    transparent var(--aura-mask-end, 80%)
+  );
+  mask-image: radial-gradient(ellipse at center,
+    black var(--aura-mask-start, 40%),
+    transparent var(--aura-mask-end, 80%)
+  );
+}
+
+/* ── Circle crop ─────────────────────────────────────────────────────────── */
+[mask="circle"] {
+  -webkit-mask-image: radial-gradient(circle at center,
+    black var(--aura-mask-start, 55%),
+    transparent var(--aura-mask-end, 72%)
+  );
+  mask-image: radial-gradient(circle at center,
+    black var(--aura-mask-start, 55%),
+    transparent var(--aura-mask-end, 72%)
+  );
+}
+
+/* ── Spotlight (center bright, edges dark) ────────────────────────────────── */
+[mask="spotlight"] {
+  -webkit-mask-image: radial-gradient(ellipse at var(--aura-mask-center, 50% 50%),
+    black 0%,
+    black var(--aura-mask-start, 30%),
+    transparent var(--aura-mask-end, 70%)
+  );
+  mask-image: radial-gradient(ellipse at var(--aura-mask-center, 50% 50%),
+    black 0%,
+    black var(--aura-mask-start, 30%),
+    transparent var(--aura-mask-end, 70%)
+  );
+}
+
+/* ── Tokens ───────────────────────────────────────────────────────────────── */
+/* --aura-mask-start:  60%    (solid region end)   */
+/* --aura-mask-end:    100%   (fully transparent)  */
+/* --aura-mask-edge:   15%    (fade-x/y edge width)*/
+/* --aura-mask-center: 50% 50% (spotlight center)  */

@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Background Patterns">
+  <h1 class="page-title">Background Patterns</h1>
+  <p class="page-desc">
+    Pure-CSS background patterns — no SVG, no images. The <code>pattern=</code> attr applies
+    a repeating gradient overlay. Stack on any <code>surface=</code> for depth.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Pattern presets</h2>
+
+  <div class="demo">
+    <p class="demo-label">Grid</p>
+    <div class="demo-preview">
+      <div surface="glass" pattern="grid" density="spacious" radius="xl" style="height:140px;display:grid;place-items:center;">
+        <span text="label">pattern="grid"</span>
+      </div>
+    </div>
+    <pre class="demo-code">{`<div surface="glass" pattern="grid">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Dots</p>
+    <div class="demo-preview">
+      <div surface="glass" pattern="dots" density="spacious" radius="xl" style="height:140px;display:grid;place-items:center;">
+        <span text="label">pattern="dots"</span>
+      </div>
+    </div>
+    <pre class="demo-code">{`<div surface="glass" pattern="dots">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Stripes</p>
+    <div class="demo-preview">
+      <div surface="glass" pattern="stripes" density="spacious" radius="xl" style="height:140px;display:grid;place-items:center;">
+        <span text="label">pattern="stripes"</span>
+      </div>
+    </div>
+    <pre class="demo-code">{`<div surface="glass" pattern="stripes">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Crosshatch</p>
+    <div class="demo-preview">
+      <div surface="glass" pattern="crosshatch" density="spacious" radius="xl" style="height:140px;display:grid;place-items:center;">
+        <span text="label">pattern="crosshatch"</span>
+      </div>
+    </div>
+    <pre class="demo-code">{`<div surface="glass" pattern="crosshatch">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Checker</p>
+    <div class="demo-preview">
+      <div surface="glass" pattern="checker" density="spacious" radius="xl" style="height:140px;display:grid;place-items:center;">
+        <span text="label">pattern="checker"</span>
+      </div>
+    </div>
+    <pre class="demo-code">{`<div surface="glass" pattern="checker">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Diamonds</p>
+    <div class="demo-preview">
+      <div surface="glass" pattern="diamonds" density="spacious" radius="xl" style="height:140px;display:grid;place-items:center;">
+        <span text="label">pattern="diamonds"</span>
+      </div>
+    </div>
+    <pre class="demo-code">{`<div surface="glass" pattern="diamonds">…</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Customisation tokens</h2>
+
+  <div class="demo">
+    <p class="demo-label">Override size & opacity</p>
+    <div class="demo-preview" layout="row" gap="md">
+      <div surface="glass" pattern="grid" radius="xl" style="flex:1;height:120px;--aura-pattern-size:20px;--aura-pattern-opacity:0.15;display:grid;place-items:center;font-size:0.75rem;">Dense grid</div>
+      <div surface="glass" pattern="dots" radius="xl" style="flex:1;height:120px;--aura-pattern-size:40px;--aura-dot-size:3px;--aura-pattern-opacity:0.25;display:grid;place-items:center;font-size:0.75rem;">Large dots</div>
+    </div>
+    <pre class="demo-code">{`<!-- Dense grid -->
+<div pattern="grid" style="--aura-pattern-size:20px;--aura-pattern-opacity:0.15">…</div>
+
+<!-- Large dots -->
+<div pattern="dots" style="--aura-pattern-size:40px;--aura-dot-size:3px">…</div>
+
+<!-- Angled stripes -->
+<div pattern="stripes" style="--aura-stripes-angle:30deg;--aura-stripes-width:4px">…</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Stacked with gradients</h2>
+
+  <div class="demo">
+    <p class="demo-label">Pattern + gradient hero</p>
+    <div class="demo-preview">
+      <div gradient="ocean" pattern="dots" density="spacious" radius="xl" style="height:180px;display:grid;place-items:center;text-align:center;">
+        <div>
+          <h2 text="heading" style="color:white;margin-bottom:0.5rem;">Hero section</h2>
+          <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;">gradient + pattern layered</p>
+        </div>
+      </div>
+    </div>
+    <pre class="demo-code">{`<div gradient="ocean" pattern="dots" density="spacious" radius="xl">
+  <h2 text="heading">Hero section</h2>
+</div>`}</pre>
+  </div>
+</Layout>

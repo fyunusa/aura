@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Clip Paths">
+  <h1 class="page-title">Clip Paths</h1>
+  <p class="page-desc">
+    Shape any element with the <code>clip=</code> attr. Uses pure CSS <code>clip-path</code> —
+    no SVG, no images.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Basic shapes</h2>
+
+  <div class="demo">
+    <p class="demo-label">Circles & polygons</p>
+    <div class="demo-preview" layout="row" gap="lg" wrap style="align-items:center;padding:2rem;">
+      <div gradient="brand"  clip="circle"   style="width:100px;height:100px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;">circle</div>
+      <div gradient="ocean"  clip="ellipse"  style="width:120px;height:80px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;">ellipse</div>
+      <div gradient="fire"   clip="diamond"  style="width:100px;height:100px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;">diamond</div>
+      <div gradient="candy"  clip="triangle" style="width:100px;height:100px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;padding-top:1.5rem;">triangle</div>
+      <div gradient="forest" clip="hex"      style="width:100px;height:100px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;">hex</div>
+      <div gradient="sunset" clip="pentagon" style="width:100px;height:100px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;">pentagon</div>
+      <div gradient="brand"  clip="star"     style="width:100px;height:100px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;">star</div>
+    </div>
+    <pre class="demo-code">{`<div clip="circle">…</div>
+<div clip="diamond">…</div>
+<div clip="hex">…</div>
+<div clip="star">…</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Decorative shapes</h2>
+
+  <div class="demo">
+    <p class="demo-label">Arrows, chevrons & ribbons</p>
+    <div class="demo-preview" layout="row" gap="lg" wrap style="align-items:center;padding:2rem;">
+      <div gradient="ocean"  clip="arrow"         style="width:140px;height:80px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;">arrow →</div>
+      <div gradient="sunset" clip="arrow-left"    style="width:140px;height:80px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;">← arrow-left</div>
+      <div gradient="candy"  clip="chevron"       style="width:140px;height:80px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;">chevron</div>
+      <div gradient="forest" clip="ribbon"        style="width:140px;height:80px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;">ribbon</div>
+      <div gradient="fire"   clip="notch"         style="width:140px;height:80px;display:grid;place-items:center;font-size:0.7rem;font-weight:600;background-color:#ef4444;">notch</div>
+    </div>
+    <pre class="demo-code">{`<div clip="arrow">Arrow right</div>
+<div clip="chevron">Chevron badge</div>
+<div clip="ribbon">Ribbon label</div>
+<div clip="notch">Notch corner</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Image cropping</h2>
+
+  <div class="demo">
+    <p class="demo-label">Clip an image to a shape</p>
+    <div class="demo-preview" layout="row" gap="lg" wrap style="align-items:center;padding:1rem;">
+      <div gradient="brand"  clip="circle"  style="width:120px;height:120px;"></div>
+      <div gradient="sunset" clip="hex"     style="width:120px;height:120px;"></div>
+      <div gradient="ocean"  clip="diamond" style="width:120px;height:120px;"></div>
+      <div gradient="candy"  clip="star"    style="width:120px;height:120px;"></div>
+    </div>
+    <pre class="demo-code">{`<!-- Works on images too -->
+<img src="photo.jpg" clip="circle" style="width:120px;height:120px;object-fit:cover;" />
+<img src="photo.jpg" clip="hex" style="width:120px;height:120px;object-fit:cover;" />`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">All values</h2>
+  <pre class="demo-code">{`clip="circle|ellipse"
+clip="diamond|triangle|triangle-down|triangle-left|triangle-right"
+clip="hex|hex-wide|pentagon|star|star-4"
+clip="arrow|arrow-left|chevron|ribbon|notch|notch-left"
+
+<!-- Notch size token -->
+--aura-notch-size: 20px`}</pre>
+</Layout>

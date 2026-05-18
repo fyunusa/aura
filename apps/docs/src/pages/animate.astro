@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Animate">
+  <h1 class="page-title">Animate</h1>
+  <p class="page-desc">
+    Put <code>animate=</code> on any element for CSS keyframe animations — no classes, no JS.
+    Layer <code>animate-delay=</code> for stagger effects and control duration with
+    <code>animate-duration=</code>. All animations respect <code>prefers-reduced-motion</code>.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Basic animations</h2>
+
+  <div class="demo">
+    <p class="demo-label">spin · pulse · bounce · float</p>
+    <div class="demo-preview" layout="row" gap="xl" wrap style="align-items:center;padding:1.5rem;">
+      <div style="text-align:center;">
+        <div surface="solid" tone="primary" radius="full" animate="spin" style="width:48px;height:48px;border-top:3px solid transparent!important;"></div>
+        <span style="display:block;margin-top:0.5rem;font-size:0.75rem;opacity:0.5;">spin</span>
+      </div>
+      <div style="text-align:center;">
+        <div surface="solid" tone="success" radius="full" animate="pulse" style="width:48px;height:48px;"></div>
+        <span style="display:block;margin-top:0.5rem;font-size:0.75rem;opacity:0.5;">pulse</span>
+      </div>
+      <div style="text-align:center;">
+        <div surface="solid" tone="warning" radius="lg" animate="bounce" style="width:48px;height:48px;"></div>
+        <span style="display:block;margin-top:0.5rem;font-size:0.75rem;opacity:0.5;">bounce</span>
+      </div>
+      <div style="text-align:center;">
+        <div surface="solid" tone="info" radius="xl" animate="float" style="width:48px;height:48px;"></div>
+        <span style="display:block;margin-top:0.5rem;font-size:0.75rem;opacity:0.5;">float</span>
+      </div>
+      <div style="text-align:center;">
+        <div surface="solid" tone="accent" radius="xl" animate="heartbeat" style="width:48px;height:48px;"></div>
+        <span style="display:block;margin-top:0.5rem;font-size:0.75rem;opacity:0.5;">heartbeat</span>
+      </div>
+      <div style="text-align:center;">
+        <div surface="solid" tone="danger" radius="xl" animate="wiggle" style="width:48px;height:48px;"></div>
+        <span style="display:block;margin-top:0.5rem;font-size:0.75rem;opacity:0.5;">wiggle</span>
+      </div>
+    </div>
+    <pre class="demo-code">{`<span animate="spin">⚙️</span>
+<div animate="pulse">…</div>
+<div animate="bounce">…</div>
+<div animate="float">…</div>
+<div animate="heartbeat">❤️</div>
+<div animate="wiggle">👋</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Ping (notification pulse)</p>
+    <div class="demo-preview" style="padding:2rem;display:flex;align-items:center;gap:1rem;">
+      <div style="position:relative;display:inline-flex;">
+        <div surface="solid" tone="danger" radius="full" style="width:12px;height:12px;" animate="ping"></div>
+      </div>
+      <span style="opacity:0.6;font-size:0.85rem;">Status indicator with ping</span>
+    </div>
+    <pre class="demo-code">{`<!-- Notification dot with ping pulse -->
+<span animate="ping" style="color:#ef4444;width:12px;height:12px;background:currentColor;border-radius:50%;display:inline-block;"></span>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Stagger with animate-delay=</h2>
+
+  <div class="demo">
+    <p class="demo-label">Staggered entry (with reveal)</p>
+    <div class="demo-preview" layout="row" gap="md">
+      {[0, 150, 300, 450, 600].map((delay, i) => (
+        <div surface="glass" tone="primary" density="default" radius="lg"
+             animate="float" animate-delay={String(delay)}
+             style={`flex:1;height:60px;display:grid;place-items:center;font-size:0.75rem;`}>
+          {i + 1}
+        </div>
+      ))}
+    </div>
+    <pre class="demo-code">{`<div animate="float" animate-delay="0">1</div>
+<div animate="float" animate-delay="150">2</div>
+<div animate="float" animate-delay="300">3</div>
+<div animate="float" animate-delay="450">4</div>
+<div animate="float" animate-delay="600">5</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Duration & control</h2>
+
+  <pre class="demo-code">{`<!-- Duration -->
+<div animate="spin" animate-duration="500">fast</div>
+<div animate="spin" animate-duration="3000">slow</div>
+
+<!-- Run once -->
+<div animate="tada" animate-once>tada on load</div>
+
+<!-- Pause on hover -->
+<div animate="spin" animate-pause>hover to pause</div>
+
+<!-- Fill mode -->
+<div animate="bounce" animate-fill="both">fill both</div>`}</pre>
+
+  <hr class="divider" />
+  <h2 class="section-title">All values</h2>
+  <pre class="demo-code">{`animate="spin|spin-slow|spin-fast|spin-reverse"
+animate="pulse|pulse-fast"
+animate="bounce|bounce-slow"
+animate="shake|shake-loop"
+animate="wiggle|float|float-slow"
+animate="blink|tada|heartbeat|flash|rubber|drift|ping"
+
+animate-delay="0|75|100|150|200|300|500|700|1000"
+animate-duration="75|100|150|200|300|500|700|1000|2000"
+animate-once  animate-twice
+animate-fill="both|forwards"
+animate-pause  (pauses on hover)`}</pre>
+</Layout>

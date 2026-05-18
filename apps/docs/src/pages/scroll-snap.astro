@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Scroll Snap">
+  <h1 class="page-title">Scroll Snap</h1>
+  <p class="page-desc">
+    Native CSS scroll snapping. Use <code>scroll="snap-x"</code> or <code>scroll="snap-y"</code>
+    on the container and <code>snap=</code> on each child. Also controls scroll behaviour, overscroll,
+    and scrollbar appearance.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Horizontal snap carousel</h2>
+
+  <div class="demo">
+    <p class="demo-label">scroll="snap-x" + snap="center" on children</p>
+    <div class="demo-preview">
+      <div scroll="snap-x" scrollbar="hidden" style="display:flex;gap:1rem;padding:1rem 0;">
+        {['Brand', 'Ocean', 'Sunset', 'Forest', 'Fire', 'Candy', 'Neon'].map((name, i) => (
+          <div gradient={name.toLowerCase()} snap="center" radius="xl"
+               style="min-width:280px;height:160px;display:grid;place-items:center;color:white;font-weight:700;font-size:1.1rem;flex-shrink:0;">
+            {name}
+          </div>
+        ))}
+      </div>
+    </div>
+    <pre class="demo-code">{`<div scroll="snap-x" scrollbar="hidden" style="display:flex;gap:1rem;">
+  <div snap="center" style="min-width:280px;height:160px;flex-shrink:0;">Slide 1</div>
+  <div snap="center" style="min-width:280px;height:160px;flex-shrink:0;">Slide 2</div>
+  <div snap="center" style="min-width:280px;height:160px;flex-shrink:0;">Slide 3</div>
+</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Vertical snap</h2>
+
+  <div class="demo">
+    <p class="demo-label">Full-page sections with scroll="snap-y"</p>
+    <div class="demo-preview" scroll="snap-y" scrollbar="thin" style="height:300px;">
+      {[['Brand','What we do'],['Ocean','Our mission'],['Candy','Get in touch']].map(([g, title]) => (
+        <div gradient={g} snap="start" style="height:300px;display:grid;place-items:center;color:white;font-weight:700;font-size:1.2rem;">
+          {title}
+        </div>
+      ))}
+    </div>
+    <pre class="demo-code">{`<main scroll="snap-y" style="height:100vh;overflow-y:auto;">
+  <section snap="start" style="height:100vh;">Section 1</section>
+  <section snap="start" style="height:100vh;">Section 2</section>
+  <section snap="start" style="height:100vh;">Section 3</section>
+</main>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Scrollbar styles</h2>
+
+  <div class="demo">
+    <p class="demo-label">scrollbar="hidden" · scrollbar="thin"</p>
+    <div class="demo-preview" layout="row" gap="md">
+      <div scroll="snap-x" scrollbar="hidden" style="flex:1;display:flex;gap:0.5rem;padding:0.5rem 0;">
+        {Array.from({length:6}).map((_, i) => (
+          <div surface="glass" radius="md" style="min-width:80px;height:50px;flex-shrink:0;display:grid;place-items:center;font-size:0.75rem;">{i+1}</div>
+        ))}
+      </div>
+    </div>
+    <pre class="demo-code">{`scrollbar="hidden"  → no scrollbar
+scrollbar="thin"    → narrow, styled scrollbar`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Overscroll behaviour</h2>
+  <pre class="demo-code">{`overscroll="none"    → disables bounce / chained scroll
+overscroll="contain" → scroll stays inside this element
+overscroll="auto"    → browser default`}</pre>
+
+  <hr class="divider" />
+  <h2 class="section-title">Scroll snap stop</h2>
+  <pre class="demo-code">{`<!-- Force stop at each slide (prevents fast flick skipping) -->
+<div snap="start" snap="always">…</div>
+
+<!-- Proximity snap (snaps only when close to target) -->
+<div scroll="snap-x" snap-proximity>…</div>
+
+<!-- Scroll padding -->
+<div scroll="snap-y" scroll-pad="lg">…</div>`}</pre>
+
+  <hr class="divider" />
+  <h2 class="section-title">All values</h2>
+  <pre class="demo-code">{`scroll="snap-x|snap-y|snap-both|smooth|auto"
+scroll-pad="sm|md|lg"
+snap="start|center|end|none|always"
+snap-proximity  (on container)
+overscroll="none|contain|auto"
+scrollbar="hidden|thin"`}</pre>
+</Layout>

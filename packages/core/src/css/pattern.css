@@ -1,0 +1,111 @@
+/* ─── Background patterns (pure CSS, zero SVG) ───────────────────────────────
+   Impossible in Tailwind without plugins or raw CSS.
+   All use only repeating gradients — tiny file size, fully customisable.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Grid ─────────────────────────────────────────────────────────────────── */
+[pattern="grid"] {
+  background-image:
+    linear-gradient(rgb(255 255 255 / var(--aura-pattern-opacity, 0.05)) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / var(--aura-pattern-opacity, 0.05)) 1px, transparent 1px);
+  background-size: var(--aura-pattern-size, 40px) var(--aura-pattern-size, 40px);
+}
+
+/* ── Dots ─────────────────────────────────────────────────────────────────── */
+[pattern="dots"] {
+  background-image: radial-gradient(
+    circle,
+    rgb(255 255 255 / var(--aura-pattern-opacity, 0.15)) var(--aura-dot-size, 1.5px),
+    transparent var(--aura-dot-size, 1.5px)
+  );
+  background-size: var(--aura-pattern-size, 24px) var(--aura-pattern-size, 24px);
+}
+
+/* ── Stripes (diagonal) ──────────────────────────────────────────────────── */
+[pattern="stripes"] {
+  background-image: repeating-linear-gradient(
+    var(--aura-stripes-angle, 45deg),
+    transparent 0,
+    transparent var(--aura-stripes-gap, 8px),
+    rgb(255 255 255 / var(--aura-pattern-opacity, 0.06)) var(--aura-stripes-gap, 8px),
+    rgb(255 255 255 / var(--aura-pattern-opacity, 0.06)) calc(var(--aura-stripes-gap, 8px) + var(--aura-stripes-width, 2px))
+  );
+}
+
+/* ── Horizontal stripes ───────────────────────────────────────────────────── */
+[pattern="h-stripes"] {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent var(--aura-stripes-gap, 12px),
+    rgb(255 255 255 / var(--aura-pattern-opacity, 0.05)) var(--aura-stripes-gap, 12px),
+    rgb(255 255 255 / var(--aura-pattern-opacity, 0.05)) calc(var(--aura-stripes-gap, 12px) + 1px)
+  );
+}
+
+/* ── Cross-hatch ─────────────────────────────────────────────────────────── */
+[pattern="crosshatch"] {
+  background-image:
+    repeating-linear-gradient(0deg,
+      transparent 0,
+      transparent calc(var(--aura-pattern-size, 20px) - 1px),
+      rgb(255 255 255 / var(--aura-pattern-opacity, 0.05)) calc(var(--aura-pattern-size, 20px) - 1px),
+      rgb(255 255 255 / var(--aura-pattern-opacity, 0.05)) var(--aura-pattern-size, 20px)
+    ),
+    repeating-linear-gradient(90deg,
+      transparent 0,
+      transparent calc(var(--aura-pattern-size, 20px) - 1px),
+      rgb(255 255 255 / var(--aura-pattern-opacity, 0.05)) calc(var(--aura-pattern-size, 20px) - 1px),
+      rgb(255 255 255 / var(--aura-pattern-opacity, 0.05)) var(--aura-pattern-size, 20px)
+    );
+}
+
+/* ── Checkerboard ─────────────────────────────────────────────────────────── */
+[pattern="checker"] {
+  background-image:
+    repeating-conic-gradient(
+      rgb(255 255 255 / var(--aura-pattern-opacity, 0.05)) 0% 25%,
+      transparent 0% 50%
+    );
+  background-size: var(--aura-pattern-size, 32px) var(--aura-pattern-size, 32px);
+}
+
+/* ── Diamond / Argyle ─────────────────────────────────────────────────────── */
+[pattern="diamonds"] {
+  background-image:
+    repeating-linear-gradient(45deg,
+      rgb(255 255 255 / var(--aura-pattern-opacity, 0.04)) 0,
+      rgb(255 255 255 / var(--aura-pattern-opacity, 0.04)) 1px,
+      transparent 0,
+      transparent 50%
+    ),
+    repeating-linear-gradient(-45deg,
+      rgb(255 255 255 / var(--aura-pattern-opacity, 0.04)) 0,
+      rgb(255 255 255 / var(--aura-pattern-opacity, 0.04)) 1px,
+      transparent 0,
+      transparent 50%
+    );
+  background-size: var(--aura-pattern-size, 30px) var(--aura-pattern-size, 30px);
+}
+
+/* ── Hexagons (approximated with circles) ─────────────────────────────────── */
+[pattern="hexagons"] {
+  background-image:
+    radial-gradient(circle farthest-side at 0%    0%,    transparent 94%, rgb(255 255 255/var(--aura-pattern-opacity,0.08)) 94%),
+    radial-gradient(circle farthest-side at 100%  0%,    transparent 94%, rgb(255 255 255/var(--aura-pattern-opacity,0.08)) 94%),
+    radial-gradient(circle farthest-side at 100%  100%,  transparent 94%, rgb(255 255 255/var(--aura-pattern-opacity,0.08)) 94%),
+    radial-gradient(circle farthest-side at 0%    100%,  transparent 94%, rgb(255 255 255/var(--aura-pattern-opacity,0.08)) 94%),
+    radial-gradient(circle farthest-side at 50%   12%,   transparent 94%, rgb(255 255 255/var(--aura-pattern-opacity,0.08)) 94%),
+    radial-gradient(circle farthest-side at 100%  50%,   transparent 94%, rgb(255 255 255/var(--aura-pattern-opacity,0.08)) 94%),
+    radial-gradient(circle farthest-side at 50%   88%,   transparent 94%, rgb(255 255 255/var(--aura-pattern-opacity,0.08)) 94%),
+    radial-gradient(circle farthest-side at 0%    50%,   transparent 94%, rgb(255 255 255/var(--aura-pattern-opacity,0.08)) 94%);
+  background-size: var(--aura-pattern-size, 50px) calc(var(--aura-pattern-size, 50px) * 0.866);
+}
+
+/* ── Custom pattern tokens ────────────────────────────────────────────────── */
+/* --aura-pattern-size:    40px   (grid cell / dot spacing)  */
+/* --aura-pattern-opacity: 0.05   (line/dot visibility)      */
+/* --aura-stripes-angle:   45deg  (stripe direction)         */
+/* --aura-stripes-gap:     8px    (gap between stripe lines) */
+/* --aura-stripes-width:   2px    (stripe line thickness)    */
+/* --aura-dot-size:        1.5px  (dot radius)               */

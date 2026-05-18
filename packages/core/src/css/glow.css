@@ -1,0 +1,71 @@
+/* ─── Glow effects ───────────────────────────────────────────────────────────
+   Colored box shadows + text glows. Automatically uses tone= color when set.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Box glow ─────────────────────────────────────────────────────────────── */
+[glow] {
+  --aura-glow-color: var(--aura-tone-color, var(--aura-color-primary));
+  box-shadow:
+    0 0 var(--aura-glow-size, 20px) var(--aura-glow-color),
+    0 0 calc(var(--aura-glow-size, 20px) * 2.5) color-mix(in oklch, var(--aura-glow-color) 30%, transparent);
+}
+
+[glow="sm"] { --aura-glow-size: 8px; }
+[glow="md"] { --aura-glow-size: 20px; }
+[glow="lg"] { --aura-glow-size: 35px; }
+[glow="xl"] { --aura-glow-size: 55px; }
+[glow="2xl"]{ --aura-glow-size: 80px; }
+
+/* Tone-specific glow colors */
+[glow][tone="primary"] { --aura-glow-color: var(--aura-color-primary); }
+[glow][tone="danger"]  { --aura-glow-color: var(--aura-color-danger);  }
+[glow][tone="success"] { --aura-glow-color: var(--aura-color-success); }
+[glow][tone="warning"] { --aura-glow-color: var(--aura-color-warning); }
+[glow][tone="info"]    { --aura-glow-color: var(--aura-color-info);    }
+[glow][tone="accent"]  { --aura-glow-color: var(--aura-color-accent);  }
+[glow="white"]         { --aura-glow-color: rgba(255,255,255,0.75);    }
+
+/* ── Focus ring (ring=) ───────────────────────────────────────────────────── */
+[ring] {
+  outline: 2px solid var(--aura-ring-color, var(--aura-color-primary));
+  outline-offset: var(--aura-ring-offset, 2px);
+}
+
+[ring="sm"] { outline-width: 1px; }
+[ring="md"] { outline-width: 2px; }
+[ring="lg"] { outline-width: 3px; }
+[ring="inset"] { outline-offset: -2px; }
+
+[ring][tone="primary"] { --aura-ring-color: var(--aura-color-primary); }
+[ring][tone="danger"]  { --aura-ring-color: var(--aura-color-danger);  }
+[ring][tone="success"] { --aura-ring-color: var(--aura-color-success); }
+[ring][tone="warning"] { --aura-ring-color: var(--aura-color-warning); }
+[ring="white"]         { --aura-ring-color: rgba(255,255,255,0.7);     }
+
+/* ── Shadow variants (colored box shadows) ────────────────────────────────── */
+[shadow="primary"] { box-shadow: 0 8px 24px color-mix(in oklch, var(--aura-color-primary) 35%, transparent); }
+[shadow="danger"]  { box-shadow: 0 8px 24px color-mix(in oklch, var(--aura-color-danger)  35%, transparent); }
+[shadow="success"] { box-shadow: 0 8px 24px color-mix(in oklch, var(--aura-color-success) 35%, transparent); }
+[shadow="warning"] { box-shadow: 0 8px 24px color-mix(in oklch, var(--aura-color-warning) 35%, transparent); }
+[shadow="lg"]      { box-shadow: var(--aura-shadow-high); }
+[shadow="xl"]      { box-shadow: var(--aura-shadow-float); }
+[shadow="none"]    { box-shadow: none; }
+[shadow="inner"]   { box-shadow: inset 0 2px 8px rgb(0 0 0 / 0.3); }
+
+/* ── Text glow ────────────────────────────────────────────────────────────── */
+[text-glow] {
+  text-shadow:
+    0 0 10px var(--aura-glow-color, var(--aura-color-primary)),
+    0 0 30px color-mix(in oklch, var(--aura-glow-color, var(--aura-color-primary)) 40%, transparent);
+}
+[text-glow="sm"] { text-shadow: 0 0 6px var(--aura-glow-color, var(--aura-color-primary)); }
+[text-glow="lg"] {
+  text-shadow:
+    0 0 15px var(--aura-glow-color, var(--aura-color-primary)),
+    0 0 45px color-mix(in oklch, var(--aura-glow-color, var(--aura-color-primary)) 35%, transparent),
+    0 0 90px color-mix(in oklch, var(--aura-glow-color, var(--aura-color-primary)) 15%, transparent);
+}
+[text-glow="white"]   { --aura-glow-color: rgba(255,255,255,0.9); }
+[text-glow="primary"] { --aura-glow-color: var(--aura-color-primary); }
+[text-glow="danger"]  { --aura-glow-color: var(--aura-color-danger); }
+[text-glow="success"] { --aura-glow-color: var(--aura-color-success); }

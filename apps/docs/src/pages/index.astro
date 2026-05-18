@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro'
 <Layout title="Overview">
   <h1 class="page-title">aura</h1>
   <p class="page-desc">
-    A lightweight (~8kb gzip), zero-config CSS library where semantic HTML attributes
+    A lightweight, zero-config CSS library where semantic HTML attributes
     produce complete, composable styles. Works directly in the browser with a CDN link —
     no build step required.
   </p>
@@ -13,7 +13,7 @@ import Layout from '../layouts/Layout.astro'
   <!-- Quick install -->
   <h2 class="section-title" style="margin-bottom:0.75rem;">Quick start</h2>
   <pre class="demo-code" style="border-radius:10px;border-top:1px solid rgb(255 255 255/0.07);margin-bottom:2.5rem;">{`<!-- CDN (no install) -->
-<link rel="stylesheet" href="https://unpkg.com/useaura@0.3.0/dist/forma.css" />
+<link rel="stylesheet" href="https://unpkg.com/useaura@0.4.0/dist/forma.css" />
 
 <!-- npm -->
 npm install useaura
@@ -99,6 +99,74 @@ import 'useaura/css'`}</pre>
     <a href="/docs/tooltip/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
       <p class="card-title">Tooltips</p>
       <p class="card-desc">tooltip= · tooltip-pos= — zero JS</p>
+    </a>
+  </div>
+
+  <h2 class="section-title" style="margin-bottom:0.75rem;">v0.4.0 — Visual effects</h2>
+  <div layout="grid" gap="md" style="--aura-grid-min:200px;margin-bottom:2.5rem;">
+    <a href="/docs/gradients/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Gradients</p>
+      <p class="card-desc">gradient= · text-gradient= · 18 named presets</p>
+    </a>
+    <a href="/docs/glow/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Glow & Ring</p>
+      <p class="card-desc">glow= · ring= · text-glow= · shadow=</p>
+    </a>
+    <a href="/docs/patterns/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Patterns</p>
+      <p class="card-desc">grid · dots · stripes · crosshatch · checker · diamonds</p>
+    </a>
+    <a href="/docs/filters/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Filters & Backdrop</p>
+      <p class="card-desc">filter= · backdrop= · blur, grayscale, sepia & more</p>
+    </a>
+    <a href="/docs/masks/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Masks</p>
+      <p class="card-desc">fade-bottom · fade-x · vignette · circle · spotlight</p>
+    </a>
+    <a href="/docs/clip/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Clip Paths</p>
+      <p class="card-desc">circle · diamond · hex · star · arrow · notch & more</p>
+    </a>
+  </div>
+
+  <h2 class="section-title" style="margin-bottom:0.75rem;">v0.4.0 — Animation & interaction</h2>
+  <div layout="grid" gap="md" style="--aura-grid-min:200px;margin-bottom:2.5rem;">
+    <a href="/docs/animate/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Animate</p>
+      <p class="card-desc">spin · pulse · bounce · wiggle · shake · ping · float</p>
+    </a>
+    <a href="/docs/tilt/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Tilt (3D Hover)</p>
+      <p class="card-desc">tilt= — mouse-aware 3D perspective tilt</p>
+    </a>
+    <a href="/docs/shimmer/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Shimmer & Skeleton</p>
+      <p class="card-desc">shimmer= · skeleton= — loading states on any element</p>
+    </a>
+  </div>
+
+  <h2 class="section-title" style="margin-bottom:0.75rem;">v0.4.0 — Utilities</h2>
+  <div layout="grid" gap="md" style="--aura-grid-min:200px;margin-bottom:3rem;">
+    <a href="/docs/utils/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">General Utils</p>
+      <p class="card-desc">aspect · overflow · cursor · opacity · object · z · blend</p>
+    </a>
+    <a href="/docs/text-effects/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Text Effects</p>
+      <p class="card-desc">text-shadow · text-stroke · highlight · tracking · leading</p>
+    </a>
+    <a href="/docs/badge/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Badge</p>
+      <p class="card-desc">badge= — inline semantic labels & chips</p>
+    </a>
+    <a href="/docs/divide/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Divide</p>
+      <p class="card-desc">divide="x|y" — lines between flex/grid children</p>
+    </a>
+    <a href="/docs/scroll-snap/" class="feature-card" surface="glass" density="spacious" radius="xl" motion="spring">
+      <p class="card-title">Scroll Snap</p>
+      <p class="card-desc">scroll=snap-x · snap= · scrollbar= · overscroll=</p>
     </a>
   </div>
 

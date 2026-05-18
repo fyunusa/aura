@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Badge">
+  <h1 class="page-title">Badge</h1>
+  <p class="page-desc">
+    Inline semantic labels and chips. Apply <code>badge=</code> to any inline element.
+    Tone-aware, size variants, dot indicators, and shape modifiers.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Tone badges</h2>
+
+  <div class="demo">
+    <p class="demo-label">Named tone variants</p>
+    <div class="demo-preview" layout="row" gap="sm" wrap style="align-items:center;">
+      <span badge="primary">primary</span>
+      <span badge="danger">danger</span>
+      <span badge="success">success</span>
+      <span badge="warning">warning</span>
+      <span badge="info">info</span>
+      <span badge="neutral">neutral</span>
+      <span badge="outline">outline</span>
+      <span badge="solid">solid</span>
+      <span badge="gradient">gradient</span>
+    </div>
+    <pre class="demo-code">{`<span badge="primary">primary</span>
+<span badge="danger">danger</span>
+<span badge="success">success</span>
+<span badge="warning">warning</span>
+<span badge="neutral">neutral</span>
+<span badge="outline">outline</span>
+<span badge="solid">solid</span>
+<span badge="gradient">gradient</span>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Sizes</h2>
+
+  <div class="demo">
+    <div class="demo-preview" layout="row" gap="sm" wrap style="align-items:center;">
+      <span badge="primary" badge-size="sm">small</span>
+      <span badge="primary">default</span>
+      <span badge="primary" badge-size="lg">large</span>
+    </div>
+    <pre class="demo-code">{`<span badge="primary" badge-size="sm">small</span>
+<span badge="primary">default</span>
+<span badge="primary" badge-size="lg">large</span>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Shapes</h2>
+
+  <div class="demo">
+    <div class="demo-preview" layout="row" gap="sm" wrap style="align-items:center;">
+      <span badge="primary">pill (default)</span>
+      <span badge="primary" badge-shape="rounded">rounded</span>
+      <span badge="primary" badge-shape="square">square</span>
+    </div>
+    <pre class="demo-code">{`<span badge="primary">pill</span>
+<span badge="primary" badge-shape="rounded">rounded</span>
+<span badge="primary" badge-shape="square">square</span>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Dot indicators</h2>
+
+  <div class="demo">
+    <div class="demo-preview" layout="row" gap="lg" wrap style="align-items:center;">
+      <div layout="row" gap="xs" style="align-items:center;">
+        <span badge="dot"></span>
+        <span style="font-size:0.875rem;">Online</span>
+      </div>
+      <div layout="row" gap="xs" style="align-items:center;">
+        <span badge="dot-danger"></span>
+        <span style="font-size:0.875rem;">Offline</span>
+      </div>
+      <div layout="row" gap="xs" style="align-items:center;">
+        <span badge="dot-success"></span>
+        <span style="font-size:0.875rem;">Active</span>
+      </div>
+    </div>
+    <pre class="demo-code">{`<span badge="dot"></span> Online
+<span badge="dot-danger"></span> Offline
+<span badge="dot-success"></span> Active`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">In context</h2>
+
+  <div class="demo">
+    <p class="demo-label">Nav items with badges</p>
+    <div class="demo-preview">
+      <nav layout="stack" gap="xs" style="max-width:200px;">
+        <a surface="ghost" density="default" radius="lg" style="display:flex;align-items:center;justify-content:space-between;padding:0.5rem 0.75rem;color:#e2e2f0;">
+          <span>Inbox</span>
+          <span badge="primary">12</span>
+        </a>
+        <a surface="ghost" density="default" radius="lg" style="display:flex;align-items:center;justify-content:space-between;padding:0.5rem 0.75rem;color:#e2e2f0;">
+          <span>Alerts</span>
+          <span badge="danger">3</span>
+        </a>
+        <a surface="glass" density="default" radius="lg" style="display:flex;align-items:center;justify-content:space-between;padding:0.5rem 0.75rem;color:#e2e2f0;">
+          <span>New</span>
+          <span badge="gradient">beta</span>
+        </a>
+      </nav>
+    </div>
+    <pre class="demo-code">{`<a href="/inbox" style="display:flex;justify-content:space-between">
+  Inbox <span badge="primary">12</span>
+</a>`}</pre>
+  </div>
+</Layout>

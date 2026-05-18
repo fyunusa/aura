@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Divide">
+  <h1 class="page-title">Divide</h1>
+  <p class="page-desc">
+    Add 1px borders between flex or grid children using <code>divide="x"</code> or
+    <code>divide="y"</code> — without manually placing <code>&lt;hr&gt;</code> or wrapper elements.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Horizontal dividers (divide-y)</h2>
+
+  <div class="demo">
+    <p class="demo-label">Between stacked items</p>
+    <div class="demo-preview">
+      <div surface="glass" radius="xl" divide="y" layout="stack" gap="sm" style="max-width:320px;padding:0;">
+        <div style="padding:1rem;">Item one</div>
+        <div style="padding:1rem;">Item two</div>
+        <div style="padding:1rem;">Item three</div>
+        <div style="padding:1rem;">Item four</div>
+      </div>
+    </div>
+    <pre class="demo-code">{`<ul surface="glass" radius="xl" divide="y" layout="stack" gap="0">
+  <li style="padding:1rem;">Item one</li>
+  <li style="padding:1rem;">Item two</li>
+  <li style="padding:1rem;">Item three</li>
+</ul>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Vertical dividers (divide-x)</h2>
+
+  <div class="demo">
+    <p class="demo-label">Between row children</p>
+    <div class="demo-preview">
+      <div surface="glass" radius="xl" divide="x" layout="row" style="padding:0;overflow:hidden;">
+        <div style="padding:1rem 1.5rem;flex:1;text-align:center;">Home</div>
+        <div style="padding:1rem 1.5rem;flex:1;text-align:center;">About</div>
+        <div style="padding:1rem 1.5rem;flex:1;text-align:center;">Contact</div>
+      </div>
+    </div>
+    <pre class="demo-code">{`<nav surface="glass" radius="xl" divide="x" layout="row">
+  <a style="padding:1rem 1.5rem;flex:1;text-align:center;">Home</a>
+  <a style="padding:1rem 1.5rem;flex:1;text-align:center;">About</a>
+  <a style="padding:1rem 1.5rem;flex:1;text-align:center;">Contact</a>
+</nav>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Tone colors</h2>
+
+  <div class="demo">
+    <div class="demo-preview" layout="stack" gap="md">
+      <div surface="glass" radius="lg" divide="y" tone="primary" layout="stack" gap="xs" style="padding:0;max-width:200px;">
+        <div style="padding:0.75rem;">Primary divide</div>
+        <div style="padding:0.75rem;">Second item</div>
+      </div>
+      <div surface="glass" radius="lg" divide="y" tone="danger" layout="stack" gap="xs" style="padding:0;max-width:200px;">
+        <div style="padding:0.75rem;">Danger divide</div>
+        <div style="padding:0.75rem;">Second item</div>
+      </div>
+    </div>
+    <pre class="demo-code">{`<ul divide="y" tone="primary">…</ul>
+<ul divide="y" tone="danger">…</ul>
+<ul divide="y" tone="muted">…</ul>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Style variants</h2>
+
+  <div class="demo">
+    <div class="demo-preview" layout="stack" gap="md">
+      <div surface="glass" radius="lg" divide="y" divide-style="dashed" layout="stack" gap="xs" style="padding:0;max-width:200px;">
+        <div style="padding:0.75rem;">Dashed</div>
+        <div style="padding:0.75rem;">Divide</div>
+      </div>
+      <div surface="glass" radius="lg" divide="y" divide-style="dotted" layout="stack" gap="xs" style="padding:0;max-width:200px;">
+        <div style="padding:0.75rem;">Dotted</div>
+        <div style="padding:0.75rem;">Divide</div>
+      </div>
+      <div surface="glass" radius="lg" divide="y" divide-width="2" layout="stack" gap="xs" style="padding:0;max-width:200px;">
+        <div style="padding:0.75rem;">2px wide</div>
+        <div style="padding:0.75rem;">Divide</div>
+      </div>
+    </div>
+    <pre class="demo-code">{`<ul divide="y" divide-style="dashed">…</ul>
+<ul divide="y" divide-style="dotted">…</ul>
+<ul divide="y" divide-width="2">…</ul>
+
+<!-- Custom via token -->
+<ul divide="y" style="--aura-divide-color:#7c6af7">…</ul>`}</pre>
+  </div>
+</Layout>

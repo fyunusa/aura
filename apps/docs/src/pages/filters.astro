@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Filters & Backdrop">
+  <h1 class="page-title">Filters & Backdrop</h1>
+  <p class="page-desc">
+    CSS <code>filter=</code> and <code>backdrop=</code> attrs. Apply blur, grayscale, sepia,
+    brightness, contrast, and more to any element or its background.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Blur filters</h2>
+
+  <div class="demo">
+    <p class="demo-label">filter="blur-*"</p>
+    <div class="demo-preview" layout="row" gap="md" wrap>
+      <div surface="glass" density="default" radius="lg" filter="blur-sm" style="padding:1rem;">blur-sm</div>
+      <div surface="glass" density="default" radius="lg" filter="blur"    style="padding:1rem;">blur</div>
+      <div surface="glass" density="default" radius="lg" filter="blur-md" style="padding:1rem;">blur-md</div>
+      <div surface="glass" density="default" radius="lg" filter="blur-lg" style="padding:1rem;">blur-lg</div>
+    </div>
+    <pre class="demo-code">{`<img filter="blur-sm" />
+<div filter="blur-lg">…</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Color filters</h2>
+
+  <div class="demo">
+    <p class="demo-label">grayscale · sepia · invert</p>
+    <div class="demo-preview" layout="row" gap="md" wrap>
+      <div surface="solid" tone="primary" density="default" radius="lg" filter="grayscale"    style="padding:1rem;">grayscale</div>
+      <div surface="solid" tone="success" density="default" radius="lg" filter="sepia"        style="padding:1rem;">sepia</div>
+      <div surface="solid" tone="danger"  density="default" radius="lg" filter="sepia-50"     style="padding:1rem;">sepia-50</div>
+      <div surface="solid" tone="primary" density="default" radius="lg" filter="invert"       style="padding:1rem;">invert</div>
+    </div>
+    <pre class="demo-code">{`<img filter="grayscale" />
+<div filter="sepia">…</div>
+<div filter="invert">…</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Brightness & contrast</p>
+    <div class="demo-preview" layout="row" gap="md" wrap>
+      <div surface="solid" tone="primary" density="default" radius="lg" filter="brightness-up"   style="padding:1rem;">brightness-up</div>
+      <div surface="solid" tone="primary" density="default" radius="lg" filter="brightness-down" style="padding:1rem;">brightness-down</div>
+      <div surface="solid" tone="primary" density="default" radius="lg" filter="contrast-up"     style="padding:1rem;">contrast-up</div>
+      <div surface="solid" tone="primary" density="default" radius="lg" filter="saturate"        style="padding:1rem;">saturate</div>
+    </div>
+    <pre class="demo-code">{`<div filter="brightness-up">brighter</div>
+<div filter="contrast-up">more contrast</div>
+<div filter="saturate">saturated</div>`}</pre>
+  </div>
+
+  <div class="demo">
+    <p class="demo-label">Combo presets</p>
+    <div class="demo-preview" layout="row" gap="md" wrap>
+      <div surface="solid" tone="warning" density="default" radius="lg" filter="vintage" style="padding:1rem;">vintage</div>
+      <div surface="solid" tone="info"    density="default" radius="lg" filter="cold"    style="padding:1rem;">cold</div>
+      <div surface="solid" tone="success" density="default" radius="lg" filter="warm"    style="padding:1rem;">warm</div>
+      <div surface="solid" tone="primary" density="default" radius="lg" filter="matte"   style="padding:1rem;">matte</div>
+    </div>
+    <pre class="demo-code">{`<img filter="vintage" />
+<img filter="cold" />
+<img filter="warm" />
+<img filter="cinema" />`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Backdrop filter</h2>
+
+  <div class="demo">
+    <p class="demo-label">backdrop= on overlay elements</p>
+    <div class="demo-preview" style="position:relative;height:160px;background:linear-gradient(135deg,#7c6af7,#06b6d4);border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+      <div backdrop="blur" style="padding:1.25rem 2rem;border-radius:12px;border:1px solid rgba(255,255,255,0.2);color:white;font-weight:600;">
+        backdrop="blur"
+      </div>
+    </div>
+    <pre class="demo-code">{`<!-- Frosted glass overlay -->
+<div backdrop="blur" style="border:1px solid rgba(255,255,255,0.2)">
+  Frosted overlay
+</div>
+
+<!-- Dark overlay -->
+<div backdrop="dark">…</div>
+
+<!-- Saturated blur -->
+<div backdrop="saturate">…</div>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">All values</h2>
+  <pre class="demo-code">{`<!-- filter= -->
+filter="blur-sm|blur|blur-md|blur-lg|blur-xl"
+filter="grayscale|grayscale-50|sepia|sepia-50|invert"
+filter="brightness-up|brightness-down|contrast-up|contrast-down"
+filter="saturate|desaturate|hue-90|hue-180|hue-270"
+filter="drop-shadow|drop-shadow-color"
+filter="vintage|cold|warm|matte|cinema"
+
+<!-- backdrop= -->
+backdrop="blur-sm|blur|blur-lg|blur-xl"
+backdrop="brightness|dark|contrast|saturate|invert"`}</pre>
+</Layout>

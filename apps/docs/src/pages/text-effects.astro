@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Text Effects">
+  <h1 class="page-title">Text Effects</h1>
+  <p class="page-desc">
+    Text shadows, strokes, highlights, decorative underlines, letter-spacing and line-height shorthands.
+  </p>
+
+  <hr class="divider" />
+  <h2 class="section-title">Text shadow</h2>
+
+  <div class="demo">
+    <p class="demo-label">text-shadow= variants</p>
+    <div class="demo-preview" layout="stack" gap="sm">
+      <p text="heading" text-shadow="sm">Shadow sm — subtle lift</p>
+      <p text="heading" text-shadow="md">Shadow md — clear depth</p>
+      <p text="heading" text-shadow="lg">Shadow lg — strong depth</p>
+      <p text="heading" text-shadow="retro" tone="danger">Retro layered shadow</p>
+    </div>
+    <pre class="demo-code">{`<h2 text-shadow="sm">Subtle shadow</h2>
+<h2 text-shadow="lg">Strong shadow</h2>
+<h2 text-shadow="retro">Retro shadow</h2>
+<h2 text-shadow="glow" tone="primary">Glow shadow</h2>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Text stroke (outline text)</h2>
+
+  <div class="demo">
+    <p class="demo-label">Stroke widths</p>
+    <div class="demo-preview" layout="stack" gap="sm">
+      <p text="heading" text-stroke="sm" style="font-size:2rem;">Thin stroke</p>
+      <p text="heading" text-stroke="lg" style="font-size:2rem;">Thick stroke</p>
+      <p text="heading" text-stroke="xl" text-hollow text-gradient="brand" style="font-size:2.5rem;">Hollow gradient</p>
+    </div>
+    <pre class="demo-code">{`<h2 text-stroke="sm">Thin outline</h2>
+<h2 text-stroke="lg">Thick outline</h2>
+
+<!-- Hollow text (stroke only) -->
+<h2 text-stroke="xl" text-hollow text-gradient="brand">Hollow</h2>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Highlight</h2>
+
+  <div class="demo">
+    <p class="demo-label">Marker-style highlight</p>
+    <div class="demo-preview" layout="stack" gap="sm">
+      <p style="font-size:1.1rem;">This is <span highlight tone="primary">highlighted text</span> in a sentence.</p>
+      <p style="font-size:1.1rem;">A <span highlight="warning">warning highlight</span> draws attention.</p>
+      <p style="font-size:1.1rem;">Success <span highlight="success">achievement unlocked</span> milestone.</p>
+    </div>
+    <pre class="demo-code">{`<span highlight tone="primary">highlighted text</span>
+<span highlight="warning">warning style</span>
+<span highlight="success">success style</span>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Decorative underlines</h2>
+
+  <div class="demo">
+    <p class="demo-label">underline= variants</p>
+    <div class="demo-preview" layout="stack" gap="sm">
+      <p style="font-size:1rem;"><span underline="wavy" tone="primary">Wavy underline</span> using currentColor</p>
+      <p style="font-size:1rem;"><span underline="dotted">Dotted underline</span> style</p>
+      <p style="font-size:1rem;"><span underline="thick">Thick underline</span> for emphasis</p>
+      <p style="font-size:1rem;"><a href="#" underline="grow" style="color:#7c6af7;">Grow on hover →</a></p>
+    </div>
+    <pre class="demo-code">{`<span underline="wavy" tone="primary">Wavy</span>
+<span underline="dotted">Dotted</span>
+<span underline="thick">Thick</span>
+<a href="#" underline="grow">Grows on hover →</a>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">Letter-spacing & line-height</h2>
+
+  <div class="demo">
+    <p class="demo-label">tracking= and leading=</p>
+    <div class="demo-preview" layout="stack" gap="md">
+      <p tracking="tight" text="heading">Tight tracking (-0.05em)</p>
+      <p tracking="wide"  text="heading">Wide tracking (0.05em)</p>
+      <p tracking="widest" style="font-size:0.85rem;text-transform:uppercase;">Widest tracking (0.2em)</p>
+      <p leading="loose" style="font-size:0.9rem;opacity:0.7;max-width:400px;">Loose line height (2.0) for very airy text that breathes and has lots of space between each line. Great for display text.</p>
+    </div>
+    <pre class="demo-code">{`<h2 tracking="tight">Tight</h2>
+<h2 tracking="wide">Wide</h2>
+<p tracking="widest">SPACED OUT</p>
+
+<p leading="tight">Tight line height 1.25</p>
+<p leading="relaxed">Relaxed line height 1.625</p>
+<p leading="loose">Loose line height 2</p>`}</pre>
+  </div>
+
+  <hr class="divider" />
+  <h2 class="section-title">All values</h2>
+  <pre class="demo-code">{`text-shadow="sm|md|lg|xl|glow|color|retro|none"
+text-stroke="sm|md|lg|xl"   + text-hollow (transparent fill)
+highlight  highlight="danger|success|warning"
+underline="wavy|dotted|thick|offset|grow"
+indent="sm|md|lg"
+tracking="tight|normal|wide|wider|widest"
+leading="none|tight|snug|normal|relaxed|loose"`}</pre>
+</Layout>

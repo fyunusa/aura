@@ -1,0 +1,75 @@
+/* ─── Shimmer / skeleton loading effect ──────────────────────────────────────
+   Apply [shimmer] to any element or skeleton placeholder for a loading state.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@keyframes aura-shimmer-slide {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* ── Base shimmer (overlay on existing element) ───────────────────────────── */
+[shimmer] {
+  position: relative;
+  overflow: hidden;
+}
+[shimmer]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(255 255 255 / var(--aura-shimmer-opacity, 0.08)) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: aura-shimmer-slide var(--aura-shimmer-speed, 1.8s) ease-in-out infinite;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ── Skeleton (fills the element with a muted background) ────────────────── */
+[skeleton] {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--aura-skeleton-bg, var(--aura-surface-2));
+  border-radius: var(--aura-skeleton-radius, var(--aura-radius-sm));
+  color: transparent !important;
+  pointer-events: none;
+  user-select: none;
+}
+[skeleton] > * { visibility: hidden; }
+[skeleton]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklch, var(--aura-text) 8%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: aura-shimmer-slide var(--aura-shimmer-speed, 1.8s) ease-in-out infinite;
+}
+
+/* ── Speed variants ──────────────────────────────────────────────────────── */
+[shimmer="fast"], [skeleton="fast"]   { --aura-shimmer-speed: 0.9s; }
+[shimmer="slow"], [skeleton="slow"]   { --aura-shimmer-speed: 3s; }
+
+/* ── Shimmer wave (subtle gradient background, no ::after) ───────────────── */
+[shimmer="wave"] {
+  background: linear-gradient(
+    90deg,
+    var(--aura-surface-2) 25%,
+    color-mix(in oklch, var(--aura-surface-2) 70%, var(--aura-text)) 50%,
+    var(--aura-surface-2) 75%
+  );
+  background-size: 300% 100%;
+  animation: aura-shimmer-slide var(--aura-shimmer-speed, 1.8s) ease-in-out infinite;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  [shimmer]::after, [skeleton]::after, [shimmer="wave"] { animation: none; }
+}

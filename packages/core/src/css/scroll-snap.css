@@ -1,0 +1,65 @@
+/* ─── Scroll snap + scroll behaviour ─────────────────────────────────────────
+   scroll= on the container, snap= on each child.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Container ───────────────────────────────────────────────────────────── */
+[scroll="snap-x"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x var(--aura-snap-strictness, mandatory);
+  -webkit-overflow-scrolling: touch;
+}
+[scroll="snap-y"] {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y var(--aura-snap-strictness, mandatory);
+  -webkit-overflow-scrolling: touch;
+}
+[scroll="snap-both"] {
+  overflow: auto;
+  scroll-snap-type: both var(--aura-snap-strictness, mandatory);
+}
+
+/* ── Proximity vs mandatory ──────────────────────────────────────────────── */
+[scroll="snap-x"][snap-proximity] { --aura-snap-strictness: proximity; }
+[scroll="snap-y"][snap-proximity] { --aura-snap-strictness: proximity; }
+
+/* ── Smooth scroll ───────────────────────────────────────────────────────── */
+[scroll="smooth"] { scroll-behavior: smooth; }
+[scroll="auto"]   { scroll-behavior: auto; }
+
+/* ── Overscroll behaviour ────────────────────────────────────────────────── */
+[overscroll="none"]    { overscroll-behavior: none; }
+[overscroll="contain"] { overscroll-behavior: contain; }
+[overscroll="auto"]    { overscroll-behavior: auto; }
+
+/* ── Hide scrollbar ──────────────────────────────────────────────────────── */
+[scrollbar="hidden"] {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+[scrollbar="hidden"]::-webkit-scrollbar { display: none; }
+
+[scrollbar="thin"] {
+  scrollbar-width: thin;
+  scrollbar-color: var(--aura-muted) transparent;
+}
+[scrollbar="thin"]::-webkit-scrollbar       { width: 6px; height: 6px; }
+[scrollbar="thin"]::-webkit-scrollbar-thumb {
+  background: var(--aura-muted);
+  border-radius: 3px;
+}
+
+/* ── Snap children ───────────────────────────────────────────────────────── */
+[snap="start"]  { scroll-snap-align: start; }
+[snap="end"]    { scroll-snap-align: end; }
+[snap="center"] { scroll-snap-align: center; }
+[snap="none"]   { scroll-snap-align: none; }
+
+/* ── Stop snapping before end ─────────────────────────────────────────────── */
+[snap="always"] { scroll-snap-stop: always; }
+
+/* ── Padding/gap inside scroll container ─────────────────────────────────── */
+[scroll-pad="sm"] { scroll-padding: var(--aura-gap-sm); }
+[scroll-pad="md"] { scroll-padding: var(--aura-gap-md); }
+[scroll-pad="lg"] { scroll-padding: var(--aura-gap-lg); }

@@ -1,0 +1,62 @@
+/* ─── 3D tilt on hover ────────────────────────────────────────────────────────
+   CSS sets the transform; runtime/tilt.ts feeds --aura-tilt-x/y on mousemove.
+   Works CSS-only (fixed angle on hover) with enhanced mouse-tracking via JS.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+[tilt] {
+  transform-style: preserve-3d;
+  transition: transform var(--aura-tilt-duration, 150ms) ease-out;
+  transform:
+    perspective(var(--aura-tilt-perspective, 800px))
+    rotateX(var(--aura-tilt-x, 0deg))
+    rotateY(var(--aura-tilt-y, 0deg))
+    scale3d(var(--aura-tilt-scale, 1), var(--aura-tilt-scale, 1), var(--aura-tilt-scale, 1));
+  will-change: transform;
+}
+
+/* ── Intensity presets (max degrees; JS reads tilt= value) ───────────────── */
+[tilt="sm"]  { --aura-tilt-max: 5; }
+[tilt="md"]  { --aura-tilt-max: 8; }
+[tilt="lg"]  { --aura-tilt-max: 15; }
+[tilt="xl"]  { --aura-tilt-max: 25; }
+
+/* ── Scale on hover ─────────────────────────────────────────────────────── */
+[tilt][tilt-scale]:hover { --aura-tilt-scale: 1.04; }
+
+/* ── CSS-only fallback (fixed angle, no JS) ─────────────────────────────── */
+@media (hover: hover) {
+  [tilt][tilt-css]:hover {
+    transform:
+      perspective(var(--aura-tilt-perspective, 800px))
+      rotateX(calc(-1 * var(--aura-tilt-max-deg, 6deg)))
+      rotateY(var(--aura-tilt-max-deg, 6deg));
+  }
+}
+
+/* ── Inner shine layer (optional) ───────────────────────────────────────── */
+[tilt][tilt-shine] {
+  position: relative;
+  overflow: hidden;
+}
+[tilt][tilt-shine]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--aura-tilt-shine-x, 50%) var(--aura-tilt-shine-y, 50%),
+    rgb(255 255 255 / 0.12) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+  transition: opacity 0.2s ease;
+  opacity: var(--aura-tilt-shine-opacity, 0);
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  [tilt] {
+    transform: none !important;
+    transition: none;
+  }
+}

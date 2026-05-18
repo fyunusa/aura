@@ -1,4 +1,5 @@
 import { observeRevealElement } from './reveal'
+import { observeTiltElement } from './tilt'
 
 /**
  * Watches for dynamically inserted forma elements.
@@ -12,9 +13,11 @@ export function initMutationObserver(): MutationObserver {
 
         // Handle the node itself
         if (node.hasAttribute('reveal')) observeRevealElement(node)
+        if (node.hasAttribute('tilt'))   observeTiltElement(node)
 
         // Handle children
         node.querySelectorAll('[reveal]').forEach(observeRevealElement)
+        node.querySelectorAll('[tilt]').forEach(observeTiltElement)
       }
     }
   })
