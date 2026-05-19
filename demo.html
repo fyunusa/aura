@@ -3,442 +3,604 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>useaura demo</title>
-  <link rel="stylesheet" href="https://unpkg.com/useaura@0.2.0/dist/forma.css" />
+  <title>useaura v0.5.0 — Kitchen Sink Demo</title>
+  <link rel="stylesheet" href="https://unpkg.com/useaura@0.5.0/dist/forma.css" />
   <script type="module">
-    import { init } from 'https://unpkg.com/useaura@0.2.0/dist/runtime.js'
+    import { init } from 'https://unpkg.com/useaura@0.5.0/dist/runtime.js'
     init()
+
+    /* Tabs */
+    document.querySelectorAll('[tab-list]').forEach(list => {
+      list.querySelectorAll('[tab]').forEach((tab, i) => {
+        tab.addEventListener('click', () => {
+          const tabs = tab.closest('[tabs]')
+          tabs.querySelectorAll('[tab]').forEach(t => t.removeAttribute('active'))
+          tabs.querySelectorAll('[tab-panel]').forEach(p => p.removeAttribute('active'))
+          tab.setAttribute('active', '')
+          tabs.querySelectorAll('[tab-panel]')[i]?.setAttribute('active', '')
+        })
+      })
+    })
+
+    /* Interactive rating */
+    document.querySelectorAll('[rating][interactive]').forEach(rating => {
+      const stars = [...rating.querySelectorAll('[star]')]
+      stars.forEach((star, i) => {
+        star.addEventListener('click', () =>
+          stars.forEach((s, j) => s.toggleAttribute('filled', j <= i))
+        )
+      })
+    })
+
+    /* Alert dismiss */
+    document.querySelectorAll('[alert-dismiss]').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('[alert]').remove())
+    })
   </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: #0a0a0f;
+      background: #09090e;
       color: #e2e2f0;
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100dvh;
+      padding-bottom: 6rem;
     }
+    .page { max-width: 940px; margin-inline: auto; padding-inline: 1.5rem; }
+    .section { padding-top: 4rem; }
+    .section-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; opacity: 0.35; margin-bottom: 1.5rem;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    @media (max-width: 600px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
-  <!-- ── Nav ──────────────────────────────────────────────────────────────── -->
-  <nav layout="row" gap="md" justify="between"
-       style="position: sticky; top: 0; backdrop-filter: blur(12px);
-              background: rgb(10 10 15 / 0.8);
-              border-bottom: 1px solid rgb(255 255 255 / 0.06);
-              padding: 0.75rem 2rem; z-index: 100;">
-    <span weight="bold" style="font-size: 1.1rem;">useaura</span>
-    <div layout="row" gap="sm" style="flex-wrap: wrap;">
-      <a href="#surfaces"   style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Surfaces</a>
-      <a href="#tones"      style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Tones</a>
-      <a href="#typography" style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Typography</a>
-      <a href="#forms"      style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Forms</a>
-      <a href="#states"     style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">States</a>
-      <a href="#elevation"  style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Elevation</a>
-      <a href="#layout"     style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Layout</a>
-      <a href="#responsive" style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Responsive</a>
-      <a href="#scheme"     style="color: #e2e2f0; opacity: 0.6; text-decoration: none; font-size: 0.9rem;">Scheme</a>
-    </div>
-  </nav>
+<!-- NAV -->
+<nav layout="row" justify="between" gap="md"
+     style="position:sticky;top:0;z-index:100;padding:0.875rem 1.5rem;
+            backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+            background:rgb(9 9 14 / 0.85);
+            border-bottom:1px solid rgb(255 255 255 / 0.06);">
+  <div layout="row" gap="sm" align="center">
+    <span style="font-weight:800;font-size:1.05rem;letter-spacing:-0.02em;">useaura</span>
+    <span badge="primary" style="margin-left:4px;">v0.5.0</span>
+  </div>
+  <div layout="row" gap="xs" align="center">
+    <kbd>⌘</kbd><kbd>K</kbd>
+    <span style="opacity:0.4;font-size:0.8rem;margin-left:4px;">to search</span>
+  </div>
+</nav>
 
-  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-  <section layout="cover" style="background: radial-gradient(ellipse at 50% 0%, #1a1060 0%, transparent 65%); padding: 6rem 2rem;">
-    <div layout="stack" gap="lg" align="center" style="text-align: center; max-width: 560px; margin: 0 auto;">
-      <div reveal="scale" surface="glass" tone="primary" density="spacious" radius="xl" style="display: inline-block;">
-        <h1 text="display">useaura</h1>
-        <p text="body" style="opacity: 0.6; margin-top: 0.4rem;">Style with intent, not with soup.</p>
-      </div>
-      <p reveal="bottom" style="opacity: 0.5; line-height: 1.7;">
-        A lightweight CSS library. Drop in the CDN link, write attributes.
-      </p>
-      <div reveal="bottom" layout="row" gap="sm">
-        <button surface="solid" tone="primary" density="default" radius="full" motion="expressive">Get started →</button>
-        <button surface="ghost" density="default" radius="full" motion="expressive">View docs</button>
-      </div>
-      <div reveal="bottom" surface="matte" density="compact" radius="full">
-        <span text="code">link href="https://unpkg.com/useaura@0.2.0/dist/forma.css"</span>
-      </div>
+<!-- HERO -->
+<div class="page">
+  <div class="section" layout="stack" gap="lg" align="center" style="text-align:center;padding-bottom:3rem;">
+    <div layout="row" gap="sm" style="flex-wrap:wrap;justify-content:center;">
+      <span badge="success">46 CSS modules</span>
+      <span badge="neutral">17.7 kB gzipped</span>
+      <span badge="primary">No class names</span>
     </div>
-  </section>
-
-  <!-- ── Surfaces ──────────────────────────────────────────────────────────── -->
-  <section id="surfaces" style="max-width: 1040px; margin: 0 auto; padding: 4rem 2rem;">
-    <h2 text="heading" style="margin-bottom: 2rem;">Surfaces</h2>
-    <div layout="grid" gap="lg" cols="auto" style="--aura-grid-min: 180px;">
-      <div surface="glass"   density="spacious" radius="xl"><p weight="semibold">glass</p><p text="caption">Frosted backdrop</p></div>
-      <div surface="solid"   tone="primary" density="spacious" radius="xl"><p weight="semibold">solid + primary</p><p text="caption">Filled tone</p></div>
-      <div surface="matte"   density="spacious" radius="xl"><p weight="semibold">matte</p><p text="caption">Subtle fill</p></div>
-      <div surface="ghost"   density="spacious" radius="xl"><p weight="semibold">ghost</p><p text="caption">Border only</p></div>
-      <div surface="frosted" density="spacious" radius="xl"><p weight="semibold">frosted</p><p text="caption">Heavy blur</p></div>
-      <div surface="neon"    tone="primary" density="spacious" radius="xl"><p weight="semibold">neon + primary</p><p text="caption">Glow effect</p></div>
+    <h1 style="font-size:3.5rem;font-weight:900;line-height:1.1;" text-gradient="aurora">Kitchen Sink</h1>
+    <p style="opacity:0.55;max-width:520px;line-height:1.7;">
+      Every v0.5.0 feature in one page — surfaces, components, animations, effects, theming, and more.
+    </p>
+    <div layout="row" gap="sm">
+      <button surface="solid" tone="primary" density="default" radius="full" motion="expressive" glow>Get started</button>
+      <button surface="ghost" density="default" radius="full" motion="expressive">View docs →</button>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- ── Tones ─────────────────────────────────────────────────────────────── -->
-  <section id="tones" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
-    <h2 text="heading" style="margin-bottom: 2rem;">Tones</h2>
+<!-- SURFACES -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Surfaces</p>
+    <div class="grid-3">
+      <div surface="glass"   radius="xl" density="spacious"><p style="font-weight:600;">glass</p><p style="opacity:.5;font-size:.85rem;">Frosted blur</p></div>
+      <div surface="matte"   radius="xl" density="spacious"><p style="font-weight:600;">matte</p><p style="opacity:.5;font-size:.85rem;">Subtle fill</p></div>
+      <div surface="solid" tone="primary" radius="xl" density="spacious"><p style="font-weight:600;">solid</p><p style="opacity:.8;font-size:.85rem;">Filled tone</p></div>
+      <div surface="ghost"   radius="xl" density="spacious"><p style="font-weight:600;">ghost</p><p style="opacity:.5;font-size:.85rem;">Border only</p></div>
+      <div surface="frosted" radius="xl" density="spacious"><p style="font-weight:600;">frosted</p><p style="opacity:.5;font-size:.85rem;">Heavy blur</p></div>
+      <div surface="neon" tone="primary" radius="xl" density="spacious"><p style="font-weight:600;">neon</p><p style="opacity:.8;font-size:.85rem;">Glow ring</p></div>
+    </div>
+  </div>
+
+  <!-- Tones -->
+  <div class="section">
+    <p class="section-label">Tones × Badges × Buttons</p>
     <div layout="stack" gap="md">
-      <!-- Ghost row -->
-      <div layout="row" gap="sm" wrap>
-        <div surface="ghost" tone="primary" density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">primary</span></div>
-        <div surface="ghost" tone="danger"  density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">danger</span></div>
-        <div surface="ghost" tone="success" density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">success</span></div>
-        <div surface="ghost" tone="warning" density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">warning</span></div>
-        <div surface="ghost" tone="info"    density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">info</span></div>
-        <div surface="ghost" tone="accent"  density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">accent</span></div>
-        <div surface="ghost" tone="neutral" density="default" radius="lg" style="min-width: 110px; text-align: center;"><span text="label">neutral</span></div>
+      <div layout="row" gap="sm" style="flex-wrap:wrap;">
+        <span badge="primary">primary</span>
+        <span badge="success">success</span>
+        <span badge="warning">warning</span>
+        <span badge="danger">danger</span>
+        <span badge="info">info</span>
+        <span badge="neutral">neutral</span>
+        <span badge="outline">outline</span>
+        <span badge="solid">solid</span>
+        <span badge="gradient">gradient</span>
       </div>
-      <!-- Solid row -->
-      <div layout="row" gap="sm" wrap>
-        <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">primary</button>
-        <button surface="solid" tone="danger"  density="default" radius="md" motion="expressive">danger</button>
-        <button surface="solid" tone="success" density="default" radius="md" motion="expressive">success</button>
-        <button surface="solid" tone="warning" density="default" radius="md" motion="expressive">warning</button>
-        <button surface="solid" tone="info"    density="default" radius="md" motion="expressive">info</button>
-        <button surface="solid" tone="accent"  density="default" radius="md" motion="expressive">accent</button>
-        <button surface="solid" tone="neutral" density="default" radius="md" motion="expressive">neutral</button>
+      <div layout="row" gap="sm" style="flex-wrap:wrap;">
+        <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">Primary</button>
+        <button surface="solid" tone="success" density="default" radius="md" motion="expressive">Success</button>
+        <button surface="solid" tone="warning" density="default" radius="md" motion="expressive">Warning</button>
+        <button surface="solid" tone="danger"  density="default" radius="md" motion="expressive">Danger</button>
+        <button surface="ghost" tone="primary" density="default" radius="md" motion="expressive">Ghost</button>
+        <button surface="glass" tone="primary" density="default" radius="md" motion="expressive">Glass</button>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- ── Typography ────────────────────────────────────────────────────────── -->
-  <section id="typography" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
-    <h2 text="heading" style="margin-bottom: 2rem;">Typography</h2>
+<!-- ALERTS -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Alerts</p>
+    <div layout="stack" gap="sm">
+      <div alert="info">
+        <span alert-icon>ℹ️</span>
+        <div><span alert-title>Did you know?</span> <span alert-body>Aura uses attribute selectors — no class soup required.</span></div>
+        <button alert-dismiss>✕</button>
+      </div>
+      <div alert="success">
+        <span alert-icon>✅</span>
+        <div><span alert-title>Published!</span> <span alert-body>useaura@0.5.0 is live on npm.</span></div>
+        <button alert-dismiss>✕</button>
+      </div>
+      <div alert="warning">
+        <span alert-icon>⚠️</span>
+        <span alert-body>Your free tier is at 80% usage. Consider upgrading.</span>
+        <button alert-dismiss>✕</button>
+      </div>
+      <div alert="danger">
+        <span alert-icon>🚫</span>
+        <div><span alert-title>Deployment failed</span> <span alert-body>Build error on line 42. Check the logs for details.</span></div>
+        <button alert-dismiss>✕</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS + SWITCH -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Progress bars</p>
+    <div layout="stack" gap="md">
+      <div layout="stack" gap="xs">
+        <div layout="row" justify="between" style="font-size:.8rem;opacity:.6;"><span>Primary — 65%</span><span>65%</span></div>
+        <progress aura value="65" max="100" tone="primary"></progress>
+      </div>
+      <div layout="stack" gap="xs">
+        <div layout="row" justify="between" style="font-size:.8rem;opacity:.6;"><span>Success — 82%</span><span>82%</span></div>
+        <progress aura value="82" max="100" tone="success"></progress>
+      </div>
+      <div layout="stack" gap="xs">
+        <div layout="row" justify="between" style="font-size:.8rem;opacity:.6;"><span>Warning — 40% · large</span><span>40%</span></div>
+        <progress aura value="40" max="100" tone="warning" progress-size="lg"></progress>
+      </div>
+      <div layout="stack" gap="xs">
+        <div style="font-size:.8rem;opacity:.6;">Indeterminate (loading…)</div>
+        <div progress indeterminate></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Switch toggles</p>
+    <div layout="row" gap="xl" style="flex-wrap:wrap;align-items:center;">
+      <label layout="row" gap="sm" align="center" style="cursor:pointer;">
+        <input type="checkbox" switch checked />
+        <span style="font-size:.9rem;">Default (on)</span>
+      </label>
+      <label layout="row" gap="sm" align="center" style="cursor:pointer;">
+        <input type="checkbox" switch tone="success" />
+        <span style="font-size:.9rem;">Success tone</span>
+      </label>
+      <label layout="row" gap="sm" align="center" style="cursor:pointer;">
+        <input type="checkbox" switch switch-size="sm" checked />
+        <span style="font-size:.9rem;">Small</span>
+      </label>
+      <label layout="row" gap="sm" align="center" style="cursor:pointer;">
+        <input type="checkbox" switch switch-size="lg" tone="accent" />
+        <span style="font-size:.9rem;">Large accent</span>
+      </label>
+      <label layout="row" gap="sm" align="center" style="cursor:pointer;opacity:.4;">
+        <input type="checkbox" switch disabled />
+        <span style="font-size:.9rem;">Disabled</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Tabs</p>
+    <div layout="stack" gap="xl">
+      <div tabs>
+        <div tab-list>
+          <button tab active>Overview</button>
+          <button tab>Features</button>
+          <button tab>Changelog</button>
+          <button tab>API</button>
+        </div>
+        <div tab-panel active>
+          <div surface="matte" radius="lg" density="spacious">
+            <p style="font-weight:600;margin-bottom:.5rem;">Overview</p>
+            <p style="opacity:.6;line-height:1.6;">A zero-dependency CSS library using semantic HTML attribute selectors. No build step required — just link the stylesheet.</p>
+          </div>
+        </div>
+        <div tab-panel><div surface="matte" radius="lg" density="spacious">46 CSS modules, 17.7 kB gzipped.</div></div>
+        <div tab-panel><div surface="matte" radius="lg" density="spacious">v0.5.0 — Progress, Switch, Accordion, Alerts, Tabs, Stepper, Rating, Kbd, Theming.</div></div>
+        <div tab-panel><div surface="matte" radius="lg" density="spacious"><code>import 'useaura/css'</code></div></div>
+      </div>
+      <div tabs tabs-style="pills">
+        <div tab-list>
+          <button tab active>Pills one</button>
+          <button tab>Pills two</button>
+          <button tab>Pills three</button>
+        </div>
+        <div tab-panel active><div surface="matte" radius="lg" density="spacious">Pills style content.</div></div>
+        <div tab-panel><div surface="matte" radius="lg" density="spacious">Second panel.</div></div>
+        <div tab-panel><div surface="matte" radius="lg" density="spacious">Third panel.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACCORDION -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Accordion</p>
+    <div class="grid-2" style="align-items:start;">
+      <div accordion>
+        <details><summary>What is useaura?</summary><p style="opacity:.7;line-height:1.6;">A CSS-first library that uses HTML attribute selectors so your markup stays readable.</p></details>
+        <details open><summary>Does it need a build step?</summary><p style="opacity:.7;line-height:1.6;">No. Drop in the CDN link and start writing attributes immediately.</p></details>
+        <details><summary>How big is it?</summary><p style="opacity:.7;line-height:1.6;">17.7 kB gzipped for all 46 modules.</p></details>
+      </div>
+      <div accordion accordion-style="separated">
+        <details><summary>Separated style</summary><p style="opacity:.7;line-height:1.6;">Each item has its own border and radius.</p></details>
+        <details><summary>Another item</summary><p style="opacity:.7;line-height:1.6;">Looks great for FAQs and help sections.</p></details>
+        <details open><summary>Open by default</summary><p style="opacity:.7;line-height:1.6;">Add the <code>open</code> attribute to any details element.</p></details>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEPPER -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Stepper</p>
+    <div layout="stack" gap="xl">
+      <ol stepper>
+        <li step step-state="done"><span step-label>Account</span></li>
+        <li step step-state="done"><span step-label>Profile</span></li>
+        <li step active><span step-label>Payment</span></li>
+        <li step><span step-label>Review</span></li>
+        <li step><span step-label>Done</span></li>
+      </ol>
+      <ol stepper stepper-dir="vertical">
+        <li step step-state="done"><span step-label>Clone the repo</span></li>
+        <li step step-state="done"><span step-label>Install dependencies</span></li>
+        <li step active><span step-label>Configure tokens</span></li>
+        <li step><span step-label>Ship it</span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- RATING + KBD -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Rating</p>
+    <div layout="row" gap="xl" style="flex-wrap:wrap;align-items:center;">
+      <div layout="stack" gap="xs">
+        <span style="font-size:.8rem;opacity:.5;">Display (4.5)</span>
+        <div rating>
+          <span star filled>★</span><span star filled>★</span><span star filled>★</span><span star filled>★</span><span star half>★</span>
+        </div>
+      </div>
+      <div layout="stack" gap="xs">
+        <span style="font-size:.8rem;opacity:.5;">Interactive — click to rate</span>
+        <div rating interactive>
+          <span star>★</span><span star>★</span><span star>★</span><span star>★</span><span star>★</span>
+        </div>
+      </div>
+      <div layout="stack" gap="xs">
+        <span style="font-size:.8rem;opacity:.5;">Primary · large</span>
+        <div rating tone="primary" rating-size="lg">
+          <span star filled>★</span><span star filled>★</span><span star filled>★</span><span star>★</span><span star>★</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Keyboard shortcuts</p>
+    <div layout="stack" gap="md">
+      <div layout="row" gap="sm" align="center"><kbd>⌘</kbd><kbd>C</kbd> <span style="opacity:.4;font-size:.85rem;margin-left:.25rem;">Copy</span></div>
+      <div layout="row" gap="sm" align="center"><kbd>⌘</kbd><kbd>Shift</kbd><kbd>P</kbd> <span style="opacity:.4;font-size:.85rem;margin-left:.25rem;">Command palette</span></div>
+      <div layout="row" gap="sm" align="center"><kbd>Alt</kbd><kbd>Tab</kbd> <span style="opacity:.4;font-size:.85rem;margin-left:.25rem;">Switch window</span></div>
+      <div layout="row" gap="sm" align="center"><kbd kbd-style="ghost">Escape</kbd> <span style="opacity:.4;font-size:.85rem;margin-left:.25rem;">Ghost variant</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- GRADIENTS + GLOW + PATTERNS -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Gradients</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.75rem;margin-bottom:1.25rem;">
+      <div gradient="brand"   radius="lg" style="height:64px;display:grid;place-items:center;color:white;font-size:.8rem;font-weight:700;">brand</div>
+      <div gradient="ocean"   radius="lg" style="height:64px;display:grid;place-items:center;color:white;font-size:.8rem;font-weight:700;">ocean</div>
+      <div gradient="sunset"  radius="lg" style="height:64px;display:grid;place-items:center;color:white;font-size:.8rem;font-weight:700;">sunset</div>
+      <div gradient="forest"  radius="lg" style="height:64px;display:grid;place-items:center;color:white;font-size:.8rem;font-weight:700;">forest</div>
+      <div gradient="candy"   radius="lg" style="height:64px;display:grid;place-items:center;color:white;font-size:.8rem;font-weight:700;">candy</div>
+      <div gradient="neon"    radius="lg" style="height:64px;display:grid;place-items:center;color:white;font-size:.8rem;font-weight:700;">neon</div>
+      <div gradient="aurora"  radius="lg" style="height:64px;display:grid;place-items:center;color:white;font-size:.8rem;font-weight:700;">aurora</div>
+      <div gradient="gold"    radius="lg" style="height:64px;display:grid;place-items:center;color:white;font-size:.8rem;font-weight:700;">gold</div>
+    </div>
+    <div layout="row" gap="lg" style="flex-wrap:wrap;">
+      <h2 style="font-size:2rem;font-weight:900;" text-gradient="aurora">Aurora gradient text</h2>
+      <h2 style="font-size:2rem;font-weight:900;" text-gradient="sunset">Sunset gradient text</h2>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Glow + Ring + Colored shadow</p>
+    <div layout="row" gap="lg" style="flex-wrap:wrap;align-items:center;">
+      <button surface="solid" tone="primary" density="default" radius="lg" glow>Glow</button>
+      <button surface="solid" tone="success" density="default" radius="lg" glow="lg">Glow lg</button>
+      <div surface="glass" density="default" radius="xl" ring style="padding:.75rem 1.25rem;">Ring</div>
+      <div surface="matte" density="default" radius="xl" shadow="primary" style="padding:.75rem 1.25rem;">Primary shadow</div>
+      <div surface="matte" density="default" radius="xl" shadow="danger" style="padding:.75rem 1.25rem;">Danger shadow</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">CSS patterns</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.75rem;">
+      <div pattern="grid"       radius="lg" style="height:72px;"></div>
+      <div pattern="dots"       radius="lg" style="height:72px;"></div>
+      <div pattern="stripes"    radius="lg" style="height:72px;"></div>
+      <div pattern="crosshatch" radius="lg" style="height:72px;"></div>
+      <div pattern="checker"    radius="lg" style="height:72px;"></div>
+      <div pattern="diamonds"   radius="lg" style="height:72px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ANIMATIONS -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Animations</p>
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:flex-end;">
+      <div layout="stack" gap="xs" align="center">
+        <div surface="glass" radius="xl" animate="spin" style="width:50px;height:50px;display:grid;place-items:center;font-size:1.4rem;">⚙️</div>
+        <span style="font-size:.7rem;opacity:.4;">spin</span>
+      </div>
+      <div layout="stack" gap="xs" align="center">
+        <div surface="solid" tone="primary" radius="full" animate="pulse" style="width:50px;height:50px;display:grid;place-items:center;"></div>
+        <span style="font-size:.7rem;opacity:.4;">pulse</span>
+      </div>
+      <div layout="stack" gap="xs" align="center">
+        <div surface="solid" tone="success" radius="full" animate="bounce" style="width:50px;height:50px;display:grid;place-items:center;font-size:1.2rem;">✓</div>
+        <span style="font-size:.7rem;opacity:.4;">bounce</span>
+      </div>
+      <div layout="stack" gap="xs" align="center">
+        <div surface="solid" tone="warning" radius="xl" animate="shake" style="width:50px;height:50px;display:grid;place-items:center;font-size:1.2rem;">⚠️</div>
+        <span style="font-size:.7rem;opacity:.4;">shake</span>
+      </div>
+      <div layout="stack" gap="xs" align="center">
+        <div surface="glass" radius="xl" animate="float" style="width:50px;height:50px;display:grid;place-items:center;font-size:1.4rem;">🚀</div>
+        <span style="font-size:.7rem;opacity:.4;">float</span>
+      </div>
+      <div layout="stack" gap="xs" align="center">
+        <div surface="solid" tone="primary" radius="full" animate="ping" style="width:50px;height:50px;display:grid;place-items:center;"></div>
+        <span style="font-size:.7rem;opacity:.4;">ping</span>
+      </div>
+      <div layout="stack" gap="xs" align="center">
+        <div surface="glass" radius="xl" animate="wiggle" style="width:50px;height:50px;display:grid;place-items:center;font-size:1.4rem;">👋</div>
+        <span style="font-size:.7rem;opacity:.4;">wiggle</span>
+      </div>
+      <div layout="stack" gap="xs" align="center">
+        <div surface="solid" tone="danger" radius="xl" animate="heartbeat" style="width:50px;height:50px;display:grid;place-items:center;font-size:1.2rem;">❤️</div>
+        <span style="font-size:.7rem;opacity:.4;">heartbeat</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Shimmer + Skeleton</p>
+    <div class="grid-2">
+      <div layout="stack" gap="sm">
+        <div skeleton radius="lg" style="height:14px;width:55%;"></div>
+        <div skeleton radius="lg" style="height:14px;width:90%;"></div>
+        <div skeleton radius="lg" style="height:14px;width:72%;"></div>
+        <div skeleton radius="xl" style="height:110px;margin-top:.5rem;"></div>
+      </div>
+      <div surface="glass" radius="xl" density="spacious" shimmer style="display:grid;place-items:center;min-height:160px;">
+        Content with shimmer overlay
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TILT + CLIP + MASK -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">3D Tilt</p>
+    <div layout="row" gap="lg" style="flex-wrap:wrap;">
+      <div tilt tilt-shine surface="glass" radius="xl" density="spacious" style="width:200px;height:130px;display:grid;place-items:center;">
+        <p style="font-weight:700;">Hover me</p>
+        <p style="font-size:.8rem;opacity:.5;">tilt + shine</p>
+      </div>
+      <div tilt="lg" surface="solid" tone="primary" radius="xl" density="spacious" style="width:200px;height:130px;display:grid;place-items:center;">
+        <p style="font-weight:700;">Tilt lg</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Clip paths</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center;">
+      <div gradient="brand"  clip="circle"   style="width:72px;height:72px;"></div>
+      <div gradient="ocean"  clip="diamond"  style="width:72px;height:72px;"></div>
+      <div gradient="sunset" clip="hex"      style="width:72px;height:72px;"></div>
+      <div gradient="candy"  clip="star"     style="width:72px;height:72px;"></div>
+      <div gradient="neon"   clip="triangle" style="width:72px;height:72px;"></div>
+      <div gradient="gold"   clip="arrow"    style="width:72px;height:72px;"></div>
+      <div gradient="forest" clip="chevron"  style="width:72px;height:72px;"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Masks</p>
+    <div layout="row" gap="md" style="flex-wrap:wrap;">
+      <div gradient="brand"  mask="fade-bottom" radius="xl" style="height:80px;width:170px;"></div>
+      <div gradient="ocean"  mask="vignette"    radius="xl" style="height:80px;width:170px;"></div>
+      <div gradient="candy"  mask="fade-x"      radius="xl" style="height:80px;width:170px;"></div>
+      <div gradient="sunset" mask="circle"       style="height:80px;width:80px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TEXT EFFECTS + FILTERS -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Text effects</p>
     <div layout="stack" gap="lg">
-
-      <!-- Text scale -->
-      <div surface="matte" density="spacious" radius="xl">
-        <p text="overline" style="margin-bottom: 1.5rem;">Text scale</p>
-        <div layout="stack" gap="md">
-          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">display</span> <span text="display">The quick fox</span></div>
-          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">heading</span>  <span text="heading">The quick fox</span></div>
-          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">subheading</span><span text="subheading">The quick fox</span></div>
-          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">body</span>     <span text="body">The quick brown fox jumps over the lazy dog</span></div>
-          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">caption</span>  <span text="caption">The quick brown fox jumps over the lazy dog</span></div>
-          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">label</span>    <span text="label">The quick fox</span></div>
-          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">overline</span> <span text="overline">The quick fox</span></div>
-          <div><span text="label" style="opacity: 0.4; width: 120px; display: inline-block;">code</span>     <span text="code">const x = useaura()</span></div>
-        </div>
+      <div layout="row" gap="xl" style="flex-wrap:wrap;align-items:baseline;">
+        <span style="font-size:1.5rem;font-weight:700;" text-shadow="glow">Glow</span>
+        <span style="font-size:1.5rem;font-weight:700;" text-shadow="retro">Retro</span>
+        <span style="font-size:1.5rem;font-weight:700;" text-shadow="xl">Deep</span>
       </div>
-
-      <!-- Weight + Truncation -->
-      <div layout="row" gap="md" style="align-items: flex-start;">
-        <div surface="matte" density="spacious" radius="xl" style="flex: 1;">
-          <p text="overline" style="margin-bottom: 1rem;">Weight</p>
-          <div layout="stack" gap="xs">
-            <p weight="light">Light — 300</p>
-            <p weight="regular">Regular — 400</p>
-            <p weight="medium">Medium — 500</p>
-            <p weight="semibold">Semibold — 600</p>
-            <p weight="bold">Bold — 700</p>
-            <p weight="black">Black — 900</p>
-          </div>
-        </div>
-        <div surface="matte" density="spacious" radius="xl" style="flex: 1; min-width: 0;">
-          <p text="overline" style="margin-bottom: 1rem;">Truncate</p>
-          <div layout="stack" gap="sm">
-            <p truncate><span text="label" style="opacity:0.4;">1 line: </span>The quick brown fox jumps over the lazy dog and keeps on running through the meadow</p>
-            <p truncate="2"><span text="label" style="opacity:0.4;">2 lines: </span>The quick brown fox jumps over the lazy dog and keeps on running through the meadow until it reaches the distant hills</p>
-            <p truncate="3"><span text="label" style="opacity:0.4;">3 lines: </span>The quick brown fox jumps over the lazy dog and keeps on running through the meadow until it reaches the distant hills beyond the valley</p>
-          </div>
-        </div>
+      <div layout="row" gap="xl" style="flex-wrap:wrap;align-items:baseline;">
+        <span style="font-size:1.5rem;font-weight:800;" text-stroke="md">Stroke</span>
+        <span style="font-size:1.5rem;font-weight:800;" text-hollow>Hollow</span>
+      </div>
+      <div layout="row" gap="xl" style="flex-wrap:wrap;align-items:center;">
+        <span highlight>Highlighted</span>
+        <span highlight tone="success">Success</span>
+        <span highlight tone="warning">Warning</span>
+        <span underline="wavy">Wavy</span>
+        <span underline="dotted">Dotted</span>
+        <span underline="thick">Thick</span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ── Forms ─────────────────────────────────────────────────────────────── -->
-  <section id="forms" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
-    <h2 text="heading" style="margin-bottom: 2rem;">Forms</h2>
-    <div layout="grid" gap="xl" style="grid-template-columns: 1fr 1fr; align-items: start;">
+  <div class="section">
+    <p class="section-label">Image filters</p>
+    <div layout="row" gap="md" style="flex-wrap:wrap;">
+      <img src="https://picsum.photos/seed/a1/180/110" style="border-radius:10px;" filter="grayscale" alt="" />
+      <img src="https://picsum.photos/seed/a2/180/110" style="border-radius:10px;" filter="sepia" alt="" />
+      <img src="https://picsum.photos/seed/a3/180/110" style="border-radius:10px;" filter="blur-sm" alt="" />
+      <img src="https://picsum.photos/seed/a4/180/110" style="border-radius:10px;" filter="vintage" alt="" />
+    </div>
+  </div>
+</div>
 
-      <!-- Left column: text inputs -->
+<!-- DIVIDE + SCROLL SNAP -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Divide</p>
+    <div class="grid-2">
+      <div surface="glass" radius="xl" divide="y" layout="stack" style="padding:0;overflow:hidden;">
+        <div style="padding:.875rem 1.25rem;">Inbox <span badge="primary" style="margin-left:.5rem;">12</span></div>
+        <div style="padding:.875rem 1.25rem;">Sent</div>
+        <div style="padding:.875rem 1.25rem;">Drafts <span badge="neutral" style="margin-left:.5rem;">3</span></div>
+        <div style="padding:.875rem 1.25rem;">Trash</div>
+      </div>
+      <div surface="glass" radius="xl" divide="x" layout="row" style="padding:0;overflow:hidden;">
+        <div style="padding:.875rem;flex:1;text-align:center;font-size:.85rem;">Q1</div>
+        <div style="padding:.875rem;flex:1;text-align:center;font-size:.85rem;">Q2</div>
+        <div style="padding:.875rem;flex:1;text-align:center;font-size:.85rem;">Q3</div>
+        <div style="padding:.875rem;flex:1;text-align:center;font-size:.85rem;">Q4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Scroll snap carousel</p>
+    <div scroll="snap-x" scrollbar="hidden" style="display:flex;gap:1rem;padding:.25rem 0;">
+      <div gradient="brand"  snap="center" radius="xl" style="min-width:220px;height:110px;display:grid;place-items:center;color:white;font-weight:700;flex-shrink:0;">Brand</div>
+      <div gradient="ocean"  snap="center" radius="xl" style="min-width:220px;height:110px;display:grid;place-items:center;color:white;font-weight:700;flex-shrink:0;">Ocean</div>
+      <div gradient="candy"  snap="center" radius="xl" style="min-width:220px;height:110px;display:grid;place-items:center;color:white;font-weight:700;flex-shrink:0;">Candy</div>
+      <div gradient="neon"   snap="center" radius="xl" style="min-width:220px;height:110px;display:grid;place-items:center;color:white;font-weight:700;flex-shrink:0;">Neon</div>
+      <div gradient="aurora" snap="center" radius="xl" style="min-width:220px;height:110px;display:grid;place-items:center;color:white;font-weight:700;flex-shrink:0;">Aurora</div>
+    </div>
+    <p style="font-size:.75rem;opacity:.4;margin-top:.5rem;">← Swipe / drag to scroll →</p>
+  </div>
+</div>
+
+<!-- THEMING -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Local theming</p>
+    <div class="grid-2">
+      <div theme="light" style="border-radius:1rem;padding:1.5rem;">
+        <p style="font-weight:700;margin-bottom:.75rem;">theme="light" subtree</p>
+        <input placeholder="Type here…" style="width:100%;padding:.5rem .75rem;border:1px solid #ddd;border-radius:.5rem;background:white;margin-bottom:.75rem;" caret="primary" />
+        <div layout="row" gap="sm">
+          <button surface="solid" tone="primary" density="default" radius="md">Primary</button>
+          <button surface="ghost" density="default" radius="md">Ghost</button>
+        </div>
+      </div>
+      <div surface="matte" radius="xl" density="spacious" selection="primary">
+        <p style="font-weight:700;margin-bottom:.5rem;">selection="primary"</p>
+        <p style="opacity:.7;line-height:1.7;">Select any text in this box to see a custom primary-coloured selection highlight applied to the whole subtree.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORMS -->
+<div class="page">
+  <div class="section">
+    <p class="section-label">Forms</p>
+    <div surface="glass" radius="xl" density="spacious">
       <div layout="stack" gap="md">
-        <div field>
-          <label>Default input</label>
-          <input input placeholder="Enter something…" />
+        <div class="grid-2">
+          <div field><label>First name</label><input input placeholder="Jane" caret="primary" /></div>
+          <div field><label>Last name</label><input input placeholder="Doe" caret="primary" /></div>
         </div>
         <div field>
-          <label>With hint</label>
-          <input input placeholder="username@example.com" />
-          <span hint>Used for login and notifications.</span>
-        </div>
-        <div field state="error">
-          <label>Error state</label>
-          <input input value="bad-value" />
-          <span hint>This field is required and must be valid.</span>
-        </div>
-        <div field state="success">
-          <label>Success state</label>
-          <input input value="valid@email.com" />
-          <span hint>Looks good!</span>
+          <label>Email</label>
+          <input input type="email" placeholder="jane@example.com" caret="primary" />
+          <span hint>We'll never share your email.</span>
         </div>
         <div field>
-          <label>Textarea</label>
-          <textarea input="textarea" placeholder="Write something longer…"></textarea>
+          <label>Message</label>
+          <textarea input rows="4" placeholder="Your message…" style="resize:vertical;" caret="primary"></textarea>
         </div>
-        <div field>
-          <label>Select</label>
-          <select input="select">
-            <option>Option A</option>
-            <option>Option B</option>
-            <option>Option C</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Right column: special inputs -->
-      <div layout="stack" gap="md">
-        <div field>
-          <label>Range</label>
-          <input input="range" type="range" value="60" />
-          <span hint>Drag to adjust value</span>
-        </div>
-        <div field>
-          <label>Checkboxes</label>
-          <div layout="row" gap="sm">
-            <input input="checkbox" type="checkbox" checked id="cb1" />
-            <label for="cb1" text="label">Checked</label>
-          </div>
-          <div layout="row" gap="sm">
-            <input input="checkbox" type="checkbox" id="cb2" />
-            <label for="cb2" text="label">Unchecked</label>
-          </div>
-        </div>
-        <div field>
-          <label>Radio group</label>
-          <div layout="stack" gap="xs">
-            <div layout="row" gap="sm">
-              <input input="radio" type="radio" name="rb" id="rb1" checked />
-              <label for="rb1" text="label">Option A</label>
-            </div>
-            <div layout="row" gap="sm">
-              <input input="radio" type="radio" name="rb" id="rb2" />
-              <label for="rb2" text="label">Option B</label>
-            </div>
-            <div layout="row" gap="sm">
-              <input input="radio" type="radio" name="rb" id="rb3" />
-              <label for="rb3" text="label">Option C</label>
-            </div>
-          </div>
-        </div>
-        <div layout="row" gap="sm" style="margin-top: 0.5rem;">
-          <button surface="solid" tone="primary" density="default" radius="md" motion="expressive" style="flex: 1;">Submit</button>
-          <button surface="ghost" density="default" radius="md" motion="expressive">Cancel</button>
+        <div layout="row" justify="between" align="center">
+          <label layout="row" gap="sm" align="center" style="cursor:pointer;font-size:.9rem;opacity:.7;">
+            <input type="checkbox" switch switch-size="sm" />
+            Subscribe to updates
+          </label>
+          <button surface="solid" tone="primary" density="default" radius="md" motion="expressive" glow>Send message →</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- ── States ────────────────────────────────────────────────────────────── -->
-  <section id="states" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
-    <h2 text="heading" style="margin-bottom: 2rem;">States</h2>
-    <div layout="grid" gap="lg" cols="auto" style="--aura-grid-min: 200px;">
-
-      <div layout="stack" gap="sm" surface="matte" density="spacious" radius="xl">
-        <p text="overline">loading</p>
-        <button surface="solid" tone="primary" density="default" radius="md" state="loading">
-          Saving…
-        </button>
+<!-- FOOTER -->
+<footer style="margin-top:5rem;border-top:1px solid rgb(255 255 255 / 0.06);padding:2rem 1.5rem;">
+  <div class="page" style="padding-top:0;">
+    <div layout="row" justify="between" align="center" style="flex-wrap:wrap;gap:1rem;">
+      <div layout="stack" gap="xs">
+        <span style="font-weight:700;">useaura</span>
+        <span style="font-size:.8rem;opacity:.4;">v0.5.0 · 17.7 kB gzipped · 46 CSS modules</span>
       </div>
-
-      <div layout="stack" gap="sm" surface="matte" density="spacious" radius="xl">
-        <p text="overline">disabled</p>
-        <button surface="solid" tone="primary" density="default" radius="md" state="disabled">
-          Can't click
-        </button>
-        <div field state="disabled">
-          <label>Disabled field</label>
-          <input input placeholder="Not editable" />
-        </div>
-      </div>
-
-      <div layout="stack" gap="sm" surface="matte" density="spacious" radius="xl">
-        <p text="overline">skeleton</p>
-        <div state="skeleton" surface="glass" density="spacious" radius="lg" style="height: 60px;"></div>
-        <div state="skeleton" radius="md" style="height: 14px; width: 70%;"></div>
-        <div state="skeleton" radius="md" style="height: 14px; width: 50%;"></div>
-      </div>
-
-      <div layout="stack" gap="sm" surface="matte" density="spacious" radius="xl">
-        <p text="overline">semantic states</p>
-        <div surface="ghost" tone="danger"  density="compact" radius="md" state="error">
-          <span text="label">⚠ Something went wrong</span>
-        </div>
-        <div surface="ghost" tone="success" density="compact" radius="md" state="success">
-          <span text="label">✓ Saved successfully</span>
-        </div>
-        <div surface="ghost" tone="warning" density="compact" radius="md" state="warning">
-          <span text="label">⚡ Approaching limit</span>
-        </div>
-      </div>
+      <span badge="neutral">npm i useaura</span>
     </div>
-  </section>
-
-  <!-- ── Elevation ─────────────────────────────────────────────────────────── -->
-  <section id="elevation" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
-    <h2 text="heading" style="margin-bottom: 2rem;">Elevation</h2>
-    <div layout="row" gap="lg" wrap style="align-items: flex-end;">
-      <div surface="glass" density="spacious" radius="xl" elevation="none"  style="flex: 1; min-width: 140px;">
-        <p text="label">none</p>
-        <p text="caption">No shadow</p>
-      </div>
-      <div surface="glass" density="spacious" radius="xl" elevation="low"   style="flex: 1; min-width: 140px;">
-        <p text="label">low</p>
-        <p text="caption">Subtle lift</p>
-      </div>
-      <div surface="glass" density="spacious" radius="xl" elevation="mid"   style="flex: 1; min-width: 140px;">
-        <p text="label">mid</p>
-        <p text="caption">Card depth</p>
-      </div>
-      <div surface="glass" density="spacious" radius="xl" elevation="high"  style="flex: 1; min-width: 140px;">
-        <p text="label">high</p>
-        <p text="caption">Modal depth</p>
-      </div>
-      <div surface="glass" density="spacious" radius="xl" elevation="float" style="flex: 1; min-width: 140px;">
-        <p text="label">float</p>
-        <p text="caption">Overlay depth</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Layout ────────────────────────────────────────────────────────────── -->
-  <section id="layout" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
-    <h2 text="heading" style="margin-bottom: 2rem;">Layout</h2>
-    <div layout="stack" gap="lg">
-
-      <!-- Row + Stack -->
-      <div layout="row" gap="md">
-        <div surface="matte" density="spacious" radius="lg" style="flex: 1;">
-          <p text="overline" style="margin-bottom: 1rem;">row</p>
-          <div layout="row" gap="sm">
-            <div surface="glass" density="compact" radius="md" grow style="text-align: center;">A</div>
-            <div surface="glass" density="compact" radius="md" grow style="text-align: center;">B</div>
-            <div surface="glass" density="compact" radius="md" grow style="text-align: center;">C</div>
-          </div>
-        </div>
-        <div surface="matte" density="spacious" radius="lg" style="flex: 1;">
-          <p text="overline" style="margin-bottom: 1rem;">cluster (wrap)</p>
-          <div layout="cluster" gap="sm">
-            <span surface="ghost" density="compact" radius="full">Tag one</span>
-            <span surface="ghost" density="compact" radius="full">Tag two</span>
-            <span surface="ghost" density="compact" radius="full">Longer tag</span>
-            <span surface="ghost" density="compact" radius="full">Tag four</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Masonry -->
-      <div surface="matte" density="spacious" radius="xl">
-        <p text="overline" style="margin-bottom: 1rem;">masonry</p>
-        <div layout="masonry" style="--aura-masonry-cols: 3;">
-          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card A</p><p text="caption">Short</p></div>
-          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card B</p><p text="caption">This one is taller because it has more content that wraps over several lines of text.</p></div>
-          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card C</p><p text="caption">Medium length content here.</p></div>
-          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card D</p><p text="caption">Short again</p></div>
-          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card E</p><p text="caption">Another tall card with lots of interesting content that keeps going and going a bit longer.</p></div>
-          <div surface="glass" density="spacious" radius="lg" style="margin-bottom: 1rem;"><p weight="semibold">Card F</p><p text="caption">Final card</p></div>
-        </div>
-      </div>
-
-      <!-- Prose -->
-      <div surface="matte" density="spacious" radius="xl">
-        <p text="overline" style="margin-bottom: 1rem;">prose</p>
-        <div layout="prose">
-          <p text="heading" style="margin-bottom: 0.75rem;">A readable article title</p>
-          <p text="body" style="margin-bottom: 1rem;">
-            The <span text="code">layout="prose"</span> layout constrains content to
-            <span text="code">65ch</span> and centers it — optimal line length for reading.
-            It also adds breathing room on smaller viewports via <span text="code">padding-inline</span>.
-          </p>
-          <p text="body">
-            Pair it with <span text="code">balance</span> on headings and <span text="code">text="body"</span>
-            for a pleasant reading experience without writing a single media query.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Responsive grid ───────────────────────────────────────────────────── -->
-  <section id="responsive" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 4rem;">
-    <h2 text="heading" style="margin-bottom: 2rem;">Responsive Grid</h2>
-    <div layout="stack" gap="lg">
-
-      <div surface="matte" density="spacious" radius="xl">
-        <p text="overline" style="margin-bottom: 0.5rem;">cols="1" md-cols="2" lg-cols="3"</p>
-        <p text="caption" style="margin-bottom: 1.5rem; opacity: 0.5;">Resize window to see columns adapt</p>
-        <div layout="grid" gap="md" cols="1" md-cols="2" lg-cols="3">
-          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 1</p></div>
-          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 2</p></div>
-          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 3</p></div>
-          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 4</p></div>
-          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 5</p></div>
-          <div surface="glass" density="spacious" radius="lg" style="text-align: center;"><p weight="semibold">Col 6</p></div>
-        </div>
-      </div>
-
-      <div surface="matte" density="spacious" radius="xl">
-        <p text="overline" style="margin-bottom: 0.5rem;">span — item spanning multiple columns</p>
-        <p text="caption" style="margin-bottom: 1.5rem; opacity: 0.5;">Requires cols="12" grid parent</p>
-        <div layout="grid" gap="md" cols="12">
-          <div surface="solid" tone="primary" density="spacious" radius="lg" span="full"><p text="label" text-align="center">span="full" (12 cols)</p></div>
-          <div surface="glass" density="spacious" radius="lg" span="6"><p text-align="center">span="6"</p></div>
-          <div surface="glass" density="spacious" radius="lg" span="6"><p text-align="center">span="6"</p></div>
-          <div surface="glass" density="spacious" radius="lg" span="4"><p text-align="center">span="4"</p></div>
-          <div surface="glass" density="spacious" radius="lg" span="4"><p text-align="center">span="4"</p></div>
-          <div surface="glass" density="spacious" radius="lg" span="4"><p text-align="center">span="4"</p></div>
-        </div>
-      </div>
-
-      <div surface="matte" density="spacious" radius="xl">
-        <p text="overline" style="margin-bottom: 1rem;">hide / show at breakpoints</p>
-        <div layout="row" gap="sm" wrap>
-          <div surface="solid" tone="primary"  density="default" radius="md" hide="mobile"><span text="label">Hidden on mobile</span></div>
-          <div surface="solid" tone="success"  density="default" radius="md" hide="desktop"><span text="label">Hidden on desktop</span></div>
-          <div surface="solid" tone="info"     density="default" radius="md" show="mobile"><span text="label">Only on mobile</span></div>
-          <div surface="solid" tone="accent"   density="default" radius="md" show="desktop"><span text="label">Only on desktop</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Scheme ────────────────────────────────────────────────────────────── -->
-  <section id="scheme" style="max-width: 1040px; margin: 0 auto; padding: 0 2rem 6rem;">
-    <h2 text="heading" style="margin-bottom: 2rem;">Scheme</h2>
-    <div layout="row" gap="lg" style="align-items: flex-start;">
-
-      <!-- Dark (default — just showing the existing page context) -->
-      <div surface="matte" density="spacious" radius="xl" style="flex: 1;">
-        <p text="overline" style="margin-bottom: 1rem;">scheme="dark" (default)</p>
-        <div layout="stack" gap="sm">
-          <div surface="glass" tone="primary" density="spacious" radius="lg">
-            <p weight="semibold">Dark card</p>
-            <p text="caption">Default dark surface tokens</p>
-          </div>
-          <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">Dark button</button>
-        </div>
-      </div>
-
-      <!-- Light scheme -->
-      <div scheme="light" density="spacious" radius="xl" style="flex: 1; padding: 1.5rem; border-radius: 1.25rem;">
-        <p text="overline" style="margin-bottom: 1rem; opacity: 0.5;">scheme="light"</p>
-        <div layout="stack" gap="sm">
-          <div surface="glass" tone="primary" density="spacious" radius="lg">
-            <p weight="semibold">Light card</p>
-            <p text="caption">Tokens inverted for light context</p>
-          </div>
-          <div layout="row" gap="sm" wrap>
-            <button surface="solid" tone="primary" density="default" radius="md" motion="expressive">Light button</button>
-            <button surface="ghost" density="default" radius="md" motion="expressive">Ghost</button>
-          </div>
-          <div field>
-            <label>Light input</label>
-            <input input placeholder="Inverted borders…" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
+</footer>
 
 </body>
 </html>

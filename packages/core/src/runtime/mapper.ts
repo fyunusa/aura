@@ -175,6 +175,35 @@ export const AURA_ATTRS = [
   'selection',
   'caret',
   'placeholder',
+  // v0.6.0 — presets & compound shorthand
+  'card',
+  'btn',
+  'chip',
+  'tag',
+  'hero',
+  'section',
+  // v0.6.0 — tone shorthand attrs
+  'primary',
+  'danger',
+  'success',
+  'warning',
+  'neutral',
+  'info',
+  'accent',
+  // v0.6.0 — arbitrary-capable spacing/layout attrs
+  'bg',
+  'p',
+  'px',
+  'py',
+  'pt',
+  'pb',
+  'm',
+  'mx',
+  'my',
+  'min-w',
+  'min-h',
+  'max-w',
+  'max-h',
 ] as const
 
 export type AuraAttr = typeof AURA_ATTRS[number]

@@ -1,6 +1,7 @@
 import { initReveal } from './reveal'
 import { initMutationObserver } from './observer'
 import { initTilt } from './tilt'
+import { expandAll } from './expander'
 import { applyConfig } from '../config/resolver'
 import type { AuraConfig } from '../config/types'
 
@@ -14,11 +15,13 @@ export function init(config?: AuraConfig): void {
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
+      expandAll()
       initReveal()
       initTilt()
       initMutationObserver()
     })
   } else {
+    expandAll()
     initReveal()
     initTilt()
     initMutationObserver()

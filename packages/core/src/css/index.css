@@ -46,3 +46,5 @@
 @import './rating.css';
 @import './kbd.css';
 @import './theming.css';
+/* v0.6.0 — presets & shorthand */
+@import './presets.css';

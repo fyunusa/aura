@@ -1,5 +1,6 @@
 import { observeRevealElement } from './reveal'
 import { observeTiltElement } from './tilt'
+import { expandElement } from './expander'
 
 /**
  * Watches for dynamically inserted forma elements.
@@ -12,6 +13,7 @@ export function initMutationObserver(): MutationObserver {
         if (!(node instanceof Element)) continue
 
         // Handle the node itself
+        expandElement(node)
         if (node.hasAttribute('reveal')) observeRevealElement(node)
         if (node.hasAttribute('tilt'))   observeTiltElement(node)
 

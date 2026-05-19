@@ -1,0 +1,163 @@
+/* ─── Presets ─────────────────────────────────────────────────────
+   Zero-config compound elements. You don't need to memorise
+   surface/tone/density/radius — just write what you mean:
+
+     <div card="glass primary xl">
+     <button btn="danger">
+     <span chip="success">
+     <button primary>
+     <div tone="[#ff6b6b]">
+     <div radius="[12px]" p="[1.5rem_2rem]">
+
+   The runtime expander sets the individual attrs; these rules
+   handle bare usage (no runtime, or pre-expansion).
+──────────────────────────────────────────────────────────────── */
+
+/* ── Tone shorthand attrs ──────────────────────────────────────
+   <div primary>  sets --aura-tone-color so any surface can use it.
+   Works without JS — purely CSS.
+*/
+[primary] { --aura-tone-color: var(--aura-color-primary); }
+[danger]  { --aura-tone-color: var(--aura-color-danger);  }
+[success] { --aura-tone-color: var(--aura-color-success); }
+[warning] { --aura-tone-color: var(--aura-color-warning); }
+[neutral] { --aura-tone-color: var(--aura-color-neutral); }
+[accent]  { --aura-tone-color: var(--aura-color-accent);  }
+[info]    { --aura-tone-color: var(--aura-color-info);    }
+
+/* Interactive elements with a tone shorthand become styled buttons */
+:is(button, a, [role="button"]):is([primary],[danger],[success],[warning],[neutral],[accent],[info]) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: var(--aura-density-compact, 0.375rem 0.75rem);
+  border-radius: var(--aura-radius-full, 9999px);
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  white-space: nowrap;
+  background-color: var(--aura-tone-color);
+  color: #fff;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+:is(button, a, [role="button"])[warning] { color: #000; }
+:is(button, a, [role="button"]):is([primary],[danger],[success],[warning],[neutral],[accent],[info]):hover  { filter: brightness(1.15); }
+:is(button, a, [role="button"]):is([primary],[danger],[success],[warning],[neutral],[accent],[info]):active { transform: scale(0.97); }
+:is(button, a, [role="button"]):is([primary],[danger],[success],[warning],[neutral],[accent],[info]):focus-visible {
+  outline: 2px solid var(--aura-tone-color);
+  outline-offset: 2px;
+}
+
+
+/* ── btn ───────────────────────────────────────────────────────
+   <button btn>          → interactive base, subtle bg
+   <button btn="primary">  → primary tone, solid bg
+   <a btn="danger ghost">  → ghost danger button
+*/
+[btn] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  white-space: nowrap;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+[btn]:not([surface]) {
+  background-color: var(--aura-tone-color, rgb(255 255 255 / 0.08));
+  border: 1px solid rgb(255 255 255 / 0.1);
+}
+[btn]:not([density]) { padding: var(--aura-density-compact, 0.375rem 0.75rem); }
+[btn]:not([radius])  { border-radius: var(--aura-radius-full, 9999px); }
+[btn]:hover  { filter: brightness(1.15); }
+[btn]:active { transform: scale(0.97); }
+[btn]:focus-visible {
+  outline: 2px solid var(--aura-tone-color, var(--aura-color-primary));
+  outline-offset: 2px;
+}
+/* btn + tone shorthand: solid filled colour, not the default faint tint */
+[btn][tone] { color: #fff; }
+[btn][tone="warning"] { color: #000; }
+
+
+/* ── card ──────────────────────────────────────────────────────
+   <div card>              → glass card, default padding + radius
+   <div card="primary xl"> → primary glass, xl radius
+   <div card="solid primary spacious"> → solid tinted, spacious
+*/
+[card]:not([surface]) {
+  backdrop-filter: blur(var(--aura-glass-blur, 14px));
+  -webkit-backdrop-filter: blur(var(--aura-glass-blur, 14px));
+  background-color: rgb(255 255 255 / var(--aura-glass-opacity, 0.10));
+  border: 1px solid var(--aura-glass-border, rgba(255,255,255,0.08));
+}
+[card]:not([density]) { padding: var(--aura-density-default, 0.75rem 1rem); }
+[card]:not([radius])  { border-radius: var(--aura-radius-lg, 0.75rem); }
+
+
+/* ── chip / tag ────────────────────────────────────────────────
+   <span chip>           → subtle pill
+   <span chip="primary"> → primary-toned pill
+*/
+[chip], [tag] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+[chip]:not([surface]), [tag]:not([surface]) {
+  background-color: rgb(from var(--aura-tone-color, #fff) r g b / 0.12);
+  border: 1px solid rgb(from var(--aura-tone-color, #fff) r g b / 0.2);
+}
+[chip]:not([density]), [tag]:not([density]) { padding: 0.2rem 0.6rem; }
+[chip]:not([radius]),  [tag]:not([radius])  { border-radius: var(--aura-radius-full, 9999px); }
+
+
+/* ── hero ──────────────────────────────────────────────────────
+   <section hero> → full-height centred hero layout
+*/
+[hero] {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+
+/* ── section ───────────────────────────────────────────────────
+   <div section> → max-width centred content section
+*/
+[section] {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+
+/* Reduced motion guard */
+@media (prefers-reduced-motion: reduce) {
+  [btn], :is(button, a, [role="button"]):is([primary],[danger],[success],[warning],[neutral],[accent],[info]) {
+    transition: none;
+  }
+}
