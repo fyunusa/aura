@@ -19,15 +19,26 @@ const SURFACES   = new Set(['glass', 'solid', 'matte', 'ghost', 'frosted', 'neon
 const TONES      = new Set(['primary', 'danger', 'success', 'warning', 'neutral', 'info', 'accent'])
 const DENSITIES  = new Set(['compact', 'spacious', 'default'])
 const RADII      = new Set(['none', 'sm', 'md', 'lg', 'xl', 'full'])
-const ELEVATIONS = new Set(['low', 'mid', 'high', 'float'])
+const ELEVATIONS = new Set(['low','mid','high'])
+const LAYOUTS    = new Set(['row','stack','grid','cluster','cover','sidebar','masonry'])
+
+/** Human-friendly radius aliases so you never have to remember scale names */
+const RADIUS_ALIASES: Record<string, string> = {
+  sharp:   'none',
+  rounded: 'lg',
+  pill:    'full',
+  circle:  'full',
+}
 
 /** Classify a single token → [attrName, attrValue] or null if unknown */
 function classify(token: string): [string, string] | null {
-  if (SURFACES.has(token))    return ['surface',   token]
-  if (TONES.has(token))       return ['tone',      token]
-  if (DENSITIES.has(token))   return ['density',   token]
-  if (RADII.has(token))       return ['radius',    token]
-  if (ELEVATIONS.has(token))  return ['elevation', token]
+  if (SURFACES.has(token))          return ['surface',   token]
+  if (TONES.has(token))             return ['tone',      token]
+  if (DENSITIES.has(token))         return ['density',   token]
+  if (RADII.has(token))             return ['radius',    token]
+  if (ELEVATIONS.has(token))        return ['elevation', token]
+  if (LAYOUTS.has(token))           return ['layout',    token]
+  if (token in RADIUS_ALIASES)      return ['radius',    RADIUS_ALIASES[token]]
   return null
 }
 
@@ -45,6 +56,7 @@ function applyTokens(el: Element, tokens: string[]): void {
  *      <button btn> — JS sets compact + full-radius defaults.
  */
 const COMPOUND: Record<string, string[]> = {
+  aura:    [],                    // universal token bag — expand ALL recognized tokens
   card:    [],                    // CSS handles bare [card] glass defaults
   btn:     ['compact', 'full'],   // bare <button btn> → compact density, full radius
   chip:    ['compact', 'full'],

@@ -11,81 +11,77 @@ const path = Astro.url.pathname
 
 const nav = [
   {
-    group: 'Getting Started',
+    group: 'Start Here',
     links: [
-      { label: 'Overview',     href: '/docs/' },
-      { label: 'Installation', href: '/docs/getting-started/' },
+      { label: '⚡ Quick Reference', href: '/docs/quick-reference/' },
+      { label: 'Install & Setup',    href: '/docs/getting-started/' },
+      { label: 'Overview',           href: '/docs/' },
     ],
   },
   {
-    group: 'Core',
+    group: 'Surfaces & Color',
     links: [
-      { label: 'Surfaces',    href: '/docs/surfaces/' },
-      { label: 'Tones',       href: '/docs/tones/' },
-      { label: 'Typography',  href: '/docs/typography/' },
+      { label: 'Surfaces',  href: '/docs/surfaces/' },
+      { label: 'Tones',     href: '/docs/tones/' },
+      { label: 'Scheme',    href: '/docs/scheme/' },
     ],
   },
   {
-    group: 'Layout',
+    group: 'Layout & Spacing',
     links: [
-      { label: 'Layout',      href: '/docs/layout/' },
-      { label: 'Responsive',  href: '/docs/responsive/' },
-      { label: 'Elevation',   href: '/docs/elevation/' },
+      { label: 'Layout',     href: '/docs/layout/' },
+      { label: 'Responsive', href: '/docs/responsive/' },
+      { label: 'Elevation',  href: '/docs/elevation/' },
     ],
   },
   {
-    group: 'Interactive',
+    group: 'Typography',
     links: [
-      { label: 'Forms',   href: '/docs/forms/' },
-      { label: 'States',  href: '/docs/states/' },
+      { label: 'Typography',   href: '/docs/typography/' },
+      { label: 'Text Effects', href: '/docs/text-effects/' },
     ],
   },
   {
-    group: 'Utilities',
+    group: 'Visual Effects',
     links: [
-      { label: 'Motion & Reveal',      href: '/docs/motion/' },
-      { label: 'Spring Motion',         href: '/docs/spring/' },
-      { label: 'Scroll Animations',     href: '/docs/scroll-animations/' },
-      { label: 'Scheme',               href: '/docs/scheme/' },
+      { label: 'Gradients',   href: '/docs/gradients/' },
+      { label: 'Glow & Ring', href: '/docs/glow/' },
+      { label: 'Filters',     href: '/docs/filters/' },
+      { label: 'Patterns',    href: '/docs/patterns/' },
+      { label: 'Masks',       href: '/docs/masks/' },
+      { label: 'Clip Paths',  href: '/docs/clip/' },
+    ],
+  },
+  {
+    group: 'Motion',
+    links: [
+      { label: 'Motion & Reveal',    href: '/docs/motion/' },
+      { label: 'Animations',         href: '/docs/animate/' },
+      { label: 'Spring Motion',      href: '/docs/spring/' },
+      { label: 'Scroll Animations',  href: '/docs/scroll-animations/' },
+      { label: 'Tilt (3D Hover)',    href: '/docs/tilt/' },
+      { label: 'Shimmer & Skeleton', href: '/docs/shimmer/' },
+      { label: 'Scroll Snap',        href: '/docs/scroll-snap/' },
+    ],
+  },
+  {
+    group: 'Components',
+    links: [
+      { label: 'Badge',    href: '/docs/badge/' },
+      { label: 'Forms',    href: '/docs/forms/' },
+      { label: 'States',   href: '/docs/states/' },
+      { label: 'Tooltip',  href: '/docs/tooltip/' },
+      { label: 'Divide',   href: '/docs/divide/' },
     ],
   },
   {
     group: 'Advanced',
     links: [
-      { label: 'Fluid Scaling',         href: '/docs/fluid/' },
-      { label: 'Animated Surfaces',     href: '/docs/animated-surfaces/' },
-      { label: 'Container Queries',     href: '/docs/container-queries/' },
-      { label: 'Seed Color',            href: '/docs/seed/' },
-      { label: 'Tooltips',              href: '/docs/tooltip/' },
-    ],
-  },
-  {
-    group: 'v0.4.0 — Effects',
-    links: [
-      { label: 'Gradients',             href: '/docs/gradients/' },
-      { label: 'Glow & Ring',           href: '/docs/glow/' },
-      { label: 'Patterns',              href: '/docs/patterns/' },
-      { label: 'Filters & Backdrop',    href: '/docs/filters/' },
-      { label: 'Masks',                 href: '/docs/masks/' },
-      { label: 'Clip Paths',            href: '/docs/clip/' },
-    ],
-  },
-  {
-    group: 'v0.4.0 — Animation',
-    links: [
-      { label: 'Animate',               href: '/docs/animate/' },
-      { label: 'Tilt (3D Hover)',        href: '/docs/tilt/' },
-      { label: 'Shimmer & Skeleton',    href: '/docs/shimmer/' },
-    ],
-  },
-  {
-    group: 'v0.4.0 — Utilities',
-    links: [
-      { label: 'General Utils',         href: '/docs/utils/' },
-      { label: 'Text Effects',          href: '/docs/text-effects/' },
-      { label: 'Badge',                 href: '/docs/badge/' },
-      { label: 'Divide',                href: '/docs/divide/' },
-      { label: 'Scroll Snap',           href: '/docs/scroll-snap/' },
+      { label: 'Fluid Scaling',      href: '/docs/fluid/' },
+      { label: 'Animated Surfaces',  href: '/docs/animated-surfaces/' },
+      { label: 'Container Queries',  href: '/docs/container-queries/' },
+      { label: 'Seed Color',         href: '/docs/seed/' },
+      { label: 'Utils',              href: '/docs/utils/' },
     ],
   },
   {

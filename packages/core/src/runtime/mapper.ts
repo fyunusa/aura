@@ -176,6 +176,7 @@ export const AURA_ATTRS = [
   'caret',
   'placeholder',
   // v0.6.0 — presets & compound shorthand
+  'aura',
   'card',
   'btn',
   'chip',
