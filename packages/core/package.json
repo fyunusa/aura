@@ -1,6 +1,6 @@
 {
   "name": "useaura",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Style with intent, not with soup.",
   "type": "module",
   "exports": {
