@@ -40,6 +40,12 @@ Full documentation, live examples, and the Quick Reference (everything on one pa
 
 **[aura-css.netlify.app/docs](https://aura-css.netlify.app/docs)**
 
+## Issues & feedback
+
+Found a bug or have a feature request? Open an issue on GitHub:
+
+**[github.com/fyunusa/aura/issues](https://github.com/fyunusa/aura/issues)**
+
 ## License
 
 MIT

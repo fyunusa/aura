@@ -1,7 +1,15 @@
 {
   "name": "useaura",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Style with intent, not with soup.",
+  "homepage": "https://aura-css.netlify.app/docs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fyunusa/aura.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fyunusa/aura/issues"
+  },
   "type": "module",
   "exports": {
     ".": {
@@ -15,7 +23,9 @@
       "import": "./dist/runtime.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup && node scripts/build-css.js",
     "dev": "tsup --watch",
@@ -31,5 +41,7 @@
     "jsdom": "^24.0.0",
     "@types/node": "^20.0.0"
   },
-  "sideEffects": ["./dist/forma.css"]
+  "sideEffects": [
+    "./dist/forma.css"
+  ]
 }
